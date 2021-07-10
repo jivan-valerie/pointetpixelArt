@@ -31,7 +31,8 @@ class OeuvreController extends AbstractController
     public function view(TableauxRepository $tableauxRepository) : Response
     {
     $liste_tableaux=$tableauxRepository->findAll();
-    return $this->render('oeuvre/view_tableaux.html.twig', [
+    return $this->render('oeuvre/view_tableaux.html.twig', 
+    [
     'liste_tableaux'=>$liste_tableaux,
     ]);
     }
@@ -60,14 +61,23 @@ class OeuvreController extends AbstractController
             'form'=>$form->createView()
         ]);
     }
+    /**
+     * @Route("detail-tableau/{id}", name="detail_tableau", methods={"GET"})
+     */
+    public function show(Tableaux $tableau): Response
+    {
+        
+
+        return $this->render('oeuvre/detail_tableaux.html.twig', [
+            'tableau' => $tableau,
+        ]);
+    }
 
     /**
      * @Route("/ajouter-tableau", name="add_tableau")
      */
     public function addTableau(Request $request, EntityManagerInterface $entityManager,
-    TvaRepository $tvaRepository
-
-    ): Response
+    TvaRepository $tvaRepository): Response
     {
         $tva = $tvaRepository->find(1);
         $tableau= new Tableaux();
@@ -77,15 +87,12 @@ class OeuvreController extends AbstractController
             $image=$form->get('image')->getData();
             $image_name=uniqid().'.'.$image->guessExtension();
             $image->move($this->getParameter('upload_dir'), $image_name);
-
             $tableau->setTva($tva->getTva());
-        
             $prix = $tableau->CalculPrix($tableau->getLongueur(), $tableau->getLargeur(),$tva->getTva());
             $tableau->setPrix($prix);
             $tableau->setImage($image_name);
             $entityManager->persist($tableau);
             $entityManager->flush();
-
             return $this->redirectToRoute('oeuvre');
         }
         

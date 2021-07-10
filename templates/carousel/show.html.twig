@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Carousel{% endblock %}
+{# montre les détails d'un tableau singulier selon son Id #}
+{# il est possible de modifier par l'edit  et supprimer ce tableau de cet id #}
 
 {% block body %}
     <h1>Carousel</h1>
@@ -30,7 +32,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('carousel_index') }}">back to list</a>
+    <a href="{{ path('carousel_index') }}">retour à la liste</a>
 
     <a href="{{ path('carousel_edit', {'id': carousel.id}) }}">edit</a>
 

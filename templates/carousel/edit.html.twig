@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Edit Carousel</h1>
-
+{# edit un tableau selon son id, son form de formulaire pour pouvoir le mmodifier et de le supprimer #}
     {{ include('carousel/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('carousel_index') }}">back to list</a>

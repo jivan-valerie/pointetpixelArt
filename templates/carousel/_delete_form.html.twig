@@ -1,4 +1,6 @@
 <form method="post" action="{{ path('carousel_delete', {'id': carousel.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    {# bouton delete inclus dans le show,cad détails tableaux-id sous forme de table impossible à modifier #}
+    {# et dans edit, cad détails tableau selon sous forme de formulaire selon _form.twig avec possibilité de le modifier #}
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ carousel.id) }}">
     <button class="btn">Delete</button>
 </form>
