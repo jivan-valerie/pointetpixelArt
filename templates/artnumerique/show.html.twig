@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artnumerique{% endblock %}
+
+{% block body %}
+    <h1>Artnumerique</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ artnumerique.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ artnumerique.titre }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ artnumerique.auteur }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ artnumerique.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ artnumerique.image }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('artnumerique_index') }}">back to list</a>
+
+    <a href="{{ path('artnumerique_edit', {'id': artnumerique.id}) }}">edit</a>
+
+    {{ include('artnumerique/_delete_form.html.twig') }}
+{% endblock %}

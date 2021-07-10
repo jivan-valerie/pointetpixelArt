@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Point & Pixel {% endblock %}
+
+{% block body %}
+    <main>
+        <section id="firstsect">
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="{{ asset('images/picturehome2.jpg') }}" class="w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <a href="artGraf.html"><button class="firstitem ">Art Graphique</button></a>
+                            <div class="textcaption">
+                                <h4> Découvrez notre galerie virtuelle </h4>
+                                <p> et ses tableaux à des prix accessibles ! </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="{{ asset('images/secondehome.jpg') }}" class="w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <a href="images.html"><button class="firstitem">Art Numérique</button></a>
+                            <div class="textcaption">
+                                <h4> Contemplez les créations numériques 2D et 3D </h4>
+                                <h6> La plateforme des publicistes, designers, graphistes... </h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/fantaisyhome.jpg') }}" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <a href="images.html"><button class="firstitem">Nos images</button></a>
+                            <div class="textcaption">
+                                <h4> Consultez l'album de creation d'images artistiques </h4>
+                                <h6> un choix pour tous les goûts </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+{% endblock %}

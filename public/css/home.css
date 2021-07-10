@@ -1,0 +1,381 @@
+body {
+    font-family: 'Playfair Display', serif;
+    border: 0px;
+    color: #21153a;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0%;
+
+}
+a {
+    text-decoration: none;
+    z-index: 30;
+}
+
+
+h5{
+    font-size: 1.2em;
+    
+}
+.icon {
+color: rgb(124, 204, 204);
+font-size: 1rem;
+}
+
+  #logo { 
+    max-width:5rem;
+    
+ 
+ }
+
+.navbar{
+    background-color: #21153a;
+
+    font-size: 14px;
+
+    padding: 2px;
+    
+}
+
+#navbarNavDropdown a{
+    color: rgb(252, 253, 239);   
+}
+#navbarNavDropdown a:hover{ 
+background-color: #337ab7;
+}
+#navbarNavDropdown{
+    background-color: rgba(57,42,74);
+    margin-bottom: 3px;
+    margin-top: 3px;
+    padding-left: 8px;
+
+}
+.dropdown-menu{
+    background-color:rgba(57,42,74,0.7)
+    
+}
+
+/*.menuprincipe{
+    background-color: aquamarine;
+    border: 3px solid black;
+    z-index: 40;
+    position: absolute;
+    min-width: 100%;
+    height: auto;
+}
+
+
+#menuprincipal>li {
+    margin: 0 20px;
+}
+
+#menusecondaire {
+    background-color: rgba(243, 214, 159, 0.1);;
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+#menusecondaire ul {
+
+    display: flex;
+    margin-right: 20px;
+
+}*/
+
+
+
+/************
+     MAIN
+*************/
+
+    
+.firstsection{
+    background-color: rgb(159, 243, 159);
+    
+}
+
+
+.firstitem {
+
+    background-color: rgba(27, 12, 44, 0.7);
+    font-size: 1.6rem;
+    padding: 5px 15px;
+    text-decoration: none;
+    
+    color: rgb(252, 253, 239);
+    position: relative;
+    margin-bottom: 15px;
+    
+}
+
+/***********/
+/*.text {
+    background-color: darkslategray;
+    
+    width: 100%;
+    padding :10px
+}*/
+.text{
+    background-color:  rgb(252, 253, 239);
+    text-align: center;
+    font-size: 15px;
+    padding: 40px 40px 0px 40px;
+}
+
+
+
+
+#block-centrale{
+    display: flex;
+        
+    justify-content:space-evenly;
+    align-items:center;
+    flex-wrap: wrap;
+}
+
+.secondbuttonitem {
+    margin-bottom: 30px;
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 2px;
+    background-color:rgb(212, 167, 108);
+    background-image: linear-gradient(to top left,
+                                      rgba(10, 10, 10, .2),
+                                      rgba(10, 10, 10, .2) 30%,
+                                      rgba(10,10, 10, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+    
+}
+
+
+
+
+.lookSubject {
+    background-color: rgb(209, 159, 243);
+    display: flex;
+    justify-content: center;
+    padding: 10px 10px;
+
+}
+
+
+
+#firstsubject {
+    margin: 3px;
+    padding: 10px;
+
+}
+
+.lookSubject img {
+    width: 200px;
+}
+
+
+ .subjectpaint{
+    color: aqua;
+    position: relative;
+    top: -80px;
+    z-index: 50;
+    
+
+    
+}
+
+/***********
+FOOTER
+***********/
+footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1em 0;
+    background-color: #191828;
+    bottom: 0;
+}
+
+footer p {
+    color: #f0d069;
+}
+
+footer a {
+    color: #a9cfee;
+}
+
+footer a:hover {
+    color: #FFFFFF;
+}
+
+
+footer {
+    background-color: rgb(39, 23, 58);
+}
+
+/************
+MAIN ART GRAF
+*************/
+#imageScroll img{
+    display: flex;
+    max-width: 100%;
+    height: auto;
+
+}
+
+.card{
+    background-color:rgb(252, 253, 239);
+    
+    border:2px solid rgb(243, 214, 159)
+    
+}
+#animaux .card img{
+    
+    height:40%;
+}
+
+
+.btn-check{
+    background-color: aqua;
+    
+}
+.buttonBuy {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.styled {
+
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 2px;
+    background-color: rgb(231, 156, 69);
+    background-image: linear-gradient(to top left,
+                                      rgba(0, 0, 0, .2),
+                                      rgba(0, 0, 0, .2) 30%,
+                                      rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+
+/*************/
+/*ACOUNT
+/*************/
+.account{
+	background-image: linear-gradient(to top, rgb(231, 156, 69) 0%,  rgb(243, 214, 159) 100%);
+	background-repeat: no-repeat;
+	height: 660px;
+    display:flex;
+    align-items:center;
+    justify-content: center;	
+}
+.box{
+	width: 60%;
+    height: 70%;
+	background-color:rgb(230, 70, 70);
+	
+	box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+	padding: 5px;
+	top: 20px; 
+}
+
+/*img {
+	width: 100px;
+	padding-top: 10px;
+	margin: auto;
+
+}*/
+
+.account h4 {
+	
+	padding: 15px 5px;
+	font-size: 19px;
+}
+
+.form-group {
+    margin-top: 20px;
+}
+
+
+
+.login-input {
+	margin: 10px;
+    font-size: 20px;
+
+}
+
+.checkbox {
+	position: relative;
+	
+
+	color: #337ab7;
+}
+
+a {
+	position: relative;
+	
+
+}
+
+.login-button {
+	width: 70%;
+    position: relative;
+	left: 30px;
+    background-color: #9bd0db;
+    padding: 1px 2px;
+}
+
+.error {
+    font-size: 13px;
+    background-color: #FFC2BD;
+    padding: 5px;
+    display: none;
+}
+
+.error-img {
+    width: 18px;
+    vertical-align: bottom;
+}
+
+.success {
+    font-size: 13px;
+    background-color: #FFC2BD;
+    padding: 5px;
+    display: none;
+}
+
+.success-img {
+    width: 18px;
+    vertical-align: bottom;
+}
+/*************
+PAGE CONTACT
+/************/
+
+.form-control:focus{
+    box-shadow: 0 0 0 0.25rem rgb(209 153 97 / 35%);
+    border-color: rgb(252, 253, 239);
+    border: 5px solid rgb(252, 253, 239);
+}
+
+/* #buttonSubmit{ */
+    /* background-color: rgb(209 153 97);
+    border : 1px solid rgb(209 153 97);
+    color: rgb(243, 239, 253);
+    font-size: 1.1rem; */
+
+/* } */
