@@ -3,14 +3,17 @@
 namespace App\Classes;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-
+use App\Repository\TableauxRepository;
 class Panier 
 {
     private $session;
+    private $tableaurepository;
 
-    public function __construct(SessionInterface $session)
+    public function __construct(SessionInterface $session, TableauxRepository $tableauxrepository)
     {
-       $this->session = $session; 
+       $this->session = $session;
+       $this->tableaurepository = $tableauxrepository;
+
     }
 // fonction qui ajoute article au panier et un paramètre obligatoire
     public function add_oeuvre_panier($variable){
@@ -47,7 +50,7 @@ class Panier
     public function SupprimerOeuvrePanier($id){
         // je vais get panier
         $panier=$this->getpanier();
-        //je verifi si c'e produit
+        //je verifie si c'e produit
             if (!empty($panier[$id])) {
     // sinon je le delete
                 unset($panier[$id]);
@@ -55,15 +58,15 @@ class Panier
     $this->session->set('panier',$panier);
     }
 
-    // ajoute 5 articles de id =1 à 4;
-    public function ajouter5(){
-    $panier=$this->getPanier();
+//     // ajoute 5 articles de id =1 à 4;
+//     public function ajouter5(){
+//     $panier=$this->getPanier();
     
-    for ($i=1; $i < 5; $i++) { 
-        $panier[$i] =1;
-    }
-    $this->session->set('panier',$panier);
-}
+//     for ($i=1; $i < 5; $i++) { 
+//         $panier[$i] =1;
+//     }
+//     $this->session->set('panier',$panier);
+// }
 
 //  funcion qui retire un à la quantité d'une oeuvre
     public function deleteUneOeuvre($id){
@@ -78,5 +81,31 @@ class Panier
         }
         $this->session->set('panier',$panier);
     }
+    public function afficheDetailPanier()
+    {
+        $panier = $this->getPanier();
+        $detail_panier =[];
 
+        foreach ($panier as $key => $quantity) {
+            $tableaux=$this->tableaurepository->find($key);
+
+            $detail_panier[] = [
+                'tableau' => $tableaux,
+                'quantity'=>$quantity
+            ];
+        }
+        return $detail_panier;
+    }
+
+    public function CalculTotal(){
+        $total= 0 ;
+        $panier=$this->afficheDetailPanier();
+
+        foreach ($panier as $row){
+            $prix=$row['tableau']->getPrix();
+            $total=$total+($row['quantity']*$prix);
+
+        }
+        return $total;
+    }
 }

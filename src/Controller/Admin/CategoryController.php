@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
@@ -14,7 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/category", name="category")
+     * @Route("admin/category", name="category")
      */
     public function index(CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $manager): Response
     {

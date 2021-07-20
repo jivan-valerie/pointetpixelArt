@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Classes\Panier;
+
 class PanierController extends AbstractController
 {
     private $panier;
@@ -16,12 +17,13 @@ class PanierController extends AbstractController
     }
 
     /**
-     * @Route("/panier", name="panier")
+     * @Route("user/panier", name="panier")
      */
     public function index(): Response
     {
         return $this->render('panier/index.html.twig', [
-            'panier'=>$this->panier->getPanier()
+            'panier'=>$this->panier->afficheDetailPanier(), 
+            'total'=>$this->panier->CalculTotal()
         ]);
     }
     /**
@@ -29,6 +31,7 @@ class PanierController extends AbstractController
      */
     public function addOeuvrePanier($id): Response
     {
+        
         $this->panier->add_oeuvre_panier($id);
         
         return $this->redirectToRoute('panier');
@@ -54,16 +57,7 @@ class PanierController extends AbstractController
         
     } 
 
-    /**
-     * @Route("/addcinqpanier", name="add_5_panier")
-     */
-    public function add5Panier(Panier $panier): Response
-    {
-        $panier->ajouter5();
-        
-        return $this->redirectToRoute('panier');
-        
-    }
+    
     /**
      * @Route("/supprime-une_oeuvre/{id}", name="delete_uneoeuvre_panier")
      */
@@ -74,4 +68,8 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('panier');
         
     } 
+    /**
+     * @Route("/supprime-une_oeuvre/{id}", name="delete_uneoeuvre_panier")
+     */
+    
 }

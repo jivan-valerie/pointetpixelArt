@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfilController!{% endblock %}
+
+{% block body %}
+{{ user.Tableauxuser | length}}
+
+{% for row in user.Tableauxuser %}
+    {{ row.id }}
+{% endfor %}
+{% endblock %}

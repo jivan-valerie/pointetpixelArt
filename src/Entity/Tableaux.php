@@ -63,6 +63,12 @@ class Tableaux
      */
     private $tva;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tableauxuser")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $User;
+
 
 
     public function getId(): ?int
@@ -206,6 +212,18 @@ class Tableaux
     public function setTva(float $tva): self
     {
         $this->tva = $tva;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }

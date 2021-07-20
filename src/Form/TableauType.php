@@ -11,6 +11,10 @@ use Symfony\Component\Form\ChoiceList\Factory\Cache\ChoiceLabel;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\IsTrue;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 class TableauType extends AbstractType
 {
@@ -30,6 +34,21 @@ class TableauType extends AbstractType
             
             ->add('category', EntityType::class,
             [ 'class'=>Category::class, 'choice_label'=> 'name'])
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+                'label' => 'Accepter les termes',
+                'attr'=> ['html'=> '<a href="#"></a>'],
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'You should agree to our terms.',
+                    ]),
+                ],
+            ])
+            ->add('ajouter', SubmitType::class, [
+                'label' => 'Ajouter',
+                'attr'=>[ 'class'=>'btn btn-success'], 
+                // 'mapped'=>false,
+            ])
         ;
     }
 

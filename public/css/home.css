@@ -2,6 +2,7 @@ body {
     font-family: 'Playfair Display', serif;
     border: 0px;
     color: #21153a;
+    
 }
 
 ul {
@@ -16,10 +17,10 @@ a {
 }
 
 
-h5{
-    font-size: 1.2em;
+/* h5{ */
+    /* font-size: 1.2em; */
     
-}
+/* } */
 .icon {
 color: rgb(124, 204, 204);
 font-size: 1rem;

@@ -1,0 +1,166 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+	<main>
+		<div>
+			<img src="img/picturehome2.jpg" alt="paysage" class="imgArtgrahique">
+		</div>
+		<h2 class="h2 ms-3 mt-5">Art Figuratif</h2>
+		<div class="text-center">
+			<p class="m-3">Vous vous trouvez sur la page 'Art figuratif', pour visitez notre galerie d'art abstrait et divers thèmes vous pouvez cliquez sur ce lien</p>
+			<button class="favorite styled" type="button">Art abstrait</button>
+		</div>
+		<div class="container mt-4 mt-lg-5 ">
+			<h3 id="face">Portraits</h3>
+			<h5 class="mb-5">Orientation paysage</h5>
+			<div class="row g-2 g-lg-3 justify-content-center">
+				{% for item in liste_tableaux %}
+					{% if item.category.name == "Portrait" and item.longueur < item.largeur %}
+						<div class="col-11 col-sm-10 col-md-6 col-lg-4 col-xl-3">
+							<div class="card h-100">
+								<img src="{{asset('images/' ~ item.image)}}" class="card-img-top" alt="Aperçu du tableau cheveaux sauvages">
+								<div class="card-body">
+									<h5 class="card-title">Titre:
+										{{ item.titre }}</h5>
+									<p class="auteur">Auteur:
+										{{ item.auteur }}</p>
+									<p class="card-text">
+										Taille :
+										{{item.longueur}}
+										cm x
+										{{item.largeur}}
+										cm;
+									</p>
+									<p class="tecnique">Technique : Huile sur toile</p>
+									<p class="priceunit">Prix :
+										{{item.prix}}€</p>
+									<div class="buttonBuy">
+										{% if app.user %}
+											<a href="{{path('add_panier',{'id': item.id} ) }}"><input class="favorite styled" type="button" value="Acheter"></a>
+										{% else %}
+											<a href="{{path('app_login')}}"><input class="favorite styled" type="button" value="Acheter"></a>
+										{% endif %}
+										<input type="button" value="info">
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			<h5 class="mb-5">Orientation portrait</h5>
+			<div class="row g-2 g-lg-3 justify-content-center">
+				{% for item in liste_tableaux %}
+					{% if item.category.name == "Portrait" and item.longueur >= item.largeur %}
+						<div class="col-11 col-sm-10 col-md-6 col-lg-4 col-xl-3">
+							<div class="card h-100">
+								<img src="{{asset('images/' ~ item.image)}}" class="card-img-top" alt="Aperçu du tableau cheveaux sauvages">
+								<div class="card-body">
+									<h5 class="card-title">Titre:
+										{{ item.titre }}</h5>
+									<p class="auteur">Auteur:
+										{{ item.auteur }}</p>
+									<p class="card-text">
+										Taille :
+										{{item.longueur}}
+										cm x
+										{{item.largeur}}
+										cm;
+									</p>
+									<p class="tecnique">Technique : Huile sur toile</p>
+									<p class="priceunit">Prix :
+										{{item.prix}}€</p>
+									<div class="buttonBuy">
+										{% if app.user %}
+											<a href="{{path('add_panier',{'id': item.id} ) }}"><input class="favorite styled" type="button" value="Acheter"></a>
+										{% else %}
+											<a href="{{path('app_login')}}"><input class="favorite styled" type="button" value="Acheter"></a>
+										{% endif %}
+										<input type="button" value="info" >
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+			<div class="container mt-4 mt-lg-5 ">
+				<h3 id="animaux">Animaux</h3>
+				<h5 class="mb-5">Orientation paysage</h5>
+			<div class="row g-2 g-lg-3 justify-content-center">
+				{% for item in liste_tableaux %}
+					{% if item.category.name == "Animaux" and item.longueur < item.largeur %}
+						<div class="col-11 col-sm-10 col-md-6 col-lg-4 col-xl-3">
+							<div class="card h-100">
+								<img src="{{asset('images/' ~ item.image)}}" class="card-img-top" alt="Aperçu du tableau cheveaux sauvages">
+								<div class="card-body">
+									<h5 class="card-title">Titre:
+										{{ item.titre }}</h5>
+									<p class="auteur">Auteur:
+										{{ item.auteur }}</p>
+									<p class="card-text">
+										Taille :
+										{{item.longueur}}
+										cm x
+										{{item.largeur}}
+										cm;
+									</p>
+									<p class="tecnique">Technique : Huile sur toile</p>
+									<p class="priceunit">Prix :
+										{{item.prix}}€</p>
+									<div class="buttonBuy">
+										{% if app.user %}
+											<a href="{{path('add_panier',{'id': item.id} ) }}"><input class="favorite styled" type="button" value="Acheter"></a>
+										{% else %}
+											<a href="{{path('app_login')}}"><input class="favorite styled" type="button" value="Acheter"></a>
+										{% endif %}
+										<input type="button" value="info">
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			<h5 class="mb-5">Orientation portrait</h5>
+			<div class="row g-2 g-lg-3 justify-content-center">
+				{% for item in liste_tableaux %}
+					{% if item.category.name == "Animaux" and item.longueur >= item.largeur %}
+						<div class="col-11 col-sm-10 col-md-6 col-lg-4 col-xl-3">
+							<div class="card h-100">
+								<img src="{{asset('images/' ~ item.image)}}" class="card-img-top" alt="Aperçu du tableau cheveaux sauvages">
+								<div class="card-body">
+									<h5 class="card-title">Titre:
+										{{ item.titre }}</h5>
+									<p class="auteur">Auteur:
+										{{ item.auteur }}</p>
+									<p class="card-text">
+										Taille :
+										{{item.longueur}}
+										cm x
+										{{item.largeur}}
+										cm;
+									</p>
+									<p class="tecnique">Technique : Huile sur toile</p>
+									<p class="priceunit">Prix :
+										{{item.prix}}€</p>
+									<div class="buttonBuy">
+										{% if app.user %}
+											<a href="{{path('add_panier',{'id': item.id} ) }}"><input class="favorite styled" type="button" value="Acheter"></a>
+										{% else %}
+											<a href="{{path('app_login')}}"><input class="favorite styled" type="button" value="Acheter"></a>
+										{% endif %}
+										<input type="button" value="info" >
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+				
+				
+
+
+		{% endblock %}

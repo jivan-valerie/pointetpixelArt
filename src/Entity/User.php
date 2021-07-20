@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -36,6 +38,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Tableaux::class, mappedBy="User", orphanRemoval=true)
+     */
+    private $tableauxuser;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $commandes;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $adresse;
+
+    public function __construct()
+    {
+        $this->tableauxuser = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -124,5 +147,77 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|Tableaux[]
+     */
+    public function getTableauxuser(): Collection
+    {
+        return $this->tableauxuser;
+    }
+
+    public function addTableauxuser(Tableaux $tableauxuser): self
+    {
+        if (!$this->tableauxuser->contains($tableauxuser)) {
+            $this->tableauxuser[] = $tableauxuser;
+            $tableauxuser->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTableauxuser(Tableaux $tableauxuser): self
+    {
+        if ($this->tableauxuser->removeElement($tableauxuser)) {
+            // set the owning side to null (unless already changed)
+            if ($tableauxuser->getUser() === $this) {
+                $tableauxuser->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getUser() === $this) {
+                $commande->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
     }
 }

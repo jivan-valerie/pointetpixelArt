@@ -3,50 +3,39 @@
 {% block title %}Dashboard Tableaux{% endblock %}
 
 {% block body %}
-<div class="container">
-<a href= "{{ path('add_tableau')}}" class="btn-success">Ajouter un article</a>
-
-<table class="table">
-  <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Titre</th>
-        <th scope="col">Auteur</th>
-        <th scope="col">images</th>
-        <th scope="col">catégories</th>
-        <th scope="col">prix</th>
-
-    </tr>
-  </thead>
-  <tbody>
-  {% for item in liste_tableaux %}
-    <tr>
-      <th scope="row">{{item.id}}</th>
-            <td>{{item.titre}}</td>
-            <td>{{item.auteur}}</td>
-            <td><img src ="{{asset('images/' ~ item.image)}}" style ="width:60px" </td>
-            <td>{{item.category.name}}</td>
-            <td>{{item.prix}}</td>
-            <td><a href="{{path('edit_tableau', {'id': item.id})}}"><i class="fas fa-edit ms-2 me-2" edit</a></td>
-            <td><a href="{{path('delete_tableau', {'id': item.id})}}"><i class="fas fa-trash me-1" edit</a></td>
-
-    </tr>
-    {% endfor %}
-    </tr>
-  </tbody>
-</table>
+<div class="container col-lg-9 mt-5 text-center">
+<h2 class= "my-4"> Dashboard Tableaux </h2>
+  <div class= "row">
+{# <a href= "{{ path('add_tableau')}}" class="btn-success">Ajouter un article</a> #}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Numero</th>
+          <th scope="col">Titre</th>
+          <th scope="col">Auteur</th>
+          <th scope="col">images</th>
+          <th scope="col">catégories</th>
+          <th scope="col">prix</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in liste_tableaux %}
+          <tr>
+            <th scope="row">{{item.id}}</th>
+              <td>{{item.titre}}</td>
+              <td>{{item.auteur}}</td>
+              <td><img src ="{{asset('images/' ~ item.image)}}" style ="width:70px" </td>
+              <td>{{item.category.name}}</td>
+              <td>{{item.prix}}</td>
+              <td><a href="{{path('edit_tableau', {'id': item.id})}}"><i class="fas fa-edit ms-2 me-2"></i></a></td>
+              <td><a href="{{path('delete_tableau', {'id': item.id})}}"><i class="fas fa-trash me-1"></i></a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
-<h1> une autre partie essaie</h1>
-{% for item in liste_tableaux %}
-{% if item.category.id ==3 %}
 
-<p>je m'affiche bien<p>
-
-
-{% else %}
-<p> je m'affiche pas </p>
-{% endif %}
-    {% endfor %}
 
 {% endblock %}
 

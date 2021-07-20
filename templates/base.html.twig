@@ -25,7 +25,7 @@
 		{% endblock %}
 	</head>
 	<body>
-        <div class="container-fluid  m-3 d-flex justify-content-between align-items-center my-3" id="rowheadertop">
+        <div class="container-fluid d-flex justify-content-between align-items-center my-3" id="rowheadertop">
             <div class= "text-center" id="title">
                 <h1>POINT & PIXEL</h1>
                 <h2>La vitrine des artistes </h2>
@@ -40,7 +40,7 @@
         <div >
             <nav class="navbar navbar-expand-md navbar-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Home</a>
+                    <a class="navbar-brand" href="{{path('home') }}">Point&Pixel</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -51,65 +51,101 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Qui sommes-nous ?</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{path('add_tableau')}}">ajouter</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{path('oeuvre')}}">tableaux</a>
-                        </li>
+                        
+                        
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownmenu2" role="button"
+                            <a class="nav-link dropdown-toggle" href="#" id="galerie" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">Nos galeries</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownmenu2">
-                                <li><a class="dropdown-item" href="ArtGraf.html">Tableaux</a></li>
-                                <li><a class="dropdown-item" href="Artnumerique.html">Art Numérique</a></li>
-                                <li><a class="dropdown-item" href="Images.html">Images</a></li>
+                            <ul class="dropdown-menu" aria-labelledby="galerie">
+                                <li><a class="dropdown-item" href="{{path('vitrine') }}">Art Graphique</a></li>
+                                <li><a class="dropdown-item" href="#">Art Numérique</a></li>
+                                <li><a class="dropdown-item" href="#">Images</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{path('panier')}}">panier</a>
-                        </li>
+                        
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            <a class="nav-link dropdown-toggle" href="#" id="vosoeuvres" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">Vos oeuvres</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="Account">Insérer</a></li>
-                                <li><a class="dropdown-item" href="#">Acheter</a></li>
-                                <li><a class="dropdown-item" href="Guide">Guide pratique</a></li>
+                            <ul class="dropdown-menu" aria-labelledby="vosoeuvres">
+                                <li>
+                                    <a class="dropdown-item" href="{{path('vitrine') }}">Acheter</a>
+                                </li>
+                                    {% if app.user %}
+                                <li class="nav-item">
+                                    <a class="dropdown-item" aria-current="page" href="{{path('add_tableau')}}">Insérer</a>
+                                </li>
+                                    {% else %}
+                                <li class="nav-item">
+                                    <a class="dropdown-item" href="{{path('app_login') }}">Insérer</a></li>
+                                </li>
+                                    {% endif %}
+                                <li>
+                                    <a class="dropdown-item" href="#">Guide pratique</a>
+                                </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Vos artistes </a>
-                        </li>
+                        
                             <a class="nav-link" href="#">Contact</a>
-                            
-                        {% if app.user %}
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{path('carousel_index')}}">Carousel</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{path('category')}}">Catégories</a>
-                            </li>
+                        {# {% if is_granted('ROLE_USER')  %}   #}
+                        {% if app.user %} 
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{path('app_logout')}}">Deconnexion</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{path('tva_edit',{'id':1})}}">tva</a>
+                                <a class="nav-link active" aria-current="page" href="{{path('panier')}}">panier</a>
                             </li>
-                    {% else %}
+                            
+                            {# <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{path('profil')}}">profil</a>
+                            </li> #}
+                            <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="{{ path('profil') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        mon profil
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ path('edit_register', { 'id': app.user.id}) }}">Modifier mon profil</a></li>
+                            <li><a class="dropdown-item" href="#">Mes tableaux</a></li>
+                            <li><a class="dropdown-item" href="#">Modifier un tableaux</a></li>
+                            <li><a class="dropdown-item" href="#">Supprimer un tableaux da la vente</a></li>
+
+                            <li><a class="dropdown-item">Mes achats</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ path('delete_profil') }}" >Supprimer mon compte</a></li>
+                        </ul>
+                        </li>
+                        {% else %}
+
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{path('app_login')}}">Login</a>
                             </li>
 							<li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{path('app_register')}}">Inscription</a>
                             </li>
+
+                            
                     {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{path('tva_edit',{'id':1})}}">tva</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{path('category')}}">Catégories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{path('carousel_index')}}">Carousel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{path('oeuvre')}}">tableaux</a>
+                        </li>
+                    {% endif %}
+                    
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
-        <h1>ESSAIE</h1>
+       
 		{% block body %}
         
         {% endblock %}
