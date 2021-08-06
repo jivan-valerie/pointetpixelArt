@@ -58,17 +58,7 @@ class Panier
     $this->session->set('panier',$panier);
     }
 
-//     // ajoute 5 articles de id =1 à 4;
-//     public function ajouter5(){
-//     $panier=$this->getPanier();
-    
-//     for ($i=1; $i < 5; $i++) { 
-//         $panier[$i] =1;
-//     }
-//     $this->session->set('panier',$panier);
-// }
 
-//  funcion qui retire un à la quantité d'une oeuvre
     public function deleteUneOeuvre($id){
         
         $panier =$this->getPanier();

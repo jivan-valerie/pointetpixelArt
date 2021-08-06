@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Tableaux;
 use App\Form\TableauType;
+use App\Repository\CategoryRepository;
 use App\Repository\TableauxRepository;
 use App\Repository\TvaRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,13 +31,31 @@ class TableauUserController extends AbstractController
      */
     public function view(TableauxRepository $tableauxRepository) : Response
     {
-    $liste_tableaux=$tableauxRepository->findAll();
-    return $this->render('tableau_user/view_tableaux.html.twig', 
-    [
-    'liste_tableaux'=>$liste_tableaux,
-    ]);
+        
+    
+            $liste_tableaux=$tableauxRepository->findBy(['vendu'=>false]);
+        
+        
+        
+        return $this->render('tableau_user/view_tableaux.html.twig', 
+        [
+        'liste_tableaux'=>$liste_tableaux,
+
+        ]);
     }
 
+
+    /**
+     * @Route("/detail-tableau/{id}", name="detail_tableau", methods={"GET"},)
+     */
+    public function show(Tableaux $tableau): Response
+    {
+        
+
+        return $this->render('tableau_user/detail_tableaux.html.twig', [
+            'tableau' => $tableau,
+        ]);
+    }
 
     /**
      * @Route("/ajouter-tableau", name="add_tableau")
@@ -60,7 +79,7 @@ class TableauUserController extends AbstractController
             $tableau->setUser($user);
             $entityManager->persist($tableau);
             $entityManager->flush();
-            return $this->redirectToRoute('profil');
+            return $this->redirectToRoute('vitrine');
         }
         
         

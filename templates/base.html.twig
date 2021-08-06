@@ -2,152 +2,164 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 		<title>
-			{% block title %}Point&Pixel{% endblock %}
+			{% block title %}Point&Pixel
+			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-		           and uncomment the following Encore helpers to start using Symfony UX #}
+					and uncomment the following Encore helpers to start using Symfony UX #}
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 		<script src="https://kit.fontawesome.com/a0e3886f09.js" crossorigin="anonymous"></script>
 		{% block stylesheets %}
 			{# {{ encore_entry_script_tags('app') }} #}
-		    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
-			rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		{# {{parent()}} #}
-		<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+			<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+			{# {{parent()}} #}
+			<link rel="stylesheet" href="{{ asset('css/home.css') }}">
 		{% endblock %}
 
 		{% block javascripts %}
 			{# {{ encore_entry_script_tags('app') }} #}
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 		{% endblock %}
 	</head>
 	<body>
-        <div class="container-fluid d-flex justify-content-between align-items-center my-3" id="rowheadertop">
-            <div class= "text-center" id="title">
-                <h1>POINT & PIXEL</h1>
-                <h2>La vitrine des artistes </h2>
-            </div>
-                <div class="icon">
-                    <i class="fas fa-search"></i>
-                    <i class="far fa-heart"></i>
-                    <i class="far fa-user"></i>
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-        </div>
-        <div >
-            <nav class="navbar navbar-expand-md navbar-dark">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="{{path('home') }}">Point&Pixel</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Qui sommes-nous ?</a>
-                        </li>
-                        
-                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="galerie" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Nos galeries</a>
-                            <ul class="dropdown-menu" aria-labelledby="galerie">
-                                <li><a class="dropdown-item" href="{{path('vitrine') }}">Art Graphique</a></li>
-                                <li><a class="dropdown-item" href="#">Art Numérique</a></li>
-                                <li><a class="dropdown-item" href="#">Images</a></li>
-                            </ul>
-                        </li>
-                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="vosoeuvres" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Vos oeuvres</a>
-                            <ul class="dropdown-menu" aria-labelledby="vosoeuvres">
-                                <li>
-                                    <a class="dropdown-item" href="{{path('vitrine') }}">Acheter</a>
-                                </li>
-                                    {% if app.user %}
-                                <li class="nav-item">
-                                    <a class="dropdown-item" aria-current="page" href="{{path('add_tableau')}}">Insérer</a>
-                                </li>
-                                    {% else %}
-                                <li class="nav-item">
-                                    <a class="dropdown-item" href="{{path('app_login') }}">Insérer</a></li>
-                                </li>
-                                    {% endif %}
-                                <li>
-                                    <a class="dropdown-item" href="#">Guide pratique</a>
-                                </li>
-                            </ul>
-                        </li>
-                        
-                            <a class="nav-link" href="#">Contact</a>
-                        {# {% if is_granted('ROLE_USER')  %}   #}
-                        {% if app.user %} 
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{path('app_logout')}}">Deconnexion</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{path('panier')}}">panier</a>
-                            </li>
-                            
-                            {# <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{path('profil')}}">profil</a>
-                            </li> #}
-                            <li class="nav-item dropdown">
-
-                        <a class="nav-link dropdown-toggle" href="{{ path('profil') }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        mon profil
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ path('edit_register', { 'id': app.user.id}) }}">Modifier mon profil</a></li>
-                            <li><a class="dropdown-item" href="#">Mes tableaux</a></li>
-                            <li><a class="dropdown-item" href="#">Modifier un tableaux</a></li>
-                            <li><a class="dropdown-item" href="#">Supprimer un tableaux da la vente</a></li>
-
-                            <li><a class="dropdown-item">Mes achats</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ path('delete_profil') }}" >Supprimer mon compte</a></li>
-                        </ul>
-                        </li>
-                        {% else %}
-
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{path('app_login')}}">Login</a>
-                            </li>
+		<div class="container-fluid d-flex justify-content-between align-items-center my-3" id="rowheadertop">
+			<div class="text-center" id="title">
+				<h1>POINT & PIXEL</h1>
+				<h2>La vitrine des artistes
+				</h2>
+			</div>
+			<div class="icon">
+				<i class="fas fa-search"></i>
+				<i class="far fa-heart"></i>
+				<i class="far fa-user"></i>
+				<i class="fas fa-shopping-basket"></i>
+			</div>
+		</div>
+		<div>
+			<nav class="navbar navbar-expand-md navbar-dark">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="{{path('home') }}">Point&Pixel</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNavDropdown">
+						<ul class="navbar-nav">
 							<li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{path('app_register')}}">Inscription</a>
-                            </li>
+								<a class="nav-link active" aria-current="page" href="#">Qui sommes-nous ?</a>
+							</li>
 
-                            
-                    {% endif %}
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{path('tva_edit',{'id':1})}}">tva</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{path('category')}}">Catégories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{path('carousel_index')}}">Carousel</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{path('oeuvre')}}">tableaux</a>
-                        </li>
-                    {% endif %}
-                    
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-       
-		{% block body %}
-        
-        {% endblock %}
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="galerie" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nos galeries
+								</a>
+
+								<ul class="dropdown-menu" aria-labelledby="galerie">
+									<li>
+										<a class="dropdown-item" href="{{path('vitrine') }}">Art Graphique</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="#">Art Numérique</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="#">Images</a>
+									</li>
+								</ul>
+
+
+							</li>
+							
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="vosoeuvres" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vos oeuvres</a>
+								<ul class="dropdown-menu" aria-labelledby="vosoeuvres">
+									<li>
+										<a class="dropdown-item" href="{{path('vitrine', {'_fragment' : 'animaux'}) }}">Acheter</a>
+									</li>
+									{% if app.user %}
+									<li class="nav-item">
+										<a class="dropdown-item" aria-current="page" href="{{path('add_tableau')}}">Insérer</a>
+									</li>
+									{% else %}
+									<li class="nav-item">
+										<a class="dropdown-item" aria-current="page" href="{{path('app_login')}}">Insérer</a>
+									</li>
+									{% endif %}
+									<li>
+										<a class="dropdown-item" href="#">Guide pratique</a>
+									</li>
+								</ul>
+							</li>
+							<a class="nav-link" href="#">Contact</a>
+						
+
+
+							
+						{% if app.user %}
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									mon profil
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<li class="nav-item">
+										<a class="nav-link active" aria-current="page" href="{{path('app_logout')}}">Deconnexion</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="{{ path('edit_register', { 'id': app.user.id}) }}">Modifier mon profil</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="{{path('panier')}}">panier</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="{{path('profil')}}">Ma gestion
+										</a>
+									</li>
+
+									<li><hr class="dropdown-divider"></li>
+									<li>
+										<a class="dropdown-item" href="{{path('delete_panier') }}">Supprimer panier</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="{{ path('delete_profil') }}">Supprimer mon compte</a>
+									</li>
+								</ul>
+							</li>
+						{% else %}
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="{{path('app_login')}}">Login</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="{{path('app_register')}}">Inscription</a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</nav>
 	</body>
-</html>
+</html></div>{% if is_granted('ROLE_ADMIN') %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item active">
+				<a class="nav-link" href="{{path('oeuvre')}}">tableaux</a>
+			</li>
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="{{path('category')}}">Catégories</a>
+	</li>
+	{# <li class="nav-item">
+								<a class="nav-link" href="{{path('oeuvre')}}">tableaux</a>
+							</li> #}
+	<li class="nav-item">
+		<a class="nav-link" href="{{path('user_index')}}">Utilisateurs</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="{{path('tva_edit',{'id':1})}}">tva</a>
+	</li>
+</ul></div></nav>{% endif %}{% block body %}{% endblock %}</body></html>

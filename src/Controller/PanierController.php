@@ -44,7 +44,7 @@ class PanierController extends AbstractController
     public function deleteToutPanier(): Response
     {
         $this->panier->deletePanier();
-        return $this->redirectToRoute('panier');
+        return $this->redirectToRoute('home');
     }
     /**
      * @Route("/supprime-oeuvre/{id}", name="delete_oeuvre_panier")
@@ -59,7 +59,7 @@ class PanierController extends AbstractController
 
     
     /**
-     * @Route("/supprime-une_oeuvre/{id}", name="delete_uneoeuvre_panier")
+     * @Route("/supprime-une-oeuvre/{id}", name="delete_uneoeuvre_panier")
      */
     public function deleteUneOeuvrePanier($id, Panier $panier): Response
     {
@@ -68,8 +68,6 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('panier');
         
     } 
-    /**
-     * @Route("/supprime-une_oeuvre/{id}", name="delete_uneoeuvre_panier")
-     */
+    
     
 }

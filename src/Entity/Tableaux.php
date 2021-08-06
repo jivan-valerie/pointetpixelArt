@@ -69,6 +69,17 @@ class Tableaux
      */
     private $User;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $vendu=false;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Technique::class, inversedBy="Tableaux")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $technique;
+
 
 
     public function getId(): ?int
@@ -224,6 +235,30 @@ class Tableaux
     public function setUser(?User $User): self
     {
         $this->User = $User;
+
+        return $this;
+    }
+
+    public function getVendu(): ?bool
+    {
+        return $this->vendu;
+    }
+
+    public function setVendu(bool $vendu): self
+    {
+        $this->vendu = $vendu;
+
+        return $this;
+    }
+
+    public function getTechnique(): ?Technique
+    {
+        return $this->technique;
+    }
+
+    public function setTechnique(?Technique $technique): self
+    {
+        $this->technique = $technique;
 
         return $this;
     }

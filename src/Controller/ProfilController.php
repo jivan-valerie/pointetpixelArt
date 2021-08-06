@@ -8,22 +8,50 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Form\RegistrationFormType;
+use App\Repository\CommandeRepository;
+use App\Repository\DetailCommandeRepository;
+use App\Entity\DetailCommande;
+use App\Repository\TableauxRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ProfilController extends AbstractController
 {
-    /**
+
+
+/**
      * @Route("/profil", name="profil")
      */
-    public function index(): Response
+    public function index(DetailCommandeRepository $detail_commande, TableauxRepository $tableauxRepository): Response
+    {   
+        $user=$this->getUser();
+        //$tableau=$tableauxRepository->find($id);
+
+        // $commande=$detail_commande->find($tableau);
+        
+    // $detail_commande->setAuteur($tableau->getAuteur($id));
+    // $detail_commande->setPrix($tableau->getPrix($id));
+        
+        return $this->render('profil/index.html.twig', [
+            'user' => $user,
+            // 'commande'=>$commande
+          
+        ]);
+    }
+
+
+    /**
+     * @Route("/profil-tableaux", name="profil_tableaux")
+     */
+    public function MesTableaux(): Response
     {
         $user=$this->getUser();
-        return $this->render('profil/index.html.twig', [
+        return $this->render('profil/mes_tableaux.html.twig', [
             'user' => $user
           
         ]);
     }
+    
      /**
      * @Route("/modifier-profil", name="edit_register")
      */

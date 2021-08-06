@@ -17,4 +17,16 @@ class CommandeController extends AbstractController
             'controller_name' => 'CommandeController',
         ]);
     }
+    /**
+     * @Route("/profil-tableaux", name="mes_commandes")
+     */
+    public function MesAchats(): Response
+    {
+        $user=$this->getUser();
+        return $this->render('commande/index.html.twig', [
+            'user' => $user
+          
+        ]);
+    }
+
 }

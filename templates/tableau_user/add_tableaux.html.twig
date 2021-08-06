@@ -5,8 +5,16 @@
 {% block body %}
 <div class= "container mt-3 m-auto"></div>
 {{ form_start(form) }}
+{{ form_widget(form) }}
+    
+    <a href="#">conditions de vente</a>
+    {# bouton pour sauvegarder la modification #}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    
+{{ form_end(form) }}
 
+{#  #}
 {# <input type="submit" value="Ajouter"> #}
-{{ form_end(form)}}
-<a href="#">conditions de vente</a>
+
+
 {% endblock %}

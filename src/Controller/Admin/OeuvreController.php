@@ -51,17 +51,7 @@ class OeuvreController extends AbstractController
             'form'=>$form->createView()
         ]);
     }
-    /**
-     * @Route("detail-tableau/{id}", name="detail_tableau", methods={"GET"},)
-     */
-    public function show(Tableaux $tableau): Response
-    {
-        
-
-        return $this->render('oeuvre/detail_tableaux.html.twig', [
-            'tableau' => $tableau,
-        ]);
-    }
+    
 
     
     /**

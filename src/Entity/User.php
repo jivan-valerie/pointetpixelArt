@@ -54,6 +54,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $adresse;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $complement_adresse;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $banni=false;
+
     public function __construct()
     {
         $this->tableauxuser = new ArrayCollection();
@@ -217,6 +237,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAdresse(string $adresse): self
     {
         $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getComplementAdresse(): ?string
+    {
+        return $this->complement_adresse;
+    }
+
+    public function setComplementAdresse(string $complement_adresse): self
+    {
+        $this->complement_adresse = $complement_adresse;
+
+        return $this;
+    }
+
+    public function getBanni(): ?bool
+    {
+        return $this->banni;
+    }
+
+    public function setBanni(bool $banni): self
+    {
+        $this->banni = $banni;
 
         return $this;
     }

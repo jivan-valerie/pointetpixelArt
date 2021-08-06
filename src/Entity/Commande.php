@@ -66,6 +66,19 @@ class Commande
 
         return $this;
     }
+    
+
+    public function getNom(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setNom(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 
     public function getDateCommande(): ?\DateTimeInterface
     {

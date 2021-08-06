@@ -10,7 +10,7 @@
                     <div class="carousel-item active" data-bs-interval="5000">
                         <img src="{{ asset('images/picturehome2.jpg') }}" class="w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <a href="artGraf.html"><button class="firstitem ">Art Graphique</button></a>
+                            <a href="#"><button class="firstitem ">Art Graphique</button></a>
                             <div class="textcaption">
                                 <h4> Découvrez notre galerie virtuelle </h4>
                                 <p> et ses tableaux à des prix accessibles ! </p>
@@ -51,5 +51,51 @@
             </div>
         </section>
 
+    <section class="mt-5">
+        <h3 class="text-center my-4"> Explorez notre Galerie par thème</h3>
+            <div class="container">
+             
+                      
+                    
+                <div class="row text-center d-flex justify-content-center">
+                    <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+                    
+                   {# <pre>
+                       {{ dump(liste_category[1]) }}
+                   </pre> #}
+                    
+                        <a href="{{path('vitrine', {'category' : 'Portrait' })}}"><img src="{{ asset('images/fantaisyhome.jpg') }}" class="img-thumbnail"  alt="allez à representation de paysage" id="paysage"></a>
+                        <p class="subjectpaint" >Portrait</p>
+                    </div>
+                     <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+                        <a href="{{path('vitrine', {'category' : 'Scene' })}}"><img src="{{ asset('images/fantaisyhome.jpg') }}" class="img-thumbnail" alt="allez à representation d'Animaux"></a>
+                        <p class="subjectpaint">Scène</p>
+                    </div>
+                    <div class="col-8 col-sm-6 col-md-4 col-lg-3 ">
+                        <a href="{{path('vitrine', {'category' : 'Animaux' })}}"><img src="{{ asset('images/fantaisyhome.jpg') }}" class="img-thumbnail" alt="allez à representation d'Animaux"></a>
+                        <p class="subjectpaint">Animaux</p>
+                    </div>
+                    <div class="col-8 col-sm-6 col-md-4 col-lg-3">  
+                        <a href="{{path('vitrine', {'category' : 'Paysage' })}}"><img src="{{ asset('images/fantaisyhome.jpg') }}" class="img-thumbnail"  alt="allez à representation de paysage" id="pay"></a>
+                        <p class="subjectpaint">Paysage</p>
+                    </div>
+                    <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+                        <a href="{{path('vitrine', {'category' : 'Nature morte' })}}"><img src="{{ asset('images/fantaisyhome.jpg') }}" class="img-thumbnail"  alt="allez à representation de nature morte" id="paysa"></a>
+                        <p class="subjectpaint">Nature morte</p>
+                    </div>
+                    <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+                        <a href="{{path('vitrine', {'category' : 'Fantastique' })}}"><img src="{{ asset('images/fantaisyhome.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage"></a>
+                        <p class="subjectpaint">Fantastique</p>
+                    </div>
+                    <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+                        <a href="{{path('vitrine', {'category' : 'Abstrait' })}}"><img src="{{ asset('images/fantaisyhome.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage"></a>
+                        <p class="subjectpaint">Abstrait</p>
+                    </div>
+                    <div class="col-8 col-sm-6 col-md-4 col-lg-3">  
+                        <a href="{{path('vitrine', {'category' : 'Divers' })}}"><img src="{{ asset('images/fantaisyhome.jpg') }}" class="img-thumbnail"  alt="allez à representation de paysage" id="pa"></a>
+                        <p class="subjectpaint">Divers</p>
+                    </div>
+                </div>
+            </div> 
     </main>
 {% endblock %}

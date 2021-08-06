@@ -3,19 +3,18 @@
 {% block title %}Hello ProfilController!{% endblock %}
 
 {% block body %}
-{# {{ user.Commandes | length}}
+{{ user.Tableauxuser | length}}
 
-{% for row in user.Commandes %}
+{% for row in user.Tableauxuser %}
     <p> voici mon premier tableau</p>
     {{ row.id }}
-    {{ row.adresse }}
-    {{ row.date_commande }}
-    {{ row.user.auteur}} #}
-    {# {{ row.image}} #}
+    {{ row.titre}}
+    {# {{ row.prix }} #}
+    {{ row.image}}
     {# {{ row}} #}
     {# {{row.user.adresse}} #}
     {# {{ row}} #}
-{# {% endfor %} #}
+{% endfor %}
 {# {{ user.Commandes | length}}
 
 {% for row in user.Commandes %}

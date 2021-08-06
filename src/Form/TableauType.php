@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\Tableaux;
 use App\Entity\Category;
-
+use App\Entity\Technique;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Factory\Cache\ChoiceLabel;
@@ -34,10 +34,25 @@ class TableauType extends AbstractType
             
             ->add('category', EntityType::class,
             [ 'class'=>Category::class, 'choice_label'=> 'name'])
+            ->add('technique', EntityType::class,
+            [ 'class'=>Technique::class, 'choice_label'=> 'nom'])
+
+            ->add('certifie', CheckboxType::class, [
+                'mapped' => false,
+                'label' => 'Je certifie être le propriétaire légal et légitime de cette oeuvre'])
+
+            ->add('certifie2', CheckboxType::class, [
+                'mapped' => false,
+                'label' => 'Je m\'engage à respecter les conditions de vente de Point&Pixel'])
+
+            ->add('certifie3', CheckboxType::class, [
+                    'mapped' => false,
+                    'label' => 'Je certifie respecter la propriété intellectuelle de cette oeuvre'])
+
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'Accepter les termes',
-                'attr'=> ['html'=> '<a href="#"></a>'],
+                'attr'=> ['html'=> '<a href="">vous devez imperativement</a>'],
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
