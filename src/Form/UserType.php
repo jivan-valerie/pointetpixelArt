@@ -2,34 +2,31 @@
 
 namespace App\Form;
 
-use App\Entity\Carousel;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class CarouselType extends AbstractType
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('image', FileType::class,[
-            'label' => 'Télécharger une image',
-            'data_class'=> null
-        ])
-            ->add('indice')
-            ->add('titre')
-            ->add('description')
+            ->add('email')
+            // ->add('roles')
+            // ->add('password')
+            ->add('adresse')
+            ->add('complement_adresse')
+            ->add('nom')
+            ->add('prenom')
+            
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Carousel::class,
+            'data_class' => User::class,
         ]);
     }
 }
-
-
-
