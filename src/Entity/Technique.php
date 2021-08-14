@@ -27,12 +27,13 @@ class Technique
     /**
      * @ORM\OneToMany(targetEntity=Tableaux::class, mappedBy="technique", orphanRemoval=true)
      */
-    private $Tableaux;
+    private $technique_tableaux;
 
     public function __construct()
     {
-        $this->Tableaux = new ArrayCollection();
+        $this->technique_tableaux = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -54,30 +55,32 @@ class Technique
     /**
      * @return Collection|Tableaux[]
      */
-    public function getTableaux(): Collection
+    public function getTechniqueTableaux(): Collection
     {
-        return $this->Tableaux;
+        return $this->technique_tableaux;
     }
 
-    public function addTableaux(Tableaux $tableaux): self
+    public function addTechniqueTableaux(Tableaux $techniqueTableaux): self
     {
-        if (!$this->Tableaux->contains($tableaux)) {
-            $this->Tableaux[] = $tableaux;
-            $tableaux->setTechnique($this);
+        if (!$this->technique_tableaux->contains($techniqueTableaux)) {
+            $this->technique_tableaux[] = $techniqueTableaux;
+            $techniqueTableaux->setTechnique($this);
         }
 
         return $this;
     }
 
-    public function removeTableaux(Tableaux $tableaux): self
+    public function removeTechniqueTableaux(Tableaux $techniqueTableaux): self
     {
-        if ($this->Tableaux->removeElement($tableaux)) {
+        if ($this->technique_tableaux->removeElement($techniqueTableaux)) {
             // set the owning side to null (unless already changed)
-            if ($tableaux->getTechnique() === $this) {
-                $tableaux->setTechnique(null);
+            if ($techniqueTableaux->getTechnique() === $this) {
+                $techniqueTableaux->setTechnique(null);
             }
         }
 
         return $this;
     }
+
+    
 }

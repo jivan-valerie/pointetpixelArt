@@ -75,10 +75,12 @@ class Tableaux
     private $vendu=false;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Technique::class, inversedBy="Tableaux")
+     * @ORM\ManyToOne(targetEntity=Technique::class, inversedBy="technique_tableaux")
      * @ORM\JoinColumn(nullable=false)
      */
     private $technique;
+
+    
 
 
 
@@ -262,6 +264,8 @@ class Tableaux
 
         return $this;
     }
+
+    
     
 }
 

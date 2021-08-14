@@ -43,7 +43,23 @@ class TableauUserController extends AbstractController
 
         ]);
     }
+    /**
+     * @Route("/art_graphique/DiversArt", name="divers-art")
+     */
+    public function viewdivers(TableauxRepository $tableauxRepository) : Response
+    {
+        
+    
+            $liste_tableaux=$tableauxRepository->findBy(['vendu'=>false]);
+        
+        
+        
+        return $this->render('tableau_user/view_divers.html.twig', 
+        [
+        'liste_tableaux'=>$liste_tableaux,
 
+        ]);
+    }
 
     /**
      * @Route("/detail-tableau/{id}", name="detail_tableau", methods={"GET"},)

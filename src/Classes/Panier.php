@@ -11,8 +11,8 @@ class Panier
 
     public function __construct(SessionInterface $session, TableauxRepository $tableauxrepository)
     {
-       $this->session = $session;
-       $this->tableaurepository = $tableauxrepository;
+    $this->session = $session;
+    $this->tableaurepository = $tableauxrepository;
 
     }
 // fonction qui ajoute article au panier et un paramètre obligatoire
