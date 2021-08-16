@@ -23,7 +23,8 @@ class PanierController extends AbstractController
     {
         return $this->render('panier/index.html.twig', [
             'panier'=>$this->panier->afficheDetailPanier(), 
-            'total'=>$this->panier->CalculTotal()
+            'total'=>$this->panier->CalculTotal(),
+            'quantitytotal'=>$this->panier->CalculQuantiteTotal()
         ]);
     }
     /**

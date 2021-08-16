@@ -28,16 +28,20 @@
 								cm;
 							</p>
 							<p class="tecnique">Technique : Huile sur toile</p>
-							<p class="priceunit">Prix :
-								{{tableau.prix}}€</p>
-							<div class="buttonBuy">
+							{% if tableau.vendu == true %}
+								<p>Désolé, ce tableau est déjà vendu</p>
+							{% else %}
+								<p class="priceunit">Prix :
+									{{tableau.prix}}€</p>
+								<div class="buttonBuy">
 								{% if app.user %}
 									<a href="{{path('add_panier',{'id': tableau.id} ) }}"><input class="favorite styled" type="button" value="Acheter"></a>
 								{% else %}
 									<a href="{{ path('app_login') }}"><input class="favorite styled" type="button" value="Acheter"></a>
 								{% endif %}
 								<a href="{{ path('vitrine') }}"><input type="button" value="retour"></a>
-							</div>
+							{% endif %}
+								</div>
 						</div>
 					</div>
 				</div>

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Tableaux;
+use App\Form\CategoryType;
 use App\Form\TableauType;
 use App\Repository\CategoryRepository;
 use App\Repository\TableauxRepository;
@@ -29,18 +30,18 @@ class TableauUserController extends AbstractController
     /**
      * @Route("/art_graphique", name="vitrine")
      */
-    public function view(TableauxRepository $tableauxRepository) : Response
+    public function view(TableauxRepository $tableauxRepository, CategoryRepository $categoryRepository ) : Response
     {
         
     
-            $liste_tableaux=$tableauxRepository->findBy(['vendu'=>false]);
-        
-        
+            //  $liste_tableaux=$tableauxRepository->findBy(['vendu'=>false]);
+                $liste_tableaux = $tableauxRepository->findAll();
+                $liste_categorie = $categoryRepository->findAll();
         
         return $this->render('tableau_user/view_tableaux.html.twig', 
         [
-        'liste_tableaux'=>$liste_tableaux,
-
+        'liste_tableaux'=> $liste_tableaux,
+        'liste_categorie' => $liste_categorie,
         ]);
     }
     /**
@@ -50,7 +51,8 @@ class TableauUserController extends AbstractController
     {
         
     
-            $liste_tableaux=$tableauxRepository->findBy(['vendu'=>false]);
+            $liste_tableaux=$tableauxRepository->findAll();
+        
         
         
         

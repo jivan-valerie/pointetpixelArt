@@ -9,7 +9,7 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-					and uncomment the following Encore helpers to start using Symfony UX #}
+							and uncomment the following Encore helpers to start using Symfony UX #}
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -41,65 +41,59 @@
 				<i class="fas fa-shopping-basket"></i>
 			</div>
 		</div>
-		
-		
-		<div>
-			<nav class="navbar navbar-expand-md navbar-dark">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="{{path('home') }}">Point&Pixel</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNavDropdown">
-						<ul class="navbar-nav">
-							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="#">Qui sommes-nous ?</a>
-							</li>
+		<nav class="navbar navbar-expand-md navbar-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="{{path('home') }}">Point&Pixel</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">Qui sommes-nous ?</a>
+						</li>
 
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="galerie" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nos galeries
-								</a>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="galerie" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nos galeries
+							</a>
 
-								<ul class="dropdown-menu" aria-labelledby="galerie">
-									<li>
-										<a class="dropdown-item" href="{{path('vitrine') }}">Art Graphique</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">Art Numérique</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="#">Images</a>
-									</li>
-								</ul>
+							<ul class="dropdown-menu" aria-labelledby="galerie">
+								<li>
+									<a class="dropdown-item" href="{{path('vitrine') }}">Art Graphique</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Art Numérique</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Images</a>
+								</li>
+							</ul>
 
 
-							</li>
-							
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="vosoeuvres" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vos oeuvres</a>
-								<ul class="dropdown-menu" aria-labelledby="vosoeuvres">
-									<li>
-										<a class="dropdown-item" href="{{path('vitrine', {'_fragment' : 'animaux'}) }}">Acheter</a>
-									</li>
-									{% if app.user %}
+						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="vosoeuvres" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vos oeuvres</a>
+							<ul class="dropdown-menu" aria-labelledby="vosoeuvres">
+								<li>
+									<a class="dropdown-item" href="{{path('vitrine', {'_fragment' : 'animaux'}) }}">Acheter</a>
+								</li>
+								{% if app.user %}
 									<li class="nav-item">
 										<a class="dropdown-item" aria-current="page" href="{{path('add_tableau')}}">Insérer</a>
 									</li>
-									{% else %}
+								{% else %}
 									<li class="nav-item">
 										<a class="dropdown-item" aria-current="page" href="{{path('app_login')}}">Insérer</a>
 									</li>
-									{% endif %}
-									<li>
-										<a class="dropdown-item" href="#">Guide pratique</a>
-									</li>
-								</ul>
-							</li>
-							<a class="nav-link" href="#">Contact</a>
-						
+								{% endif %}
+								<li>
+									<a class="dropdown-item" href="#">Guide pratique</a>
+								</li>
+							</ul>
+						</li>
+						<a class="nav-link" href="#">Contact</a>
 
-
-							
 						{% if app.user %}
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -141,27 +135,32 @@
 				</div>
 			</div>
 		</nav>
-	</body>
-</html></div>{% if is_granted('ROLE_ADMIN') %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav">
-			<li class="nav-item active">
-				<a class="nav-link" href="{{path('oeuvre')}}">tableaux</a>
+	
+	{% if is_granted('ROLE_ADMIN') %}
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="{{path('oeuvre')}}">Dash-Tableaux</a>
+					</li>
+				</a>
 			</li>
-		</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="{{path('category')}}">Catégories</a>
-	</li>
-	{# <li class="nav-item">
-								<a class="nav-link" href="{{path('oeuvre')}}">tableaux</a>
-							</li> #}
-	<li class="nav-item">
-		<a class="nav-link" href="{{path('user_index')}}">Utilisateurs</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="{{path('tva_edit',{'id':1})}}">tva</a>
-	</li>
-</ul></div></nav>{% endif %}{% block body %}{% endblock %}</body></html>
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('category')}}">Catégories</a>
+			</li>
+			{# <li class="nav-item">
+											<a class="nav-link" href="{{path('oeuvre')}}">tableaux</a>
+										</li> #}
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('user_index')}}">Utilisateurs</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{path('tva_edit',{'id':1})}}">Tva</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endif %}
+{% block body %}{% endblock %}
+</body>
+</html>

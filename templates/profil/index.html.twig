@@ -1,4 +1,3 @@
-
 {% extends 'base.html.twig' %}
 
 {% block title %}{% endblock %}
@@ -6,60 +5,140 @@
 {% block body %}
 
 
+	<nav>
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-compte" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Mon compte</button>
+			<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profil" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Mes tableaux</button>
+			<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Mes achats</button>
+		</div>
+	</nav>
+	<div class="tab-content" id="nav-tabContent">
+		<div class="tab-pane fade" id="nav-compte" role="tabpanel" aria-labelledby="nav-home-tab">Mon profil</div>
+		<div class="tab-pane fade" id="nav-profil" role="tabpanel" aria-labelledby="nav-profile-tab">
 
-<nav>
-  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-compte" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Mon compte</button>
-    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profil" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Mes tableaux</button>
-    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Mes achats</button>
-  </div>
-</nav>
-<div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-compte" role="tabpanel" aria-labelledby="nav-home-tab">Mon profil</div>
-  <div class="tab-pane fade" id="nav-profil" role="tabpanel" aria-labelledby="nav-profile-tab">mes commandes
-{% if user.Tableauxuser %}
+			<div class="container col-10 g-4">
 
-{{ user.Tableauxuser | length}}
+				<h4 class="text-center">
+					Mes tableaux
+				</h4>
+				{% if user.Tableauxuser %}
+					<h5>Nombre de Tableau(x) inséré(s) :
+						{{ user.Tableauxuser | length}}</h5>
 
-{% for row in user.Tableauxuser %}
-    
-    {{ row.id }}
-    {{ row.titre }}
-    {{ row.auteur }}
-    {{ row.prix }}
-    
-    {{ row.image }}
-  
-    {% else %}
-      <p> Vous n'avez pas encore inseré de tableau </p>
-  
-{% endfor %}
-{% endif %}
-</div>
+					<table class="table">
+						<thead>
+							<tr>
+								{# <th>Id</th> #}
+								<th>Titre</th>
+								<th>Image</th>
+								<th>Auteur</th>
+								<th>prix</th>
+								<th>vendu</th>
 
+							</tr>
+						</thead>
+						<tbody>
+							{% for row in user.Tableauxuser %}
+								<tr>
+									{# <td>{{ row.id }}</td> #}
+									<td>{{ row.titre }}</td>
+									<td>{{ row.image }}</td>
+									<td>{{ row.auteur }}</td>
+									<td>{{ row.prix }}</td>
+									<td>
+										{% if row.vendu == true %}
+											Vendu</td>
+									{% endif %}
+								</tr>
 
-  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">mes achats
-  {# {{ user.Commandes | length}} #}
- 
- {% for row in user.Commandes %}
- <p>Commande numéro : {{ row.id }}</p>
-<p> Total commande :{{ row.total }}</p>
-<p>{{ row.dateCommande|date("m/d/Y") }}</p>
-<h6> Détail des commandes : </h6>
-  {% for item in row.detailCommandes %}
-  <p> Titre du tableau acheté: {{ item.titre }}</p>
-    
-  {% endfor %}
-
- 
-
-   {% endfor %} <pre>
-   
-</div>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% else %}
+					<p>
+						Vous n'avez pas encore inseré de tableau
+					</p>
 
 
+				{% endif %}
+			</div>
+		</div>
 
 
-</div>
+		<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">mes achats
+			{# {{ user.Commandes | length}} #}
+			<div class="container col-10 g-4">
 
-{% endblock %}
+				<h4 class="text-center">
+					Mes achats
+				</h4>
+
+				{% if user.Commandes %}
+					<h5>Nombre de Tableau(x) aquis :
+						{{ user.Commandes | length}}</h5>
+					<table class="table">
+
+					<thead>
+						<tr>
+							<th>Numéro de commande</th>
+              <th>Date la commande</th>
+              <th>Prix Total</th>
+							<th>Titre du tableau acquis</th>
+							<th>Image</th>
+							<th>Auteur</th>
+							<th>prix</th>
+							{# <th>vendu</th> #}
+
+						</tr>
+					</thead>
+					<tbody>
+         
+              
+           
+          
+						{% for row in user.Commandes %}
+
+							{% for item in row.detailCommandes %}
+								<tr>
+              
+                {# pour cacher l'id de la BBd table commande #}
+                {% set indice = row.id + 56 %}
+                <td> {{indice}} </td>
+
+                {# <td>({{ row.id}}</td> #}
+                	<td>{{ row.dateCommande|date("m/d/Y") }}</td>
+                  <td>{{ row.total }} </td>
+	                <td>{{ item.titre }}</td>
+                  <td>{{ item.image }}</td>
+                  <td>{{ item.auteur }}</td>
+                  <td>{{ item.prix }} €</td>
+								</tr>
+
+							{# <h6>
+								Détail des commandes :
+							</h6> #}
+							
+							
+									{# <td>{{ row.id }}</td> #}
+								
+						
+
+					
+	{% endfor %}
+
+					{% endfor %}
+	</tbody>
+  </table>
+				{% else %}
+					<p>
+						Vous n'avez aucun acquis
+					</p>
+
+
+				{% endif %}
+
+
+			</div>
+		</div>
+
+	{% endblock %}

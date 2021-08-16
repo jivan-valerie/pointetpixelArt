@@ -22,9 +22,11 @@ class ProfilController extends AbstractController
 /**
      * @Route("/profil", name="profil")
      */
-    public function index(DetailCommandeRepository $detail_commande, TableauxRepository $tableauxRepository): Response
+    public function index(DetailCommandeRepository $detail_commande, TableauxRepository $tableauxRepository, CommandeRepository $commande): Response
     {   
         $user=$this->getUser();
+        // $indice= $this->$commande->getId();
+        // $indice = $indice +100 
         //$tableau=$tableauxRepository->find($id);
 
         // $commande=$detail_commande->find($tableau);
@@ -34,8 +36,8 @@ class ProfilController extends AbstractController
         
         return $this->render('profil/index.html.twig', [
             'user' => $user,
-            // 'commande'=>$commande
-          
+            'commande'=>$commande,
+            
         ]);
     }
 

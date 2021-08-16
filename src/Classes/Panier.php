@@ -4,6 +4,7 @@ namespace App\Classes;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Repository\TableauxRepository;
+
 class Panier 
 {
     private $session;
@@ -97,5 +98,17 @@ class Panier
 
         }
         return $total;
+    }
+
+    public function CalculQuantiteTotal(){
+        $quantitytotal= 0 ;
+        $panier=$this->afficheDetailPanier();
+
+        foreach ($panier as $row){
+            // $quantitytotal=$row['tableau']->getQuantity();
+            $quantitytotal=$quantitytotal+($row['quantity']);
+
+        }
+        return $quantitytotal;
     }
 }

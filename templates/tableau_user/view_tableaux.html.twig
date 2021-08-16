@@ -15,11 +15,16 @@
 			<a href ="{{ path('divers-art') }}"><button class="favorite styled" type="button">Art abstrait</button></a>
 		</div>
 		<div class="container mt-4 mt-lg-5 ">
-			<h3 id="face">Portraits</h3>
+		{% for id in liste_categorie %}
+			
+{# id doit porter même nom categorie pour ensuite les raccourcis de pages #}
+			{% if id.name != "Divers" and id.name != "Abstrait" %}
+			<h3 id="{{id.name}}">{{id.name}}</h3>
+			<h1> Ceci est un essaie</h1>
 			<h5 class="mb-5">Orientation paysage</h5>
 			<div class="row g-2 g-lg-3 justify-content-center">
 				{% for item in liste_tableaux %}
-					{% if item.category.name == "Portrait" and item.longueur < item.largeur %}
+					{% if id.name == item.category.name and item.longueur < item.largeur %}
 						<div class="col-11 col-sm-10 col-md-6 col-lg-4 col-xl-3">
 							<div class="card h-100">
 								<img src="{{asset('images/' ~ item.image)}}" class="card-img-top" alt="Aperçu du tableau cheveaux sauvages">
@@ -35,8 +40,11 @@
 										{{item.largeur}}
 										cm;
 									</p>
-									<p class="tecnique">Technique : Huile sur toile</p>
-									<p class="priceunit">Prix :
+									<p class="tecnique">Technique : {{ item.technique.nom }} </p>
+									{% if item.vendu == true %}
+										<p class="priceunit">Prix : Vendu</p>
+										<a href="{{ path('detail_tableau', {'id': item.id}) }}"><input type="button" value="info" ></a>
+									{% else %}
 										{{item.prix}}€</p>
 									<div class="buttonBuy">
 										{% if app.user %}
@@ -46,6 +54,7 @@
 										{% endif %}
 										<a href="{{ path('detail_tableau', {'id': item.id}) }}"><input type="button" value="info"></a>
 									</div>
+									{% endif %}
 								</div>
 							</div>
 						</div>
@@ -55,7 +64,7 @@
 			<h5 class="mb-5">Orientation portrait</h5>
 			<div class="row g-2 g-lg-3 justify-content-center">
 				{% for item in liste_tableaux %}
-					{% if item.category.name == "Portrait" and item.longueur >= item.largeur %}
+					{% if id.name == item.category.name and item.longueur >= item.largeur %}
 						<div class="col-11 col-sm-10 col-md-6 col-lg-4 col-xl-3">
 							<div class="card h-100">
 								<img src="{{asset('images/' ~ item.image)}}" class="card-img-top" alt="Aperçu du tableau cheveaux sauvages">
@@ -71,7 +80,7 @@
 										{{item.largeur}}
 										cm;
 									</p>
-									<p class="tecnique">Technique : Huile sur toile</p>
+									<p class="tecnique">Technique : {{ item.technique.nom }}</p>
 									<p class="priceunit">Prix :
 										{{item.prix}}€</p>
 									<div class="buttonBuy">
@@ -88,7 +97,10 @@
 					{% endif %}
 				{% endfor %}
 			</div>
-		</div>
+			{% endif %}
+		{% endfor %}
+
+		{# </div>
 		<div class="container mt-4 mt-lg-5 ">
 			<h3 id="scene">Scène</h3>
 			<h5 class="mb-5">Orientation paysage</h5>
@@ -463,6 +475,6 @@
 						{% endif %}
 					{% endfor %}
 			</div>				
-		</div>					
+		</div>					 #}
 							
 {% endblock %}

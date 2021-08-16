@@ -3,14 +3,13 @@
 {% block title %}Hello PanierController!{% endblock %}
 
 {% block body %}
-{# {{dump(panier)}} #}
-{# 
-<div class="row g-4">
-<div class="col-12 col-lg-8"> #}
+
 
 <main class="container mt-5 ">
         <div class="row">
                 {% for item in panier %} 
+                
+                        {% if item['tableau'].vendu == false %}
                         <div class="col-md-7 text-center  g-2">
                                 {# <a href="{{path('delete_uneoeuvre_panier', {'id': item['tableau'].id }) }}">supprimer quantité un oeuvre</a> #}
                                 <h3> Acquérir cette oeuvre </h3>
@@ -27,11 +26,11 @@
                                 <a href="{{path('delete_uneoeuvre_panier', {'id': item['tableau'].id }) }}"><button class="secondbuttonitem"><i class="fas fa-trash me-1"></i></button></a>                      
                                 {# <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p> #}
                         </div>  
-                <hr>
+                <hr>{% endif %}
                 {% endfor %}
                 <div class="text-end">
                         <h4> Prix Total TTC : {{total}} € </h4>
-                        
+                        <h4> Quantité Panier : {{quantitytotal}} articles </h4>
                         <a href="{{path('achat') }}"><button class="secondbuttonitem me-3 m-2">Confirmer cet achat</button></a>
        
                         
