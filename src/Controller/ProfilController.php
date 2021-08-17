@@ -25,6 +25,8 @@ class ProfilController extends AbstractController
     public function index(DetailCommandeRepository $detail_commande, TableauxRepository $tableauxRepository, CommandeRepository $commande): Response
     {   
         $user=$this->getUser();
+
+        
         // $indice= $this->$commande->getId();
         // $indice = $indice +100 
         //$tableau=$tableauxRepository->find($id);

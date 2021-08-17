@@ -18,6 +18,7 @@ class CarouselType extends AbstractType
             'data_class'=> null
         ])
             ->add('indice')
+            ->add('lien')
             ->add('titre')
             ->add('description')
         ;

@@ -37,6 +37,16 @@ class Carousel
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="string", length=60)
+     */
+    private $lien;
+
+    /**
+     * @ORM\Column(type="string", length=60)
+     */
+    private $label;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +96,30 @@ class Carousel
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getLien(): ?string
+    {
+        return $this->lien;
+    }
+
+    public function setLien(string $lien): self
+    {
+        $this->lien = $lien;
+
+        return $this;
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): self
+    {
+        $this->label = $label;
 
         return $this;
     }

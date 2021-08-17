@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Image</th>
                 <th>Indice</th>
+                <th>Lien</th>
                 <th>Titre</th>
                 <th>Description</th>
                 <th>actions</th>
@@ -22,6 +23,7 @@
                 <td>{{ carousel.id }}</td>
                 <td>{{ carousel.image }}</td>
                 <td>{{ carousel.indice }}</td>
+                <td>{{ carousel.lien }}</td>
                 <td>{{ carousel.titre }}</td>
                 <td>{{ carousel.description }}</td>
                 <td>
@@ -31,7 +33,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">no records aucun slide enregistré</td>
             </tr>
         {% endfor %}
         </tbody>

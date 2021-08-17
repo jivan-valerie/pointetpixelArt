@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CarouselRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +14,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index( CategoryRepository $categoryRepository): Response
+    public function index( CategoryRepository $categoryRepository, CarouselRepository $carouselRepository): Response
     {
         $user=$this->getUser();
         if ($user && $user->getBanni() == true) {
@@ -23,6 +24,7 @@ class HomeController extends AbstractController
         $liste_category=$categoryRepository->findAll();
         return $this->render('home/index.html.twig', [
             'liste_category'=>$liste_category,
+            'carousel'=>$carouselRepository->findAll(),
         ]);
     }
 }
