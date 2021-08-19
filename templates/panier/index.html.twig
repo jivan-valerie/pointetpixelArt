@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PanierController!{% endblock %}
+{% block title %}Panier{% endblock %}
 
 {% block body %}
 
@@ -30,12 +30,17 @@
                 {% endfor %}
                 <div class="text-end">
                         <h4> Prix Total TTC : {{total}} € </h4>
-                        <h4> Quantité Panier : {{quantitytotal}} articles </h4>
+                        <h4> Quantité Panier : {{quantitytotal}} article(s) </h4>
+                        {% if item['tableau'].vendu == false %}
                         <a href="{{path('achat') }}"><button class="secondbuttonitem me-3 m-2">Confirmer cet achat</button></a>
-       
+                        {% else %}
+                                <p> Désolé, ce tableau est maintenant vendu</p>
+                        <a href="{{path('delete_uneoeuvre_panier', {'id': item['tableau'].id }) }}"><button class="secondbuttonitem me-3 m-2">Confirmer cet achat</button></a>
+
+                        {% endif %}
                         
 {# <a href="{{path('add_panier', {'id': 9 }) }}">ajouter panier</a> #} 
-                </div><a href="{{path('vitrine') }}"><button class="secondbuttonitem">Retour aux achats</button></a></div>
+</div><a href="{{path('vitrine') }}"><button class="secondbuttonitem">Retour aux achats</button></a></div>
 
 
 {# <a href="{{path('delete_oeuvre_panier', {'id': 9}) }}">supprimer oeuvre</a> #}

@@ -58,9 +58,9 @@ class OeuvreController extends AbstractController
     /**
      * @Route("/delete-tableau/{id}", name="delete_tableau")
      */
-    public function delete($id, TableauxRepository $tableauxRepository, EntityManagerInterface $entityManager){
-
-        $tableau=$tableauxRepository->find($id);
+    public function delete(Request $request,  Tableaux $tableau){
+        if ($this->isCsrfTokenValid('delete'.$tableau->getId(), $request->request->get('_token'))) {
+        $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($tableau);
         $entityManager->flush();
 
@@ -68,4 +68,13 @@ class OeuvreController extends AbstractController
 
     }
 }
-    
+// public function delete(Request $request, Carousel $carousel): Response
+// {
+//     if ($this->isCsrfTokenValid('delete'.$carousel->getId(), $request->request->get('_token'))) {
+//         $entityManager = $this->getDoctrine()->getManager();
+//         $entityManager->remove($carousel);
+//         $entityManager->flush();
+//     }
+
+//     return $this->redirectToRoute('carousel_index', [], Response::HTTP_SEE_OTHER);
+ }

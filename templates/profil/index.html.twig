@@ -21,6 +21,7 @@
 				<h4 class="text-center">
 					Mes tableaux
 				</h4>
+				
 				{% if user.Tableauxuser %}
 					<h5>Nombre de Tableau(x) inséré(s) :
 						{{ user.Tableauxuser | length}}</h5>
@@ -34,7 +35,7 @@
 								<th>Auteur</th>
 								<th>prix</th>
 								<th>vendu</th>
-
+								<th>action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -45,12 +46,18 @@
 									<td>{{ row.image }}</td>
 									<td>{{ row.auteur }}</td>
 									<td>{{ row.prix }}</td>
-									<td>
+									
 										{% if row.vendu == true %}
-											Vendu</td>
+											<td>Vendu</td>
+											{% else %}
+												<td>En vente</td>
+									{% endif %}
+									<td>{% if row.vendu == false %}
+						        	<a href="{{path('modifier_tableauxuser', {'id': row.id})}}"><i class="fas fa-edit ms-2 me-2"></i></a></td>
+								{# {% else %}
+									<td> impossible</td> #}
 									{% endif %}
 								</tr>
-
 							{% endfor %}
 						</tbody>
 					</table>
@@ -92,14 +99,9 @@
 						</tr>
 					</thead>
 					<tbody>
-         
-              
-           
-          
 						{% for row in user.Commandes %}
-
 							{% for item in row.detailCommandes %}
-								<tr>
+					<tr>
               
                 {# pour cacher l'id de la BBd table commande #}
                 {% set indice = row.id + 56 %}

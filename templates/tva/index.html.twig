@@ -3,6 +3,7 @@
 {% block title %}Tva index{% endblock %}
 
 {% block body %}
+ <div class="container col-8 col-md-6 col-lg-4">
     <h1>Tva index</h1>
 
     <table class="table">
@@ -19,17 +20,18 @@
                 <td>{{ tva.id }}</td>
                 <td>{{ tva.tva }}</td>
                 <td>
-                    <a href="{{ path('tva_show', {'id': tva.id}) }}">show</a>
-                    <a href="{{ path('tva_edit', {'id': tva.id}) }}">edit</a>
+                    <a href="{{ path('tva_edit', {'id': tva.id}) }}">modifier</a>
+                    <a href="{{ path('tva_delete', {'id': tva.id}) }}">supprimer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucune TVA</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('tva_new') }}">Create new</a>
+    <button> <a href="{{ path('tva_new') }}">Ajouter</a></button>
+</div>
 {% endblock %}

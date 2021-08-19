@@ -22,30 +22,25 @@ a {
     
 /* } */
 .icon {
-color: rgb(124, 204, 204);
-font-size: 1rem;
+    color: inherit;
+    font-size: 1rem;
 }
 
   #logo { 
     max-width:5rem;
-    
- 
  }
 
 .navbar{
     background-color: #21153a;
-
     font-size: 14px;
-
     padding: 2px;
-    
 }
 
 #navbarNavDropdown a{
     color: rgb(252, 253, 239);   
 }
 #navbarNavDropdown a:hover{ 
-background-color: #337ab7;
+    background-color: #21153a;
 }
 #navbarNavDropdown{
     background-color: rgba(57,42,74);
@@ -58,10 +53,12 @@ background-color: #337ab7;
     background-color:rgba(57,42,74,0.7)
     
 }
-
+.navbar-dark .navbar-brand{
+    color: rgb(252, 253, 239);
+}
 /*.menuprincipe{
-    background-color: aquamarine;
-    border: 3px solid black;
+    background-color: aquamari;
+    border: 3px solid blac;
     z-index: 40;
     position: absolute;
     min-width: 100%;
@@ -115,7 +112,7 @@ background-color: #337ab7;
 
 /***********/
 /*.text {
-    background-color: darkslategray;
+    background-color: darkslagray;
     
     width: 100%;
     padding :10px
@@ -145,7 +142,7 @@ background-color: #337ab7;
     padding: 0 20px;
     font-size: 1.1rem;
     text-align: center;
-    color: #fff;
+    color: rgb(252, 253, 239);   
     text-shadow: 1px 1px 1px #000;
     border-radius: 2px;
     background-color:rgb(212, 167, 108);
@@ -183,9 +180,9 @@ background-color: #337ab7;
 
 
  .subjectpaint{
-    color: aqua;
+    color: rgb(252, 253, 239);   
     position: relative;
-    top: -80px;
+    top: -55px;
     z-index: 50;
     
 

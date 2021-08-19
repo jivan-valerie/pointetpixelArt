@@ -3,41 +3,84 @@
 {% block title %}Carousel index{% endblock %}
 {# liste des images du Carousel #}
 {% block body %}
-    <h1>Carousel index</h1>
+<h4 class="text-center mb-5 mt-3">Liste des images dans le diaporama</h4>
+<div class="container mt-auto d-none d-md-flex">
+    
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Image</th>
-                <th>Indice</th>
-                <th>Lien</th>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>actions</th>
+            <tr> 
+                <th scope="col">Indice</th>
+                <th scope="col">Image</th>
+                <th scope="col">Label bouton</th>
+                <th scope="col">Lien</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for carousel in carousels %}
+        {% for slide in carousels %}
             <tr>
-                <td>{{ carousel.id }}</td>
-                <td>{{ carousel.image }}</td>
-                <td>{{ carousel.indice }}</td>
-                <td>{{ carousel.lien }}</td>
-                <td>{{ carousel.titre }}</td>
-                <td>{{ carousel.description }}</td>
+                <td scope = "row">{{ slide.indice }}</td>
+                <td><img src ="{{ asset('images/' ~ slide.image) }}" style ="width:70px" ></td>
+                <td>{{ slide.label }}</td>
+                <td>{{ slide.lien }}</td>
+                <td>{{ slide.titre }}</td>
+                <td>{{ slide.description }}</td>
                 <td>
-                    <a href="{{ path('carousel_show', {'id': carousel.id}) }}">show</a>
-                    <a href="{{ path('carousel_edit', {'id': carousel.id}) }}">edit</a>
+                    <a href="{{ path('carousel_show', {'id': slide.id}) }}"><i class="far fa-eye me-1"></i></a>
+                    <a href="{{ path('carousel_delete', {'id': slide.id}) }}"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records aucun slide enregistré</td>
+                <td colspan="6">Aucun slide enregistré</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    </div>
+    <a href="{{ path('carousel_new') }}"><button class="secondbuttonitem ms-3" >Ajouter</button></a>
+    
+    <div class="container mt-auto d-md-none">
+<table class="table">
+    {% for carousel in carousels %}
+        <tbody>
+            {# <tr>
+                <th>Id</th>
+                <td>{{ carousel.id }}</td>
+            </tr> #}
+            <tr>
+                <th>Indice</th>
+                <td>{{ carousel.indice }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src ="{{ asset('images/' ~ carousel.image) }}" style ="width:70px" ></td>
+            </tr>
+            
+            <tr>
+                <th>Lien</th>
+                <td>{{ carousel.lien }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ carousel.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ carousel.description }}</td>
+            </tr>
+            <tr>
+                <th>actions</th>
+                <td><a href="{{ path('carousel_show', {'id': carousel.id}) }}"><i class="fas fa-edit me-2"></i></a>
+                    <a href="{{ path('carousel_delete', {'id': carousel.id}) }}"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
 
-    <a href="{{ path('carousel_new') }}">Create new</a>
+        </tbody>
+        {% endfor %}
+    </table>
+    </div>
 {% endblock %}
