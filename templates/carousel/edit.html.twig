@@ -3,11 +3,13 @@
 {% block title %}Edit Carousel{% endblock %}
 
 {% block body %}
-    <h1>Edit Carousel</h1>
+    <h3>Modifier Slide</h3>
 {# edit un tableau selon son id, son form de formulaire pour pouvoir le mmodifier et de le supprimer #}
-    {{ include('carousel/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="d-flex justify-content-center">
 
-    <a href="{{ path('carousel_index') }}">retour à la liste COUCOU</a>
+    {{ include('carousel/_form.html.twig', {'button_label': 'Update'}) }}
+</div>
+    <a href="{{ path('carousel_index') }}"><button class="firstitem fs-5">Retour</button> </a>
 
     {{ include('carousel/_delete_form.html.twig') }}
 {% endblock %}

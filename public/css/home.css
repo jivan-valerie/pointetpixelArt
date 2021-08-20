@@ -14,13 +14,11 @@ ul {
 a {
     text-decoration: none;
     z-index: 30;
+    color: inherit;
 }
 
 
-/* h5{ */
-    /* font-size: 1.2em; */
-    
-/* } */
+
 .icon {
     color: inherit;
     font-size: 1rem;
@@ -29,6 +27,10 @@ a {
   #logo { 
     max-width:5rem;
  }
+
+ /* ********* 
+    NAVBARS
+   ********** */
 
 .navbar{
     background-color: #21153a;
@@ -56,46 +58,10 @@ a {
 .navbar-dark .navbar-brand{
     color: rgb(252, 253, 239);
 }
-/*.menuprincipe{
-    background-color: aquamari;
-    border: 3px solid blac;
-    z-index: 40;
-    position: absolute;
-    min-width: 100%;
-    height: auto;
-}
 
-
-#menuprincipal>li {
-    margin: 0 20px;
-}
-
-#menusecondaire {
-    background-color: rgba(243, 214, 159, 0.1);;
-    display: flex;
-    justify-content: flex-start;
-
-}
-
-#menusecondaire ul {
-
-    display: flex;
-    margin-right: 20px;
-
-}*/
-
-
-
-/************
-     MAIN
+/************* 
+    BOUTON
 *************/
-
-    
-.firstsection{
-    background-color: rgb(159, 243, 159);
-    
-}
-
 
 .firstitem {
 
@@ -108,6 +74,77 @@ a {
     position: relative;
     margin-bottom: 15px;
     
+}
+.secondbuttonitem {
+    margin-bottom: 30px;
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1.1rem;
+    text-align: center;
+    color: rgb(252, 253, 239);   
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 2px;
+    background-color:rgb(212, 167, 108);
+    background-image: linear-gradient(to top left,
+                                      rgba(10, 10, 10, .2),
+                                      rgba(10, 10, 10, .2) 30%,
+                                      rgba(10,10, 10, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+    
+}
+
+/************
+    HOME
+*************/
+
+.subjectpaint{
+    color: rgb(252, 253, 239);   
+    position: relative;
+    top: -85px;
+    z-index: 50;
+    
+
+    
+}
+.img-thumbnail{
+    width: 270px;
+    padding: 0px;
+}
+.img-thumbnail:hover {
+    background-color: rgb(161, 139, 185);
+    padding: 7px;
+  }   
+/* .firstsection{
+    background-color: rgb(159, 243, 159);
+    
+} */
+
+
+/* définition de l'animation sur les images */
+.diaporama img {
+  animation: fade-in-out 6s ease infinite 0s;
+  opacity: 0;
+}
+/* définition délai des images */
+.diaporama img:nth-child(1) { animation-delay: 0s;}
+.diaporama img:nth-child(2) { animation-delay: 2s;}
+.diaporama img:nth-child(3) { animation-delay: 4s;}
+/* définition des étapes */
+@keyframes fade-in-out {
+  0%, 100% {
+    opacity: 0;
+  }
+  16.67% {
+    opacity: 1;
+  }
+  33.33% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 /***********/
@@ -135,25 +172,7 @@ a {
     flex-wrap: wrap;
 }
 
-.secondbuttonitem {
-    margin-bottom: 30px;
-    border: 0;
-    line-height: 2.5;
-    padding: 0 20px;
-    font-size: 1.1rem;
-    text-align: center;
-    color: rgb(252, 253, 239);   
-    text-shadow: 1px 1px 1px #000;
-    border-radius: 2px;
-    background-color:rgb(212, 167, 108);
-    background-image: linear-gradient(to top left,
-                                      rgba(10, 10, 10, .2),
-                                      rgba(10, 10, 10, .2) 30%,
-                                      rgba(10,10, 10, 0));
-    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
-                inset -2px -2px 3px rgba(0, 0, 0, .6);
-    
-}
+
 
 
 
@@ -179,16 +198,7 @@ a {
 }
 
 
- .subjectpaint{
-    color: rgb(252, 253, 239);   
-    position: relative;
-    top: -55px;
-    z-index: 50;
-    
-
-    
-}
-
+ 
 /***********
 FOOTER
 ***********/

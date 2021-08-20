@@ -81,6 +81,10 @@
 										cm;
 									</p>
 									<p class="tecnique">Technique : {{ item.technique.nom }}</p>
+									{% if item.vendu == true %}
+										<p class="priceunit">Prix : Vendu</p>
+										<a href="{{ path('detail_tableau', {'id': item.id}) }}"><input type="button" value="info" ></a>
+									{% else %}
 									<p class="priceunit">Prix :
 										{{item.prix}}€</p>
 									<div class="buttonBuy">
@@ -91,6 +95,7 @@
 										{% endif %}
 										<a href="{{ path('detail_tableau', {'id': item.id}) }}"><input type="button" value="info"></a>
 									</div>
+									{% endif %}
 								</div>
 							</div>
 						</div>
