@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FooterController extends AbstractController
 {
     /**
-     * @Route("/footer", name="footer")
+     * @Route("/footer", name="footer_cdv")
      */
     public function index(): Response
     {

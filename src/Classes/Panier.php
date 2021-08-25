@@ -17,18 +17,19 @@ class Panier
 
     }
 // fonction qui ajoute article au panier et un paramètre obligatoire
-    public function add_oeuvre_panier($variable){
+    public function add_oeuvre_panier($item){
+        // je récupère le contenu du panier avec get('panier'), je le défini comme un tableau vide par défaut
         $panier = $this->session->get('panier',[]);
 
 
-        // je teste le panier pour voir si la $varible existe
-
-        if(!empty($panier[$variable])){
-            // si elle existe je rajoute a la quantité 1 
-            $panier[$variable] = $panier[$variable] + 1 ;
+        // je teste le panier pour voir si le panier a du contenu au moment de l'ajout d'un article
+        
+        if(!empty($panier[$item])){
+            // si oui je rajoute 1 a la quantité préexistante, saachant que pour tableau, le produit est unique 
+            $panier[$item] = $panier[$item] + 1 ;
         }else{
            // si non je crée la donnée avec une valeur de 1 
-            $panier[$variable] = 1 ;
+            $panier[$item] = 1 ;
         }
         
         // je renvoi a l'objet session les nouvelle valeur du panier )
@@ -38,7 +39,7 @@ class Panier
 
     }
 
-// fonction qui retourne le panier
+// fonction qui retourne le panier dans ma session
     public function getPanier(){
         
         return $this->session->get('panier',[]);
@@ -49,19 +50,20 @@ class Panier
     }
 
     public function SupprimerOeuvrePanier($id){
-        // je vais get panier
+        // je vais getter le panier
         $panier=$this->getpanier();
-        //je verifie si c'e produit
+        //je verifie si le produit en question existe
             if (!empty($panier[$id])) {
-    // sinon je le delete
+        //  je le delete
                 unset($panier[$id]);
     }
+    // je renvoie à la session mon ''panier''modifié avec set,
     $this->session->set('panier',$panier);
     }
 
 
     public function deleteUneOeuvre($id){
-        
+        // je récupère le panier de la session avec l'id de l'oeuvre à supprimer
         $panier =$this->getPanier();
 
         if($panier[$id] >1){
@@ -72,6 +74,7 @@ class Panier
         }
         $this->session->set('panier',$panier);
     }
+
     public function afficheDetailPanier()
     {
         $panier = $this->getPanier();
@@ -93,8 +96,11 @@ class Panier
         $panier=$this->afficheDetailPanier();
 
         foreach ($panier as $row){
+            // la boucle parcourt le tableau panier ligne par ligne, et récupère le prix qui est propriété de la class objet instancié en ces objets tableaux précis du panier;
+            // 
             $prix=$row['tableau']->getPrix();
-            $total=$total+($row['quantity']*$prix);
+            //idem pour la quantité; le total est l'addition de toutes les lignes (tableaux) qui multiplie chacun le prix par sa quantité (ici 1) row quantité = 1
+            $total=$total+(1*$prix);
 
         }
         return $total;
@@ -105,8 +111,7 @@ class Panier
         $panier=$this->afficheDetailPanier();
 
         foreach ($panier as $row){
-            // $quantitytotal=$row['tableau']->getQuantity();
-            $quantitytotal=$quantitytotal+($row['quantity']);
+            $quantitytotal=$quantitytotal+1;
 
         }
         return $quantitytotal;

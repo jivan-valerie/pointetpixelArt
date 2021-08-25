@@ -52,18 +52,19 @@ class TableauType extends AbstractType
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'Accepter les termes',
-                'attr'=> ['html'=> '<a href="">vous devez imperativement</a>'],
+                
+                // 'attr'=> ['html'=> '<a href="">vous devez imperativement</a>'],
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
             ])
-            ->add('ajouter', SubmitType::class, [
-                'label' => 'Ajouter',
-                'attr'=>[ 'class'=>'btn btn-success'], 
-                // 'mapped'=>false,
-            ])
+            // ->add('ajouter', SubmitType::class, [
+            //     'label' => 'Ajouter',
+            //     'attr'=>[ 'class'=>'favorite styled text-end'], 
+            //     // 'mapped'=>false,
+            // ])
         ;
     }
 

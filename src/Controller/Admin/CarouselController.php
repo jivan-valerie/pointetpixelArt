@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Classes\Panier;
 use App\Entity\Carousel;
 use App\Form\CarouselType;
 use App\Repository\CarouselRepository;
@@ -18,17 +19,19 @@ class CarouselController extends AbstractController
     /**
      * @Route("/", name="carousel_index", methods={"GET"})
      */
-    public function index(CarouselRepository $carouselRepository): Response
+    public function index(Panier $panier, CarouselRepository $carouselRepository): Response
     {
         return $this->render('carousel/index.html.twig', [
             'carousels' => $carouselRepository->findAll(),
+            'panier'=>$panier->afficheDetailPanier(), 
+
         ]);
     }
 
     /**
      * @Route("/new", name="carousel_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Panier $panier): Response
     {
         $carousel = new Carousel();
         $form = $this->createForm(CarouselType::class, $carousel);
@@ -52,23 +55,27 @@ class CarouselController extends AbstractController
         return $this->renderForm('carousel/new.html.twig', [
             'carousel' => $carousel,
             'form' => $form,
+            'panier'=>$panier->afficheDetailPanier(), 
+
         ]);
     }
 
     /**
      * @Route("/{id}", name="carousel_show", methods={"GET"})
      */
-    public function show(Carousel $carousel): Response
+    public function show(Carousel $carousel, Panier $panier): Response
     {
         return $this->render('carousel/show.html.twig', [
             'carousel' => $carousel,
+            'panier'=>$panier->afficheDetailPanier(), 
+
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="carousel_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Carousel $carousel): Response
+    public function edit(Request $request, Carousel $carousel, Panier $panier): Response
     {
         $form = $this->createForm(CarouselType::class, $carousel);
         $form->handleRequest($request);
@@ -82,6 +89,8 @@ class CarouselController extends AbstractController
         return $this->renderForm('carousel/edit.html.twig', [
             'carousel' => $carousel,
             'form' => $form,
+            'panier'=>$panier->afficheDetailPanier(), 
+
         ]);
     }
 

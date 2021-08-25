@@ -6,7 +6,6 @@
 <h4 class="text-center mb-5 mt-3">Liste des images dans le diaporama</h4>
 <div class="container mt-auto d-none d-md-flex">
     
-
     <table class="table">
         <thead>
             <tr> 
@@ -21,8 +20,8 @@
         </thead>
         <tbody>
         {% for slide in carousels %}
-            <tr>
-                <td scope = "row">{{ slide.indice }}</td>
+            <tr= "row">
+                <td >{{ slide.indice }}</td>
                 <td><img src ="{{ asset('images/' ~ slide.image) }}" style ="width:70px" ></td>
                 <td>{{ slide.label }}</td>
                 <td>{{ slide.lien }}</td>
@@ -40,11 +39,13 @@
         {% endfor %}
         </tbody>
     </table>
-    </div>
-    <a href="{{ path('carousel_new') }}"><button class="secondbuttonitem ms-3" >Ajouter</button></a>
-    
-    <div class="container mt-auto d-md-none">
-<table class="table">
+</div>
+<div class="text-center text-md-start">
+    <a href="{{ path('carousel_new') }}"><button class="secondbuttonitem ms-5" >Ajouter</button></a>
+</div>
+
+<div class="container mt-auto d-md-none">
+    <table class="table">
     {% for carousel in carousels %}
         <tbody>
             {# <tr>
@@ -78,9 +79,13 @@
                     <a href="{{ path('carousel_delete', {'id': carousel.id}) }}"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
-
         </tbody>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun slide enregistré</td>
+            </tr>
         {% endfor %}
     </table>
     </div>
+    
 {% endblock %}

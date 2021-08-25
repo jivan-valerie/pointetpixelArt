@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block title %}Tableau{% endblock %}
+
+
+{% block body %}
+
+    <div class="container col-md-10 col-lg-6 my-3">
+    
+        <h4 class="text-center">Détails du Tableau : {{ tableaux.titre }}</h4>
+
+    <table class="table">
+    
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{tableaux.id }}</td>
+            </tr> 
+            <tr>
+                <th>Titre</th>
+                <td>{{ tableaux.titre }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ tableaux.auteur }}</td>
+            </tr>
+            
+            <tr>
+                <th>Image</th>
+                <td><img src ="{{ asset('images/' ~ tableaux.image) }}" style ="width:70px"></td>  
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ tableaux.category.name }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ tableaux.prix }}</td>
+            </tr>
+             <tr>
+                <th>Statut</th>
+                <td>{% if tableaux.vendu == true %}
+                    Vendu 
+                  {% else %}
+                    En vente 
+                {% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+        <div class="text-end" >
+        
+            <a href="{{ path('oeuvre') }}"><button class="firstitem fs-5">Retour</button></a>
+
+            {# <a href="{{ path('carousel_edit', {'id': carousel.id}) }}"><button class="secondbuttonitem fs-5">Modifier</button></a> #}
+        </div>
+    
+    
+    </div>
+        {% endblock %}

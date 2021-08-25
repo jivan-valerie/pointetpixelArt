@@ -1,9 +1,39 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta
+		charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		{# <meta name="viewport" content="width=device-width, initial-scale=1.0"> #}
+		<title>
+			{% block title %}Point&Pixel
+			{% endblock %}
+		</title>
+		{# Run `composer require symfony/webpack-encore-bundle`
+									and uncomment the following Encore helpers to start using Symfony UX #}
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/a0e3886f09.js" crossorigin="anonymous"></script>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		{% block stylesheets %}
+			{# {{ encore_entry_script_tags('app') }} #}
+			<link
+			rel="stylesheet" href="{{ asset('css/home.css') }}">
 
-{% block title %}Conditions générales de ventes{% endblock %}
+		{# {{parent()}} #}
+		{% endblock %}
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		{% block javascripts %}
+			{# {{ encore_entry_script_tags('app') }} #}
+
+		{% endblock %}
+	</head>
 
 {% block body %}
-<div class="container col-10 col-lg-8">
+<div class="container col-10 col-lg-8 ">
 <h2 class= "text-center my-3"> Conditions générales de vente</h2>
 <h3 class= "title mt-5">I- Généralités</h3>
 <p> Point&Pixel présente les tableaux d'artistes amateurs aux utilisateurs du site, pour donner la possibilité

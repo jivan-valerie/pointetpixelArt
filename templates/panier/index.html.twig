@@ -6,9 +6,10 @@
 
 
 <main class="container mt-5 ">
-        <div class="row">
-                {% for item in panier %} 
+ <div class="row">
                 
+        {% if panier | length > 0 %}
+                {% for item in panier %} 
                         {% if item['tableau'].vendu == false %}
                         <div class="col-md-7 text-center  g-2">
                                 {# <a href="{{path('delete_uneoeuvre_panier', {'id': item['tableau'].id }) }}">supprimer quantité un oeuvre</a> #}
@@ -26,25 +27,41 @@
                                 <a href="{{path('delete_uneoeuvre_panier', {'id': item['tableau'].id }) }}"><button class="secondbuttonitem"><i class="fas fa-trash me-1"></i></button></a>                      
                                 {# <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p> #}
                         </div>  
-                <hr>{% endif %}
+                <hr>
+                        {% endif %}
                 {% endfor %}
                 <div class="text-end">
                         <h4> Prix Total TTC : {{total}} € </h4>
                         <h4> Quantité Panier : {{quantitytotal}} article(s) </h4>
-                        {% if item['tableau'].vendu == false %}
                         <a href="{{path('achat') }}"><button class="secondbuttonitem me-3 m-2">Confirmer cet achat</button></a>
-                        {% else %}
+                        <a href="{{path('delete_panier') }}"><button class="secondbuttonitem"><i class="fas fa-trash me-1"></i></button></a>
+
+                        {% for item in panier %}
+                                
+                       
+                                        {% if item['tableau'].vendu == true %}
+
                                 <p> Désolé, ce tableau est maintenant vendu</p>
-                        <a href="{{path('delete_uneoeuvre_panier', {'id': item['tableau'].id }) }}"><button class="secondbuttonitem me-3 m-2">Confirmer cet achat</button></a>
+                        {# <a href="{{path('delete_uneoeuvre_panier', {'id': item['tableau'].id }) }}"><button class="secondbuttonitem me-3 m-2">Confirmer cet achat</button></a> #}
 
                         {% endif %}
-                        
+                         {% endfor %}
 {# <a href="{{path('add_panier', {'id': 9 }) }}">ajouter panier</a> #} 
-</div><a href="{{path('vitrine') }}"><button class="secondbuttonitem">Retour aux achats</button></a></div>
+</div>
+        <a href="{{path('vitrine') }}"><button class="secondbuttonitem">Retour aux achats</button></a>  
 
+</div>
 
+</div>
 {# <a href="{{path('delete_oeuvre_panier', {'id': 9}) }}">supprimer oeuvre</a> #}
  
-<a href="{{path('delete_panier') }}">supprimer panier</a>
+{% else %}
+        <p class=" h5 text-center">Votre panier est vide !</p>
+        
+                <a href="{{path('vitrine') }}"><button class="secondbuttonitem mt-3">Retour aux achats</button></a>  
+        
+    
+        {% endif %}
+        
 </main>
 {% endblock %}

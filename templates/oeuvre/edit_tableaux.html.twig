@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Edit Tableau{% endblock %}
+
 
 {% block body %}
-<div class= "container mt-3 m-auto col-10"></div>
-{{ form_start(form) }}
-<input type="submit" value="Modifier">
-{{ form_end(form)}}
+    <h3 class="my-4 text-center">Modifier ce tableau</h3>
+
+    <div class="container m-auto col-md-7 col-lg-6">
+    {{ form_start(form) }}
+        <button class="secondbuttonitem mt-4">{{ button_label|default('OK') }}</button>
+    {{ form_end(form)}}
+</div>
 {% endblock %}

@@ -3,47 +3,133 @@
 {% block title %}Dashboard Tableaux{% endblock %}
 
 {% block body %}
-<div class="container mt-auto text-center display-sm-flex">
-<h2 class= "my-4"> Dashboard Tableaux </h2>
-  {# <div class= "row"> #}
-{# <a href= "{{ path('add_tableau')}}" class="btn-success">Ajouter un article</a> #}
+  <h4 class="text-center mb-5 mt-3">Liste de tous les tableaux</h4>
+  <div class="container mt-auto d-none d-md-flex">
     <table class="table">
       <thead>
         <tr>
           <th class="col">id</th>
           <th class="col">Titre</th>
           <th class="col">Auteur</th>
-          <th class="col">images</th>
-          <th class="col">catégories</th>
-          <th class="col">prix</th>
-          <th class="col">vendu</th>
-          <th class ="col">action</th>
+          <th class="col">Images</th>
+          <th class="col">Catégories</th>
+          <th class="col">Prix</th>
+          <th class="col">Statut</th>
+          <th class ="col">Actions</th>
         </tr>
       </thead>
       <tbody>
         {% for item in liste_tableaux %}
           <tr>
             <td>{{item.id}}</td>
-              <td>{{item.titre}}</td>
-              <td>{{item.auteur}}</td>
-              <td><img src ="{{asset('images/' ~ item.image)}}" style ="width:70px" ></td>
-              <td>{{item.category.name}}</td>
-              <td>{{item.prix}}</td>
-              <td>{% if item.vendu == true %}
-              Vendu</td>
-              {% endif %}
-              <td>
-                <a href="{{path('edit_tableau', {'id': item.id})}}"><i class="fas fa-edit ms-2 me-2"></i></a>
-                <a href="{{path('delete_tableau', {'id': item.id})}}"><i class="fas fa-trash me-1"></i></a>
-              </td>
+            <td>{{item.titre}}</td>
+            <td>{{item.auteur}}</td>
+            <td><img src ="{{asset('images/' ~ item.image)}}" style ="width:70px" ></td>
+            <td>{{item.category.name}}</td>
+            <td>{{item.prix}}</td>
+            <td>{% if item.vendu == true %}
+                    Vendu 
+                  {% else %}
+                    En vente 
+                {% endif %}
+            </td>  
+            <td>
+              <a href="{{path('oeuvre_show', {'id': item.id})}}"><i class="fas fa-eye ms-2 me-2"></i></a>
+              <i class="fas fa-trash ms-2 me-2" data-bs-toggle="modal" data-bs-target="#mafenetretwo"></i>
+            </td>
           </tr>
-        
+          {# 2 fenêtres modal pour les différent display avec deux noms id différents pour éviter que ne soit lu que le premier et display none en sm #}
+          <div class="modal fade" id="mafenetretwo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBack" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBack">Point&Pixel</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Êtes-vous sûr de vouloir supprimer définitivement cet item?
+                  <br> Supprimez uniquement en cas d'abus constaté !
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                  <a href="{{ path('delete_tableau', {'id': item.id}) }}"><button type="button" class="btn btn-primary">Oui</button><a>
+                </div>
+              </div>
+            </div>
+          </div>
+         {% else %}
+          <tr>
+            <td colspan="6">Aucun slide enregistré</td>
+          </tr>  
         {% endfor %}
       </tbody>
     </table>
   </div>
-</div>
-
+  <div class="container mt-auto d-md-none">
+    <table class="table">
+      {% for item in liste_tableaux %}
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ item.id }}</td>
+            </tr> 
+            <tr>
+                <th>Titre</th>
+                <td>{{ item.titre }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ item.auteur }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src ="{{ asset('images/' ~ item.image) }}" style ="width:70px"></td>  
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ item.category.name }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ item.prix }}</td>
+            </tr>
+             <tr>
+                <th>Statut</th>
+                <td>{% if item.vendu == true %}
+                    Vendu 
+                  {% else %}
+                    En vente 
+                {% endif %}</td>
+            </tr>
+            <tr>
+                <th>actions</th>
+                 <td>
+              <a href="{{path('oeuvre_show', {'id': item.id})}}"><i class="fas fa-eye ms-2 me-2"></i></a>
+              <i class="fas fa-trash ms-2 me-2" data-bs-toggle="modal" data-bs-target="#mafenetre"></i>
+            </td>
+            </tr>
+        </tbody>
+        <div class="modal fade" id="mafenetre" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Point&Pixel</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Êtes-vous sûr de vouloir supprimer définitivement cet item?
+                  <br> Supprimez uniquement en cas d'abus constaté !
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                  <a href="{{ path('delete_tableau', {'id': item.id}) }}"><button type="button" class="btn btn-primary">Oui</button><a>
+                </div>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+    </table>
+  </div>
 
 {% endblock %}
 

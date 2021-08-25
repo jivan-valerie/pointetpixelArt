@@ -91,11 +91,11 @@
 						<p class="subjectpaint">Animaux</p>
 					</div>
 					<div class="col-8 col-sm-6 col-md-4 col-lg-3">
-						<a href="{{path('vitrine', {'_fragment' : 'Paysage' })}}"><img src="{{ asset('images/paysagehome.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage" id="pay"></a>
+						<a href="{{path('vitrine', {'_fragment' : 'Paysage' })}}"><img src="{{ asset('images/paysagehome.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage"></a>
 						<p class="subjectpaint">Paysage</p>
 					</div>
 					<div class="col-8 col-sm-6 col-md-4 col-lg-3">
-						<a href="{{path('vitrine', {'_fragment' : 'Nature morte' })}}"><img src="{{ asset('images/naturemortehome.jpg') }}" class="img-thumbnail" alt="allez à representation de nature morte" id="paysa"></a>
+						<a href="{{path('vitrine', {'_fragment' : 'Nature morte' })}}"><img src="{{ asset('images/naturemortehome.jpg') }}" class="img-thumbnail" alt="allez à representation de nature morte"></a>
 						<p class="subjectpaint">Nature morte</p>
 					</div>
 					<div class="col-8 col-sm-6 col-md-4 col-lg-3">
@@ -103,43 +103,39 @@
 						<p class="subjectpaint">Fantastique</p>
 					</div>
 					<div class="col-8 col-sm-6 col-md-4 col-lg-3">
-						<a href="{{path('vitrine', {'category' : 'Abstrait' })}}"><img src="{{ asset('images/abstraithome.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage"></a>
+						<a href="{{path('vitrine', {'_fragment' : 'Abstrait' })}}"><img src="{{ asset('images/abstraithome.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage"></a>
 						<p class="subjectpaint">Abstrait</p>
 					</div>
 					<div class="col-8 col-sm-6 col-md-4 col-lg-3">
-						<a href="{{path('vitrine', {'category' : 'Divers' })}}"><img src="{{ asset('images/divers_home.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage" id="pa"></a>
+						<a href="{{path('vitrine', {'_fragment' : 'Divers' })}}"><img src="{{ asset('images/divers_home.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage" id="pa"></a>
 						<p class="subjectpaint">Divers</p>
 					</div>
 				</div>
 			</div>
 		</div>
+		
+		<h3 class="text-center my-4"> Rejoignez le réseau des nos artistes émergents!</h3>
 		<div class="container">
-		<h2 class= "text-center mb-5" > Rejoignez le réseau des grands artistes !</h2>
                 <div class="row">
-					<div class="col-md-7">
-                        <p class="lead">
-						Vous avez un réel talent mais vous n'avez pas eu l'opportunité ou les moyens d'être remarqué par les collectioneurs et les galeristes ?
-                    <br>Vous êtes un artiste amateur ou présentant un handicap ? 
-                    <br>Vous voudriez partarger au monde ce qui vous habite, percer dans le monde de l'art, présenter et vendre vos oeuvres ?
-                    <br>Point et Pixel vous donne pignon sur la rue virtuelle du web !
-                    <br>Point et Pixel vous donne la possibilité de percer dans le monde de l'art ! <span class="title">Point&Pixel </span>est fait pour vous !<br>
-					Inscrivez-vous et insèrez votre oeuvre !</p>
+					<div class="col-md-8">
+                        <p>
+								Vous avez un réel talent mais vous n'avez pas eu l'opportunité ou les moyens d'être remarqué par les collectioneurs et les galeristes ?
+                    		<br>Vous êtes un artiste amateur ou présentant un handicap ? 
+                    		<br>Vous voudriez partarger au monde ce qui vous habite, percer dans le monde de l'art, présenter et vendre vos oeuvres ?
+                    		<br>Point et Pixel vous donne pignon sur la rue virtuelle du web !
+                    		<span class="title">Point&Pixel </span>est fait pour vous !
+								Inscrivez-vous et insèrez votre oeuvre !</p>
                     
-					<button class="secondbuttonitem"><a href="Inserer">Insérer</a></button> 
+					<button class="secondbuttonitem"><a href="{{path('add_tableau')}}Inserer">Insérer</a></button> 
 					</div>
-                    <div class="col-md-5">
-                        <img class= "img-fluid mx-auto mb-3 diaporama" width="500" height="500" img src="{{ asset('images/scene_home.jpg') }}" alt="allez à representation de scène">>
-                    </div>
+                    <div class="col-md-4 ">
+						
+						<a href = "{{path('vitrine')}}">
+                    		<img  src="{{ asset('images/scene_home.jpg') }}" class="img-fluid mx-auto my-3"  alt="allez à representation de scène" style="width:100%"></a>
+                    		<p class ="subjectpaint text-center fs-3">Guide pratique</p>
+						</div>
+					</div>
                 </div>
 			</div>  
 		</main>
 	{% endblock %}
-{# <h3> </br>
-                Faites-vous un nom dans le monde de l'art traditionel et numérique</h3>
-                <p class="mt-4"> 
-                    <br>
-                    
-                    {#  #}
-                {# </p>
-            <div class="mt-5" id="block-centrale" >
-                #}

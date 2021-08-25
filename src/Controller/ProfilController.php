@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\Panier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,7 +24,7 @@ class ProfilController extends AbstractController
 /**
      * @Route("/profil", name="profil")
      */
-    public function index(CommandeRepository $commande): Response
+    public function index(CommandeRepository $commande, Panier $panier): Response
     {   
         $user=$this->getUser();
 
@@ -33,7 +34,7 @@ class ProfilController extends AbstractController
         return $this->render('profil/index.html.twig', [
             'user' => $user,
             'commande'=>$commande,
-            
+            'panier'=>$panier->afficheDetailPanier(), 
         ]);
     }
 
@@ -41,7 +42,7 @@ class ProfilController extends AbstractController
     /**
      * @Route("modifier-tableau/{id}", name="modifier_tableauxuser", defaults = {"id" :null })
      */
-    public function editTableaux($id, TableauxRepository $tableauxRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function editTableaux(Panier $panier, $id, TableauxRepository $tableauxRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
         // id n'est pas nul
         if(!is_null($id)){
@@ -71,7 +72,9 @@ class ProfilController extends AbstractController
             return $this->redirectToRoute('profil');
         }
         return $this->render('profil/modifier_tableaux.html.twig',[ 
-            'form'=>$form->createView()
+            'form'=>$form->createView(),
+            'panier'=>$panier->afficheDetailPanier(), 
+
         ]);
     }
     

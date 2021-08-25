@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\Panier;
 use App\Entity\Tableaux;
 use App\Form\CategoryType;
 use App\Form\TableauType;
@@ -30,10 +31,13 @@ class TableauUserController extends AbstractController
     /**
      * @Route("/art_graphique", name="vitrine")
      */
-    public function view(TableauxRepository $tableauxRepository, CategoryRepository $categoryRepository ) : Response
+    public function view(Panier $panier, TableauxRepository $tableauxRepository, CategoryRepository $categoryRepository ) : Response
     {
         
     
+                $user=$this->getUser();
+                if ($user && $user->getBanni() == true) {
+                    return $this->redirectToRoute('app_logout');}
             //  $liste_tableaux=$tableauxRepository->findBy(['vendu'=>false]);
                 $liste_tableaux = $tableauxRepository->findAll();
                 $liste_categorie = $categoryRepository->findAll();
@@ -42,7 +46,8 @@ class TableauUserController extends AbstractController
         [
         'liste_tableaux'=> $liste_tableaux,
         'liste_categorie' => $liste_categorie,
-        ]);
+        'panier'=>$panier->CalculQuantiteTotal(),
+    ]);
     }
     /**
      * @Route("/art_graphique/DiversArt", name="divers-art")
@@ -106,42 +111,42 @@ class TableauUserController extends AbstractController
         
         ]);
     }
-    /**
-     * @Route("modifier-tableau/{id}", name="edituser_tableau", defaults = {"id" :null })
-     */
-    public function editTableaux($id, TableauxRepository $tableauxRepository, Request $request, EntityManagerInterface $entityManager): Response
-    {
-        // id n'est pas nul
-        if(!is_null($id)){
-            // je récupère le tableau selon son id
-            $tableau=$tableauxRepository->find($id);
-            // je récupère l'user connecté
-            $user=$this->getUser();
-            // je recupère le proprietaire du tableau
-            $proprietaire= $tableau->getUser();
-            // je vérifie si le propriétaire est bien l'user connecté sinon je le redirige vers homme
-            if($user != $proprietaire){
-                return $this->redirectToRoute('home');
-            }
-        } else {
-            $tableau= new Tableaux();
-        }
-        $form=$this->createForm(TableauType::class, $tableau);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $image=$form->get('image')->getData();
-            $image_name=uniqid().'.'.$image->guessExtension();
-            $image->move($this->getParameter('upload_dir'), $image_name);
-            $tableau->setImage($image_name);
-            $entityManager->persist($tableau);
-            $entityManager->flush();
+    // /**
+    //  * @Route("modifier-tableau/{id}", name="edituser_tableau", defaults = {"id" :null })
+    //  */
+    // public function editTableaux($id, TableauxRepository $tableauxRepository, Request $request, EntityManagerInterface $entityManager): Response
+    // {
+    //     // id n'est pas nul
+    //     if(!is_null($id) ){
+    //         // je récupère le tableau selon son id
+    //         $tableau=$tableauxRepository->find($id);
+    //         // je récupère l'user connecté
+    //         $user=$this->getUser();
+    //         // je recupère le proprietaire du tableau
+    //         $proprietaire= $tableau->getUser();
+    //         // je vérifie si le propriétaire est bien l'user connecté sinon je le redirige vers homme
+    //         if($user != $proprietaire || !isset($tableau)){
+    //             return $this->redirectToRoute('home');
+    //         }
+    //     } else {
+    //         $tableau= new Tableaux();
+    //     }
+    //     $form=$this->createForm(TableauType::class, $tableau);
+    //     $form->handleRequest($request);
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $image=$form->get('image')->getData();
+    //         $image_name=uniqid().'.'.$image->guessExtension();
+    //         $image->move($this->getParameter('upload_dir'), $image_name);
+    //         $tableau->setImage($image_name);
+    //         $entityManager->persist($tableau);
+    //         $entityManager->flush();
 
-            return $this->redirectToRoute('oeuvre');
-        }
-        return $this->render('oeuvre/edit_tableaux.html.twig',[ 
-            'form'=>$form->createView()
-        ]);
-    }
+    //         return $this->redirectToRoute('oeuvre');
+    //     }
+    //     return $this->render('oeuvre/edit_tableaux.html.twig',[ 
+    //         'form'=>$form->createView()
+    //     ]);
+    // }
     
 }
 

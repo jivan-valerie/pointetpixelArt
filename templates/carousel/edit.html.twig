@@ -3,13 +3,14 @@
 {% block title %}Edit Carousel{% endblock %}
 
 {% block body %}
-    <h3>Modifier Slide</h3>
-{# edit un tableau selon son id, son form de formulaire pour pouvoir le mmodifier et de le supprimer #}
-    <div class="d-flex justify-content-center">
-
-    {{ include('carousel/_form.html.twig', {'button_label': 'Update'}) }}
-</div>
-    <a href="{{ path('carousel_index') }}"><button class="firstitem fs-5">Retour</button> </a>
-
-    {{ include('carousel/_delete_form.html.twig') }}
+    <h3 class="my-4 text-center">Modifier Slide</h3>
+{# edit un tableau selon son id, son form de formulaire pour qui inclut submit#}
+    
+    {{ include('carousel/_form.html.twig', {'button_label': 'Confirmez'}) }}
+    {# {{ include('carousel/_delete_form.html.twig') }} #}
+    {# le bouton retour doit être en dehors du formulaire à soumettre sinon impossible à cause des contraintes 
+    avec la même mise en forme que form #}
+    <div class="container m-auto col-md-7 col-lg-6 text-end">
+        <a href="{{ path('carousel_index') }}"><button class="firstitem fs-5">Retour</button></a>
+    </div> 
 {% endblock %}

@@ -42,7 +42,7 @@ class RegistrationFormType extends AbstractType
             ]) 
             ->add('ajouter', SubmitType::class, [
                 'label' => 'Confirmez',
-                'attr'=>[ 'class'=>'btn btn-success'], 
+                'attr'=>[ 'class'=>'firstitem fs-5'], 
                 // 'mapped'=>false,
             ])
             ->add('agreeTerms', CheckboxType::class, [
