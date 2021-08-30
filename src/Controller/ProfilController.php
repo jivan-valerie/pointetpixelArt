@@ -21,10 +21,10 @@ class ProfilController extends AbstractController
 {
 
 
-/**
+    /**
      * @Route("/profil", name="profil")
      */
-    public function index(CommandeRepository $commande, Panier $panier): Response
+    public function Profil(CommandeRepository $commande, Panier $panier): Response
     {   
         $user=$this->getUser();
 
@@ -34,10 +34,29 @@ class ProfilController extends AbstractController
         return $this->render('profil/index.html.twig', [
             'user' => $user,
             'commande'=>$commande,
-            'panier'=>$panier->afficheDetailPanier(), 
+            'panier'=>$panier->afficheDetailPanier(),
+            // 'quantitypanier' =>$panier->CalculQuantiteTotal(),
         ]);
     }
 
+   /**
+     * @Route("/user/facture", name="facture")
+     */
+   
+    public function Facture(CommandeRepository $commande, Panier $panier)
+    {   
+        $user=$this->getUser();
+
+        
+
+        
+        return $this->render('profil/facture.html.twig', [
+            'user' => $user,
+            'commande'=>$commande,
+            'panier'=>$panier->afficheDetailPanier(),
+            // 'quantitypanier' =>$panier->CalculQuantiteTotal(),
+        ]);
+    }
 
     /**
      * @Route("modifier-tableau/{id}", name="modifier_tableauxuser", defaults = {"id" :null })
@@ -74,7 +93,7 @@ class ProfilController extends AbstractController
         return $this->render('profil/modifier_tableaux.html.twig',[ 
             'form'=>$form->createView(),
             'panier'=>$panier->afficheDetailPanier(), 
-
+            
         ]);
     }
     

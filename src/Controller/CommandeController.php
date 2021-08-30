@@ -9,27 +9,27 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CommandeController extends AbstractController
 {
-    /**
-     * @Route("/commande", name="commande")
-     */
-    public function index(CarouselRepository $carouselRepository): Response
-    {
-        return $this->render('commande/index.html.twig', [
-            'carousel' => $carouselRepository->findAll(),
-        ]);
-    }
-    /**
-     * @Route("/profil-tableaux", name="mes_commandes")
-     */
-    public function MesAchats(): Response
-    {
-        $user=$this->getUser();
-        return $this->render('commande/indextwo.html.twig', [
-            'user' => $user,
-          
-        ]);
+    // /**
+    //  * @Route("/commande", name="commande")
+    //  */
+    // public function index(CarouselRepository $carouselRepository): Response
+    // {
+    //     return $this->render('commande/index.html.twig', [
+    //         'carousel' => $carouselRepository->findAll(),
+    //     ]);
+    // }
+    // /**
+    //  * @Route("/profil-tableaux", name="mes_commandes")
+    //  */
+    // public function MesAchats(): Response
+    // {
+    //     $user=$this->getUser();
+    //     return $this->render('commande/indextwo.html.twig', [
+    //         'user' => $user,
+    
+    //     ]);
 
     
-    }
+    // }
     
 }

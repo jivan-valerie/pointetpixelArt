@@ -45,6 +45,11 @@ class Commande
      */
     private $detailCommandes;
 
+    /**
+     * @ORM\Column(type="string", length=80)
+     */
+    private $email;
+
     public function __construct()
     {
         $this->detailCommandes = new ArrayCollection();
@@ -142,6 +147,18 @@ class Commande
                 $detailCommande->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
