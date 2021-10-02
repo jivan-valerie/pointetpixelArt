@@ -32,7 +32,7 @@ class Panier
             $panier[$item] = 1 ;
         }
         
-        // je renvoi a l'objet session les nouvelle valeur du panier )
+        // je renvoie a l'objet session les nouvelles valeurs du panier )
         $this->session->set('panier',$panier);
 
         //}
@@ -63,26 +63,32 @@ class Panier
 
 
     public function deleteUneOeuvre($id){
-        // je récupère le panier de la session avec l'id de l'oeuvre à supprimer
+        // je récupère le panier de la session avec l'id de l'oeuvre à supprimer, méthode getpanier
         $panier =$this->getPanier();
-
+        // si contenu est supérieure à un je retire 1
         if($panier[$id] >1){
             
             $panier[$id] = $panier[$id]-1;
+        // si contenu = 1 équivaut à supprimer panier
         }else{
             unset($panier[$id]);
         }
+        // on 'l'enregistre dans la session'
         $this->session->set('panier',$panier);
     }
 
     public function afficheDetailPanier()
     {
+        // méthode get panier qui récupére contenu panier de la session
         $panier = $this->getPanier();
         $detail_panier =[];
-
+        // pour chaque article panier identifié par sa key = id et quantié
         foreach ($panier as $key => $quantity) {
+            //chaque tableau dans panier, on récupére sa cle =id
             $tableaux=$this->tableaurepository->find($key);
-
+            //dans notre cas particulier la quantité est toujours un
+            
+            $quantity = 1;
             $detail_panier[] = [
                 'tableau' => $tableaux,
                 'quantity'=>$quantity

@@ -3,13 +3,12 @@
 {% block title %}Edit Tva{% endblock %}
 
 {% block body %}
-<div class="container col-4">
-    <h1>Edit Tva</h1>
+    <h2 class="my-4 text-center">Modifier Slide</h2>
 
-    {{ include('tva/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('tva/_form.html.twig', {'button_label': 'OK'}) }}
+    <div class="container m-auto col-md-7 col-lg-6 text-end">
 
-    <a href="{{ path('tva_index') }}">back to list</a>
+        <a href="{{ path('tva_index') }}"><button class="firstitem fs-5 p-1">Retour</button></a>
 
-    {{ include('tva/_delete_form.html.twig') }}
-</div>
+    </div>
 {% endblock %}

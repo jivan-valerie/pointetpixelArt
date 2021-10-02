@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Artnumerique{% endblock %}
+
+{% block body %}
+<h2 class="text-center my-4"> Insérez votre vidéo</h2>
+
+<div class= "container mt-3 m-auto col-md-10 col-lg-6 my-3">
+{{ form_start(form) }}
+{{ form_widget(form) }}
+    
+    <div class="text-end mt-3">
+        <button class="secondbuttonitem">{{ button_label|default('Ajouter') }}</button>
+    </div>
+
+{{ form_end(form) }}
+
+
+    {# {{ include('designer/_form.html.twig') }}#}
+
+    <a href="{{ path('mes_videos') }}"><button class="firstitem fs-5">Retour</button></a>
+</div>
+{% endblock %}

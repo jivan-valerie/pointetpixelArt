@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artistes{% endblock %}
+
+{% block body %}
+<main>
+<div class="container">
+    <h2 class="h2 ms-3 mt-5 ">Vos Artistes</h2>
+        {% for item in artist %}
+
+                <h3 class="text-center m-4">{{ item.auteur }}</h3>
+                
+                <div class="row g-2 g-lg-3 justify-content-center mb-5">
+
+
+                    {% for tableau in tableaux %}
+                        {% if item.auteur == tableau.auteur %}
+					<div class="col-11 col-sm-10 col-md-6 col-lg-4 col-xl-3">
+                        <div class="card h-100"> 
+                            <img src="{{asset('images/' ~ tableau.image)}}" class="card-img-top"  alt="{{tableau.titre}}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{tableau.titre}}</h5>
+                                <p class="card-text"><small>{{tableau.longueur}} cm x {{tableau.largeur}} cm</small></p>
+                            </div>
+                        </div>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+        {% endfor %}
+</div>
+</main>
+
+{% endblock %}

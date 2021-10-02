@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes
+{% endblock %}
+
+{% block body %}
+
+	<h4 class="text-center my-3">
+		 Commande(s) des utilisateurs
+	</h4>
+<div class="container mt-auto d-none d-md-flex">
+		
+			
+		<table class="table">
+
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Nom</th>
+					<th>Email</th>
+					<th>Auteur</th>
+                    <th>Titre</th>
+  				    <th>Image</th>
+					<th>prix</th>	
+				</tr>
+			</thead>
+			
+			<tbody>
+				{% for row in commandes %}
+					
+					
+					<td>{{ row.dateCommande|date("m/d/Y") }}</td>
+					
+					<td>
+						{{ row.user.nom}}
+					</td>
+					<td>
+						{{ row.user.email }}
+					</td>
+					<td>
+					{{ row.tableaux.auteur}}
+					</td>
+                    <td>
+					{{ row.tableaux.titre}}
+					</td>
+                    <td>
+					<img src="{{ asset('images/' ~ row.tableaux.image)}}" style ="width:70px">
+					</td>
+                    
+					<td>
+					{{ row.tableaux.prix}}
+				    </td> 
+			</tbody>
+	
+	{% else %}
+	<tr>
+						<td colspan="7">
+							Aucune commande passée
+						</td>
+					</tr>
+
+					{% endfor %}
+				</tbody>
+		</table>
+	</div>
+<div class="container mt-auto d-flex d-md-none">
+
+		<table class="table">
+				{% for row in commandes %}
+				<tbody>
+					
+					<tr>
+						<th>Date</th>
+						<td>{{ row.dateCommande|date("m/d/Y") }}</td>
+					</tr>
+					<tr>
+						<th>Nom</th>
+						<td>{{ row.user.nom}}</td>
+					</tr>
+					<tr>
+						<th>Email</th>
+						<td>{{ row.user.email }}</td>
+					</tr>
+					<tr>
+						<th>Auteur</th>
+						<td>{{ row.tableaux.auteur}}</td>
+					</tr>
+					<tr>
+						<th>Titre</th>
+						<td>{{ row.tableaux.titre}}</td>
+					</tr>
+					<tr>
+						<th>image</th>
+						<td><img src="{{ asset('images/' ~ row.tableaux.image)}}" style ="width:70px"></td>
+					</tr>
+					<tr>
+						<th>prix</th>
+						<td>{{ row.tableaux.prix}}</td>
+					</tr>
+				
+
+					{% else %}
+					<tr>
+						<td colspan="7">
+							Aucune commande passée
+						</td>
+					</tr>
+
+					{% endfor %}
+				</tbody>
+		</table>
+	</div>
+{% endblock %}
+
+
+

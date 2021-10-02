@@ -1,12 +1,98 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+{% include "home/header.html.twig" %}
 
-{% block title %}Mentions{% endblock %}
 
 {% block body %}
-<h3>Mentions légales</h3>
-<p>Point&Pixel est un site privée d'un petit groupe d'artistes, dont le siège se situe à Evry dans le 91</p> 
-<p>
-En acceptant les présentes CGU, l’Utilisateur reconnait que lors de sa navigation sur le Site,
+
+
+<div class="container my-4">
+<h3 class= "text-center mb-5">Mentions légales</h3>
+    <div class="row">
+        <div class="col-md text-center">
+        <a href="{{ path('home')}}"><img src="{{asset('images/60e719a396c35.png') }}" alt="logo" class="img-fluid" style ="width:300px"></a>
+        <h5 class="mt-4"> Association Point&ampPixel <br> SIREN: 844589432</h5>
+        <p> Siège social :
+            88 boulevard John Kennedy – 91100 Corbeil-Essonnes <br><small>hébergement du site : IONOS</small></p>
+        <p> contact: <a href="{{ 'contact' }}">contact@PointetPixel.fr</a>
+        </p> 
+        </div>
+        <div class="col-md mt-5">
+        <p>
+            Bienvenue sur notre site!
+            Pour vous permettre d’utiliser nos services de la meilleure façon nous vous prions de bien
+            vouloir prendre connaissance des présentes conditions générales d’utilisation.</p>
+        <h5>Propriété intellectuelle</h5>
+        <p>Tout en respectant la propriété intellectuelle de chaque artiste,
+            Point&ampPixelArt est propriétaire exclusif de tous les droits de propriété intellectuelle
+            portant sur le développement du Site.
+        </p>
+        <p>Le site,les marques,les textes,les logos,les bases de
+        données,les chartes graphiques, les logiciels et programmes, les noms de domaines, design et tout autre contenu disponible
+        sont la propriété exclusive de Point&ampPixelArt et sont protégés par les dispositions du droit d’auteur et de tout autre droit de propriété intellectuelle en vigueur.</p>
+    
+        </div>
+    </div>
+
+
+</div>
+<hr>
+<h2 class= "text-center my-3"> Conditions générales d'utilisation</h2>
+
+<div class="container">
+
+<h2 class= "text-center my-3">I- Généralités </h2>
+
+<p>Les présentes CGU produisent des effets à compter de l’accès au Site par l’Utilisateur, et ce
+sans qu’il ne soit nécessaire de créer un compte utilisateur ou de s’identifier sur le site.
+Elles s’appliquent tant que l’Utilisateur bénéficie des services de Point&ampPixelArt.
+Les CGU ont pour objet de déterminer les règles d'utilisation du Site par l’Utilisateur, ainsi
+que les obligations à la charge de Point&ampPixel.
+L’Utilisateur s'engage, à chacune de ses visites sur le Site, à respecter les présentes CGU
+applicables à l'ensemble des services et des contenus disponibles sur le Site.
+En conséquence, l’Utilisateur accepte, sans réserve, les présentes CGU dans leur intégralité
+avant toute utilisation du Site et de ses services. 
+<p> L’Utilisateur doit solliciter l’autorisation préalable de Point&ampPixel pour toute reproduction,publication, copie des différents contenus présents sur le Site.
+        selon l'article L.335-2 et suivants du Code de la Propriété Intellectuelle.
+
+        L’utilisation du Site et de ses services implique l’acceptation des présentes CGU, sans
+        toutefois rendre obligatoire la création d’un compte Utilisateur.</p> 
+La simple utilisation du Site emporte automatiquement acceptation par l’Utilisateur des
+présentes CGU.</p>
+
+<p>Point&ampPixel se réserve le droit de modifier, à tout moment, les CGU afin de prendre en
+compte toute évolution légale, jurisprudentielle, éditoriale, fonctionnelle et/ou technique
+qui s’impose.</p>
+
+<h2 class= "text-center my-3">II- Services proposés </h2>
+<p>Le Site offre aux Utilisateurs un service leur permettant de consulter le catalogue des
+différentes œuvres proposées à la vente par les artistes inscrits sur le Site, ainsi que de
+formuler des offres d’achat des œuvres mises en vente.
+Les ventes réalisées le sont en application des Conditions Générales de Vente </p>
+<p>Point&ampPixel peut interrompre ses services, desactiver le site sans qu'il doive se justifier ou être tenu responsable d'éventuel dommages aux utilisateurs </p>
+
+
+<h2 class= "text-center my-3">III- Données personnelles </h2>
+
+Les données personnelles de l’Utilisateur sont collectées et conservées par Point&ampPixelArt pour
+en permettre l'exécution.
+En application la Loi n° 78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux
+libertés individuelles l’Utilisateur dispose d’un droit d’accès, de modification, de rectification
+et de suppression des données à caractère personnel le concernant traitées via le Site, ainsi
+que du droit de s’opposer à la communication de ces données à des tiers pour de justes
+motifs en adressant une demande à notre page de contact.
+
+<p>se réserve le droit de conserver certaines données afin de justifier, le cas échéant
+de la parfaite exécution de ses obligations contractuelles ou légales. Les données ainsi
+conservées seront limitées à ce qui est strictement nécessaire à l’exploitation du service.
+Point&ampPixel s’engage à mettre toutes les mesures en place permettant au mieux de protéger
+la confidentialité des informations fournies par l’Utilisateur.</p>
+
+
+<h2 class= "text-center my-3">III- Cookies </h2>
+
+
+<p>En acceptant les présentes CGU, l’Utilisateur reconnait que lors de sa navigation sur le Site,
 un Cookie peut s’installer automatiquement sur son navigateur.
 L’Utilisateur accepte l’utilisation des Cookies lors de sa navigation sur le Site, à défaut de quoi
 certaines fonctionnalités du site pourraient lui être refusées.
@@ -15,5 +101,21 @@ l’Utilisateur lors de ses différentes connexions sur le Site.
 L’Utilisateur peut, s’il le souhaite, désactiver les Cookies par l’intermédiaire des paramètres
 du navigateur utilisé afin d’accéder au Site.</p>
 
+<h2 class= "text-center my-3">IV- Responsabilité </h2>
+<p> Dans sa relation avec l’Utilisateur, Point&ampPixelArt ne saurait être tenu responsable :
+d’un non fonctionnement ou d’une impossibilité d’accès, ou de mauvaises conditions
+d’utilisation du Site ;
+de toute perte de données, de temps, d’opportunité et/ou de tout autre dommage
+indirect lié à l’utilisation du Site.</p>
 
+
+<h2 class= "text-center my-3">V- Médiation </h2>
+<p> L’Utilisateur dispose d’un droit de recours à un médiateur de la consommation en vue de la
+résolution amiable de tout litige portant sur l’exécution des présentes CGU, tel que prévu aux
+articles L.611-1, R.612-1 et suivants du Code de la Consommation.</p>
+</div>
+
+
+
+</html>
 {% endblock %}

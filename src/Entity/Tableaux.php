@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TableauxRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,8 +40,9 @@ class Tableaux
     private $image;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="decimal", precision=6, scale=2, nullable=true)
      */
+
     private $prix;
 
     /**
@@ -58,10 +61,7 @@ class Tableaux
      */
     private $largeur;
 
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $tva;
+    
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tableauxuser")
@@ -78,10 +78,23 @@ class Tableaux
      * @ORM\ManyToOne(targetEntity=Technique::class, inversedBy="technique_tableaux")
      * @ORM\JoinColumn(nullable=false)
      */
+    
     private $technique;
 
-    
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $tva;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="tableaux")
+     */
+    private $commandes;
+
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+    }    
 
 
     public function getId(): ?int
@@ -149,13 +162,14 @@ class Tableaux
 
         return $this;
     }
-    
+    // méthode avec 3 paramètres
     public function CalculPrix($longueur,$largeur,$tva){
             $prix=0;
+       // prix conseillé calculé en fonction des dimensions du tableau     
             $nb= $longueur + $largeur;
                 switch ($nb) {
                     case $nb <28:
-                        $prix=0;
+                        $prix=10;
                         break;
                     case $nb >28 && $nb<=38:
                         $prix=20;
@@ -169,16 +183,17 @@ class Tableaux
                     case $nb >49 && $nb<=57:
                         $prix=80;
                         break;
+                    case $nb >57 && $nb<=64;
+                        $prix=100;
+                    case $nb >64 && $nb<=72;
+                        $prix=120;
                     default:
-                        $prix = 4000;
+                        $prix = 400;
                     break;
                     }
-        return $prix + ($prix*$tva/100);
-        // $prixUnit = $longueur + $largeur;
-            // if($prixUnit > 25 && $prixUnit <40) {$prix = 8000;
-            //     return $prix + ($prix*$tva/100);}
+                    $prix= $prix + ($prix *$tva/100);
+        return $prix ;
         
-            
 
     }
 
@@ -217,17 +232,7 @@ class Tableaux
 
         return $this;
     }
-    public function getTva(): ?float
-    {
-        return $this->tva;
-    }
-
-    public function setTva(float $tva): self
-    {
-        $this->tva = $tva;
-
-        return $this;
-    }
+    
 
     public function getUser(): ?User
     {
@@ -264,6 +269,56 @@ class Tableaux
 
         return $this;
     }
+
+   
+
+    public function getTva(): ?float
+    {
+        return $this->tva;
+    }
+
+    public function setTva(float $tva): self
+    {
+        $this->tva = $tva;
+
+        return $this;
+    }
+ /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setTableaux($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getTableaux() === $this) {
+                $commande->setTableaux(null);
+            }
+        }
+
+        return $this;
+    }
+
+   
+   
+
+    
+   
+   
 
     
     

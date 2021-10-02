@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Point & Pixel
+	Point&Pixel
 {% endblock %}
 
 {% block body %}
 	<main>
 		<section id="firstsect">
-			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+			<div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
 				<ol class="carousel-indicators">
-					<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-					<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-					<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+					<li data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active"></li>
+					<li data-bs-target="#carouselIndicators" data-bs-slide-to="1"></li>
+					<li data-bs-target="#carouselIndicators" data-bs-slide-to="2"></li>
 				</ol>
 				<div class="carousel-inner">
 
@@ -30,9 +30,9 @@
 									<h6>
 										{{ slide.description}}</h6>
 								</div>
-								<div class="carousel-caption d-block d-md-none">
+								<div class="carousel-caption d-none d-sm-block d-md-none">
 									<a href="{{ slide.lien }}">
-										<button class="firstitem fs-5">{{ slide.label }}</button>
+										<button class="firstitem fs-5 p-1">{{ slide.label }}</button>
 									</a>
 								</div>
 							</div>
@@ -46,10 +46,9 @@
 									<h4>
 										{{slide.titre }}
 									</h4>
-									<h6>
-										{{ slide.description }}</h6>
+									<h6>{{ slide.description }}</h6>
 								</div>
-								<div class="carousel-caption d-block d-md-none">
+								<div class="carousel-caption d-none d-sm-block d-md-none">
 									<a href="{{ slide.lien }}">
 										<button class="firstitem fs-5">{{ slide.label }}</button>
 									</a>
@@ -57,13 +56,12 @@
 							</div>
 						{% endif %}
 					{% endfor %}
-
 				</div>
-				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+				<a class="carousel-control-prev" href="#carouselIndicators" role="button" data-bs-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 					<span class="sr-only">Previous</span>
 				</a>
-				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+				<a class="carousel-control-next" href="#carouselIndicators" role="button" data-bs-slide="next">
 					<span class="carousel-control-next-icon" aria-hidden="true"></span>
 					<span class="sr-only">Next</span>
 				</a>
@@ -71,71 +69,104 @@
 		</section>
 
 		<section class="mt-5">
-		{# div pour éviter le mini-scroling lors du hover css #}
-		
+
 			<h3 class="text-center my-4">
 				Explorez notre Galerie par thème</h3>
 			<div class="container">
-			<div>
-				<div class="row text-center d-flex justify-content-center">
-					<div class="col-8 col-sm-6 col-md-4 col-lg-3">
-						<a href="{{path('vitrine', {'_fragment' : 'Portrait'})}}"><img src="{{ asset('images/portraithome.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage" id="paysage"></a>
-						<p class="subjectpaint">Portrait</p>
+				<div>
+					<div class="row text-center d-flex justify-content-center">
+						<div class="col-8 col-sm-6 col-md-4 col-lg-3">
+							<a href="{{path('vitrine', {'_fragment' : 'Portrait'})}}"><img src="{{ asset('images/portraithome.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage" id="paysage"></a>
+							<p class="subjectpaint">Portrait</p>
+						</div>
+						<div class="col-8 col-sm-6 col-md-4 col-lg-3">
+							<a href="{{path('vitrine', {'_fragment' : 'Scene'})}}"><img src="{{ asset('images/scene_home.jpg') }}" class="img-thumbnail" alt="allez à representation de scène"></a>
+							<p class="subjectpaint">Scène</p>
+						</div>
+						<div class="col-8 col-sm-6 col-md-4 col-lg-3 ">
+							<a href="{{path('vitrine', {'_fragment' : 'Animaux' })}}"><img src="{{ asset('images/animauxhome.jpg') }}" class="img-thumbnail" alt="allez à representation d'Animaux"></a>
+							<p class="subjectpaint">Animaux</p>
+						</div>
+						<div class="col-8 col-sm-6 col-md-4 col-lg-3">
+							<a href="{{path('vitrine', {'_fragment' : 'Paysage' })}}"><img src="{{ asset('images/paysagehome.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage"></a>
+							<p class="subjectpaint">Paysage</p>
+						</div>
+						<div class="col-8 col-sm-6 col-md-4 col-lg-3">
+							<a href="{{path('vitrine', {'_fragment' : 'Nature morte' })}}"><img src="{{ asset('images/naturemortehome.jpg') }}" class="img-thumbnail" alt="allez à representation de nature morte"></a>
+							<p class="subjectpaint">Nature morte</p>
+						</div>
+						<div class="col-8 col-sm-6 col-md-4 col-lg-3">
+							<a href="{{path('vitrine', {'_fragment' : 'Fantastique' })}}"><img src="{{ asset('images/fantaisy_home.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage"></a>
+							<p class="subjectpaint">Fantastique</p>
+						</div>
+						<div class="col-8 col-sm-6 col-md-4 col-lg-3">
+							<a href="{{path('divers_art', {'_fragment' : 'Abstrait' })}}"><img src="{{ asset('images/abstraithome.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage"></a>
+							<p class="subjectpaint">Abstrait</p>
+						</div>
+						<div class="col-8 col-sm-6 col-md-4 col-lg-3">
+							<a href="{{path('divers_art', {'_fragment' : 'Divers' })}}"><img src="{{ asset('images/divers_home.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage" id="pa"></a>
+							<p class="subjectpaint">Divers</p>
+						</div>
 					</div>
-					<div class="col-8 col-sm-6 col-md-4 col-lg-3">
-						<a href="{{path('vitrine', {'_fragment' : 'Scene'})}}"><img src="{{ asset('images/scene_home.jpg') }}" class="img-thumbnail" alt="allez à representation de scène"></a>
-						<p class="subjectpaint">Scène</p>
+				</div>
+			</div>
+
+			<h3 class="text-center my-4">
+				Montrez vos talents !</h3>
+			<div class="container ">
+				<div class="row">
+					<div class="col-md-8">
+						<p>
+							Vous avez un réel talent mais vous n'avez pas eu l'opportunité ou les moyens d'être remarqué par les collectionneurs et les galeristes ?
+							<br>Vous êtes un artiste amateur ou présentant un handicap ?
+							<br>Vous voudriez partager au monde ce qui vous habite, percer dans le monde de l'art, présenter et vendre vos oeuvres ?
+							<br>Point&ampPixel vous donne pignon sur la rue virtuelle du web !
+							<span class="title">Point&ampPixel
+							</span>est fait pour vous !
+									Insérez votre oeuvre !</p>
+						{% if is_granted('ROLE_ARTIST') %}
+							<button class="secondbuttonitem">
+								<a href="{{path('add_tableau')}}">Insérer</a>
+							</button>
+						{% else %}
+							<button class="secondbuttonitem">
+								<a href="{{path('app_login')}}">Insérer</a>
+							</button>
+						{% endif %}
 					</div>
-					<div class="col-8 col-sm-6 col-md-4 col-lg-3 ">
-						<a href="{{path('vitrine', {'_fragment' : 'Animaux' })}}"><img src="{{ asset('images/animauxhome.jpg') }}" class="img-thumbnail" alt="allez à representation d'Animaux"></a>
-						<p class="subjectpaint">Animaux</p>
-					</div>
-					<div class="col-8 col-sm-6 col-md-4 col-lg-3">
-						<a href="{{path('vitrine', {'_fragment' : 'Paysage' })}}"><img src="{{ asset('images/paysagehome.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage"></a>
-						<p class="subjectpaint">Paysage</p>
-					</div>
-					<div class="col-8 col-sm-6 col-md-4 col-lg-3">
-						<a href="{{path('vitrine', {'_fragment' : 'Nature morte' })}}"><img src="{{ asset('images/naturemortehome.jpg') }}" class="img-thumbnail" alt="allez à representation de nature morte"></a>
-						<p class="subjectpaint">Nature morte</p>
-					</div>
-					<div class="col-8 col-sm-6 col-md-4 col-lg-3">
-						<a href="{{path('vitrine', {'_fragment' : 'Fantastique' })}}"><img src="{{ asset('images/fantaisy_home.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage"></a>
-						<p class="subjectpaint">Fantastique</p>
-					</div>
-					<div class="col-8 col-sm-6 col-md-4 col-lg-3">
-						<a href="{{path('vitrine', {'_fragment' : 'Abstrait' })}}"><img src="{{ asset('images/abstraithome.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage"></a>
-						<p class="subjectpaint">Abstrait</p>
-					</div>
-					<div class="col-8 col-sm-6 col-md-4 col-lg-3">
-						<a href="{{path('vitrine', {'_fragment' : 'Divers' })}}"><img src="{{ asset('images/divers_home.jpg') }}" class="img-thumbnail" alt="allez à representation de paysage" id="pa"></a>
-						<p class="subjectpaint">Divers</p>
+					<div class="col-md-4 ">
+						<a href="{{path('guide')}}">
+							<img src="{{ asset('images/scene_home.jpg') }}" class="img-fluid my-3" alt="allez à representation de scène" style="width:100%"></a>
+						<p class="subjectpaint text-center fs-3 fs-md-4">Guide Pratique</p>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		<h3 class="text-center my-4"> Rejoignez le réseau des nos artistes émergents!</h3>
-		<div class="container">
-                <div class="row">
-					<div class="col-md-8">
-                        <p>
-								Vous avez un réel talent mais vous n'avez pas eu l'opportunité ou les moyens d'être remarqué par les collectioneurs et les galeristes ?
-                    		<br>Vous êtes un artiste amateur ou présentant un handicap ? 
-                    		<br>Vous voudriez partarger au monde ce qui vous habite, percer dans le monde de l'art, présenter et vendre vos oeuvres ?
-                    		<br>Point et Pixel vous donne pignon sur la rue virtuelle du web !
-                    		<span class="title">Point&Pixel </span>est fait pour vous !
-								Inscrivez-vous et insèrez votre oeuvre !</p>
-                    
-					<button class="secondbuttonitem"><a href="{{path('add_tableau')}}Inserer">Insérer</a></button> 
+		<h3 class="text-center my-4">
+			Rejoignez le réseau de nos artistes émergents!</h3>
+		<div class="container ">
+			<div class="row">
+				<div class="col-md-4">
+					<a href="{{path('mes_artistes')}}">
+						<img src="{{ asset('images/girl-gc90005493_640.jpg') }}" class="img-fluid my-3" alt="visage multicolor" style="width:70%"></a>
+					<p class="subjectpaint text-center fs-3 fs-4">Vos artistes</p>
+				</div>
+				<div class="col-md-8 ">
+					<p class="mt-4">
+						Tout un réseau d'artistes vous attend.
+						<br>Venez rejoindre cette communauté et contribuez à rendre le monde plus beau.
+						<br>Peintres amateurs, designers, graphistes qui désirent partager leurs créations vous attendent.
+						<br>Des maintenant inscrivez-vous !
+						<span class="title">Point&ampPixel
+						</span>est fait pour vous !
+								Inscrivez-vous et insérez votre oeuvre !</p>
+					<div class="text-end">
+						<button class="secondbuttonitem">
+							<a href="{{path('add_tableau')}}">Inscription</a>
+						</button>
 					</div>
-                    <div class="col-md-4 ">
-						
-						<a href = "{{path('vitrine')}}">
-                    		<img  src="{{ asset('images/scene_home.jpg') }}" class="img-fluid mx-auto my-3"  alt="allez à representation de scène" style="width:100%"></a>
-                    		<p class ="subjectpaint text-center fs-3">Guide pratique</p>
-						</div>
-					</div>
-                </div>
-			</div>  
-		</main>
-	{% endblock %}
+				</div>
+			</div>
+		</div>
+	</div>
+</main>{% endblock %}

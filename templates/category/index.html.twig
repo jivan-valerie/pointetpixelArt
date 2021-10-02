@@ -3,8 +3,12 @@
 {% block title %}Category index{% endblock %}
 
 {% block body %}
-<h4 class="text-center mb-5 mt-3 ms-5">Liste des catégories</h4>
-<div class="container mt-auto d-none d-md-flex">
+<h2 class="text-center mb-5 mt-3">Liste des catégories</h2>
+ <div class="text-center text-md-end me-5">
+    <a href="{{ path('category_new') }}"><button class="secondbuttonitem me-5" >Ajouter</button></a>
+</div>
+
+    <div class="container mt-auto mb-5 d-none d-md-flex">
 
     <table class="table">
         <thead>
@@ -22,8 +26,9 @@
                 <td>{{ category.name }}</td>
                 <td>{{ category.info }}</td>
                 <td>
-                    <a href="{{ path('category_show', {'id': category.id}) }}"><i class="far fa-eye me-1"></i></a>
-                    <a href="{{ path('category_edit', {'id': category.id}) }}"><i class="fas fa-trash"></i></a>
+                    <a href="{{ path('category_show', {'id': category.id}) }}"><i class="far fa-eye fs-5 me-2"></i></a>
+                    <a href="{{ path('category_delete', {'id': category.id}) }}"><button class="btn alert alert-danger p-1"><i class="fas fa-trash "></i></button></a>
+
                 </td>
             </tr>
         {% else %}
@@ -34,30 +39,30 @@
         </tbody>
     </table>
 </div>
-<div class="text-center text-md-start">
-    <a href="{{ path('category_new') }}"><button class="secondbuttonitem ms-5" >Ajouter</button></a>
-</div>
 
-<div class="container mt-auto d-md-none">
+
+<div class="container mt-auto d-md-none mb-5">
     <table class="table">
-        {% for type in categories %}
+    {# attention à cause l'include delete et du controlleur delete-category, il faut reprendre dans bouble category #}
+        {% for category in categories %}
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ type.id }}</td>
+                <td>{{ category.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
-                <td>{{ type.name }}</td>
+                <th>Nom</th>
+                <td>{{ category.name }}</td>
             </tr>
             <tr>
                 <th>Info</th>
-                <td>{{ type.info }}</td>
+                <td>{{ category.info }}</td>
             </tr>
             <tr>
                 <th>actions</th>
-                <td><a href="{{ path('category_edit', {'id': type.id}) }}"><i class="fas fa-edit me-2"></i></a>
-                    <a href="{{ path('category_delete', {'id': type.id}) }}"><i class="fas fa-trash"></i></a>
+                <td>
+                    <a href="{{ path('category_edit', {'id': category.id}) }}"><i class="fas fa-edit mx-2 fs-5"></i></a>
+                    <a href="{{ path('category_delete', {'id': category.id}) }}"><button class="btn alert alert-danger p-1"><i class="fas fa-trash "></i></button></a>
                 </td>
             <tr>
         </tbody>

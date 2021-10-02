@@ -34,15 +34,15 @@ class Category
      */
     private $tableaux;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Artnumerique::class, mappedBy="category", orphanRemoval=true)
-     */
-    private $artnumeriques;
+    // /**
+    //  * @ORM\OneToMany(targetEntity=Artnumerique::class, mappedBy="category", orphanRemoval=true)
+    //  */
+    // private $artnumeriques;
 
     public function __construct()
     {
         $this->tableaux = new ArrayCollection();
-        $this->artnumeriques = new ArrayCollection();
+        // $this->artnumeriques = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -104,33 +104,33 @@ class Category
         return $this;
     }
 
-    /**
-     * @return Collection|Artnumerique[]
-     */
-    public function getArtnumeriques(): Collection
-    {
-        return $this->artnumeriques;
-    }
+    // /**
+    //  * @return Collection|Artnumerique[]
+    //  */
+    // public function getArtnumeriques(): Collection
+    // {
+    //     return $this->artnumeriques;
+    // }
 
-    public function addArtnumerique(Artnumerique $artnumerique): self
-    {
-        if (!$this->artnumeriques->contains($artnumerique)) {
-            $this->artnumeriques[] = $artnumerique;
-            $artnumerique->setCategory($this);
-        }
+    // public function addArtnumerique(Artnumerique $artnumerique): self
+    // {
+    //     if (!$this->artnumeriques->contains($artnumerique)) {
+    //         $this->artnumeriques[] = $artnumerique;
+    //         $artnumerique->setCategory($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeArtnumerique(Artnumerique $artnumerique): self
-    {
-        if ($this->artnumeriques->removeElement($artnumerique)) {
-            // set the owning side to null (unless already changed)
-            if ($artnumerique->getCategory() === $this) {
-                $artnumerique->setCategory(null);
-            }
-        }
+    // public function removeArtnumerique(Artnumerique $artnumerique): self
+    // {
+    //     if ($this->artnumeriques->removeElement($artnumerique)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($artnumerique->getCategory() === $this) {
+    //             $artnumerique->setCategory(null);
+    //         }
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 }

@@ -9,23 +9,31 @@
  <div class="row">
                 
         {% if panier | length > 0 %}
-                {% for item in panier %} 
+                {% for item in panier %}
+                 
                         {% if item['tableau'].vendu == false %}
-                        <div class="col-md-7 text-center  g-2">
+                        <div class="col-md-7 text-center g-2">
                                 {# <a href="{{path('delete_uneoeuvre_panier', {'id': item['tableau'].id }) }}">supprimer quantité un oeuvre</a> #}
                                 <h3> Acquérir cette oeuvre </h3>
                                 <img class= "img-fluid mx-auto my-2" width="500" src="{{asset( 'images/' ~ item['tableau'].image)}}" alt="poi">
                                 <h4> {{ item['tableau'].auteur }}</h4>
                                 <p> {{ item['tableau'].longueur}} x {{ item['tableau'].largeur}} cm </p>
+                        
                         </div>
         
-                        <div class="col-md-5 bg-light text-center g-3 mb-4">
-                                <h3> {{ item['tableau'].titre }}</h3>
-                                <h5> Prix unitaire : {{ item['tableau'].prix }} € </h5> 
-                                <p> Technique : huile sur toile </p>         
-                                <a href="{{path('un_seul_achat', {'id': item['tableau'].id }) }}"><button class="secondbuttonitem">Acquérir ce tableau</button></a>
+                        <div class="col-md-5 bg-light text-center g-2 mb-4">
+                                
+                                <h3 class="my-5"> {{ item['tableau'].titre }}</h3>
+                                <h5 class="mb-3"> Prix unitaire : {{ item['tableau'].prix }} € </h5> 
+                                <p> Technique : {{ item['tableau'].technique.nom}} </p> 
+                                <a href="{{path('vitrine') }}"><button class="secondbuttonitem mt-3">Retour aux achats</button></a>  
                                 <a href="{{path('delete_uneoeuvre_panier', {'id': item['tableau'].id }) }}"><button class="secondbuttonitem"><i class="fas fa-trash me-1"></i></button></a>                      
-                                {# <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p> #}
+                                <p> Tva : {{ item['tableau'].tva}} </p> 
+
+
+                                <div>
+                               
+                        </div>
                         </div>  
                 <hr>
                         {% endif %}
@@ -35,7 +43,7 @@
                         <h4> Quantité Panier : {{quantitytotal}} article(s) </h4>
                         <a href="{{path('achat') }}"><button class="secondbuttonitem me-3 m-2">Confirmer cet achat</button></a>
                         <a href="{{path('delete_panier') }}"><button class="secondbuttonitem"><i class="fas fa-trash me-1"></i></button></a>
-
+                        
                         {% for item in panier %}
                                 
                        
@@ -47,9 +55,14 @@
                         {% endif %}
                          {% endfor %}
 {# <a href="{{path('add_panier', {'id': 9 }) }}">ajouter panier</a> #} 
-</div>
-        <a href="{{path('vitrine') }}"><button class="secondbuttonitem">Retour aux achats</button></a>  
-
+ </div>
+        {# <a href="{{path('vitrine') }}"><button class="secondbuttonitem">Retour aux achats</button></a>   #}
+<div> 
+                                <small> Un mail sera envoyé au propriétaire du tableau lors de la confirmation de l'achat pour vérifier la disponibilité du tableau.
+                                Si aprés 48h00, nous n'avons reçu aucune réponse, nous annulerons votre commande et vous serez intégralement remboursé. Nous vous rappelons aussi,
+                                que vous pouvez exercer votre droit de rétraction 14 jours #}aprés reception de la commande et rendre le tableau. </p>  
+                                </small>
+                        </div>
 </div>
 
 </div>

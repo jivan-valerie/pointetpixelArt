@@ -35,4 +35,9 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/users, roles: ROLE_USER }
+        - { path: ^/artist, roles: ROLE_ARTIST }
+        - { path: ^/user, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ARTIST: ROLE_USER
+        ROLE_ADMIN: ROLE_ARTIST

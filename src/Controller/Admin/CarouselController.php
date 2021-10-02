@@ -63,11 +63,10 @@ class CarouselController extends AbstractController
     /**
      * @Route("/{id}", name="carousel_show", methods={"GET"})
      */
-    public function show(Carousel $carousel, Panier $panier): Response
+    public function show(Carousel $carousel): Response
     {
         return $this->render('carousel/show.html.twig', [
             'carousel' => $carousel,
-            'panier'=>$panier->afficheDetailPanier(), 
 
         ]);
     }

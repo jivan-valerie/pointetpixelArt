@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Artnumerique{% endblock %}
+
+{% block body %}
+    
+    <h2 class="text-center mt-3">Modifier une vidéo</h2>
+
+        <div class= "container my-5 m-auto col-10">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Modifier" class="secondbuttonitem my-5">
+            {{ form_end(form)}}
+        <div class="text-end my-5" >
+            <a href="{{ path('mes_videos') }}"><button class="firstitem fs-5 p-1">Retour</button></a>
+            </div>
+        </div>
+{% endblock %}
+    
+    

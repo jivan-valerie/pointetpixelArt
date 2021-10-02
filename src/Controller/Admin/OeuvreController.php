@@ -3,24 +3,29 @@
 namespace App\Controller\Admin;
 
 use App\Classes\Panier;
+use App\Entity\Artnumerique;
+use App\Entity\Images;
 use App\Entity\Tableaux;
-use App\Form\TableauType;
+use App\Repository\ArtnumeriqueRepository;
+use App\Repository\ImagesRepository;
 use App\Repository\TableauxRepository;
-use App\Repository\TvaRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+/**
+ * @Route("/admin/oeuvre")
+ */
 class OeuvreController extends AbstractController
 {
-
-    
+ 
+    // cette méthode récupère tous les tableaux dans le repository : tous les objets instanciés de la class (concrète) tableaux
+    //pour les renvoyer à la vue
     /**
-     * @Route("admin/oeuvre", name="oeuvre")
+     * @Route("/tableaux", name="oeuvre")
      */
-    public function index(Panier $panier, TableauxRepository $tableauxRepository): Response
+    public function ListTableaux(Panier $panier, TableauxRepository $tableauxRepository): Response
     {
         $liste_tableaux=$tableauxRepository->findAll();
         return $this->render('oeuvre/tableaux.html.twig', [
@@ -30,10 +35,35 @@ class OeuvreController extends AbstractController
         ]);
     }
 
+
     /**
-     * @Route("admin/oeuvre/{id}", name="oeuvre_show", methods={"GET"})
+     * @Route("/images", name="dash_images", methods={"GET"})
      */
-    public function show(Panier $panier, Tableaux $tableaux): Response
+    public function ListImages(ImagesRepository $imagesRepository): Response
+    {
+        return $this->render('oeuvre/images.html.twig', [
+            'images' => $imagesRepository->findAll(),
+        ]);
+    }
+        //  idem pour videos
+
+    /**
+     * @Route("/videos", name="dash_video")
+     */
+    public function ListVideo(Panier $panier, ArtnumeriqueRepository $videos): Response
+    {
+        return $this->render('oeuvre/list_video.html.twig', [
+        'liste_videos'=>$videos->findAll(),
+        'panier'=>$panier->afficheDetailPanier(), 
+
+        ]);
+    }
+// récupère les données d'un tableau par la méthode Get id , la route 
+
+    /**
+     * @Route("/tableau/{id}", name="oeuvre_show", methods={"GET"})
+     */
+    public function showTableau(Panier $panier, Tableaux $tableaux): Response
     { 
         return $this->render('oeuvre/show_tableau.html.twig', [
             'tableaux' => $tableaux,
@@ -41,41 +71,38 @@ class OeuvreController extends AbstractController
 
         ]);
     }
+        //idem 
 
-    // /**
-    //  * @Route("admin/modifier-tableau/{id}", name="edit_tableau", defaults = {"id" :null })
-    //  */
-    // public function editTableaux($id, TableauxRepository $tableauxRepository, Request $request, EntityManagerInterface $entityManager): Response
-    // {
-    //     if(!is_null($id)){
-    //         $tableau=$tableauxRepository->find($id);
-    //     } else {
-    //         $tableau= new Tableaux();
-    //     }
-    //     $form=$this->createForm(TableauType::class, $tableau);
-    //     $form->handleRequest($request);
-        
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $image=$form->get('image')->getData();
-    //         $image_name=uniqid().'.'.$image->guessExtension();
-    //         $image->move($this->getParameter('upload_dir'), $image_name);
-    //         $tableau->setImage($image_name);
-    //         $entityManager->persist($tableau);
-    //         $entityManager->flush();
 
-    //         return $this->redirectToRoute('oeuvre');
-    //     }
-    //     return $this->render('oeuvre/edit_tableaux.html.twig',[ 
-    //         'form'=>$form->createView(),
-    //     ]);
-    // }
+    /**
+     * @Route("/video/{id}", name="video_show", methods={"GET"})
+    */
+    public function showVideo(Panier $panier, Artnumerique $video): Response
+    { 
+        return $this->render('oeuvre/show_video.html.twig', [
+            'artnumerique' => $video,
+            'panier'=>$panier->afficheDetailPanier(), 
+
+        ]);
+    }
+
+        /**
+     * @Route("/images/{id}", name="images_show", methods={"GET"})
+     */
+    public function showImages(Images $image): Response
+    {
+        return $this->render('oeuvre/show.html.twig', [
+            'image' => $image,
+        ]);
+    }
+
     
-
+// Attention cette méthode supprime directement le tableau, l'étape de confirmation doit être créer dans le template !!
     
     /**
-     * @Route("admin/delete-tableau/{id}", name="delete_tableau",methods={"GET"} )
+     * @Route("/delete-tableau/{id}", name="delete_tableau",methods={"GET"} )
      */
-    public function delete(Tableaux $tableau): Response
+    public function deleteTableau(Tableaux $tableau): Response
     {
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -85,14 +112,32 @@ class OeuvreController extends AbstractController
         return $this->redirectToRoute('oeuvre');
 
     }
-}
-// public function delete(Request $request, Carousel $carousel): Response
-// {
-//     if ($this->isCsrfTokenValid('delete'.$carousel->getId(), $request->request->get('_token'))) {
-//         $entityManager = $this->getDoctrine()->getManager();
-//         $entityManager->remove($carousel);
-//         $entityManager->flush();
-//     }
 
-//     return $this->redirectToRoute('carousel_index', [], Response::HTTP_SEE_OTHER);
- 
+
+    /**
+     * @Route("admin/delete-video/{id}", name="supprimer_video",methods={"GET"} )
+    */
+    public function deleteVideo(Artnumerique $video): Response
+    {
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($video);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('dash_video');
+
+    }
+     /**
+     * @Route("/delete-uneimage/{id}", name="supprimer_uneimage",methods={"GET"} )
+    */
+    public function deleteImage(Images $image): Response
+    {
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($image);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('images_index');
+
+    }
+}

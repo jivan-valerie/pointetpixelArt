@@ -28,6 +28,12 @@ a {
     max-width:5rem;
  }
 
+ .text-logo {
+    font-size: 2.2rem;
+ }
+ .sous-titre{
+     font-size: 1.5rem;
+ }
  /* ********* 
     NAVBARS
    ********** */
@@ -116,82 +122,11 @@ a {
     background-color: rgb(161, 139, 185);
     padding: 7px;
   }   
-/* .firstsection{
-    background-color: rgb(159, 243, 159);
-    
-} */
-
-/* .slide-diaporama{
-    height:  500px;
-        
-        position: relative;
-        margin: auto;
-      
-}
-/* définition de l'animation sur les images */
-/* .diaporama img {
-  animation: fade-in-out 6s ease infinite 0s;
-  opacity: 0;
-  position:relative;
-} */
-/* définition délai des images */
-/* .diaporama img:nth-child(1) { animation-delay: 0s;}
-.diaporama img:nth-child(2) { animation-delay: 2s;}
-.diaporama img:nth-child(3) { animation-delay: 4s;} */
-/* définition des étapes */
-/* @keyframes fade-in-out {
-  0%, 100% {
-    opacity: 0;
-  }
-  16.67% {
-    opacity: 1;
-  }
-  33.33% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-} */ 
-
-/***********/
-/*.text {
-    background-color: darkslagray;
-    
-    width: 100%;
-    padding :10px
-}*/
-.text{
-    background-color:  rgb(252, 253, 239);
-    text-align: center;
-    font-size: 15px;
-    padding: 40px 40px 0px 40px;
-}
 
  .logo{
     width: 100%;
 } 
 
-
-#block-centrale{
-    display: flex;  
-    justify-content:space-evenly;
-    align-items:center;
-    flex-wrap: wrap;
-}
-
-
-
-
-
-
-.lookSubject {
-    background-color: rgb(209, 159, 243);
-    display: flex;
-    justify-content: center;
-    padding: 10px 10px;
-
-}
 
 
 
@@ -211,29 +146,24 @@ a {
 FOOTER
 ***********/
 footer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1em 0;
-    background-color: #191828;
-    bottom: 0;
+    font-size: 0.8em;
 }
 
 footer p {
-    color: #f0d069;
+    color:#fcfdef
 }
 
 footer a {
-    color: #a9cfee;
+    color:#fcfdef
 }
 
 footer a:hover {
-    color: #FFFFFF;
+    color:#ffffff
 }
 
 
 footer {
-    background-color: rgb(39, 23, 58);
+    background-color: #27173a;
 }
 
 /************
@@ -247,32 +177,33 @@ MAIN ART GRAF
 }
 
 .card{
-    background-color:rgb(252, 253, 239);
+    background-color:rgb(255, 253, 240)
     
-    border:2px solid rgb(243, 214, 159)
-    
-}
-
-
-
-.btn-check{
-    background-color: aqua;
+    /* border:2px solid rgb(243, 214, 159) */
     
 }
+
+
+ .imagine {
+    height: 100px;
+}
+
+    
+
 .buttonBuy {
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
 }
 
-.styled {
+/* .styled {
 
     border: 0;
     line-height: 2.5;
     padding: 0 20px;
     font-size: 1.1rem;
     text-align: center;
-    color: #fff;
+    color: #fcfdef;
     text-shadow: 1px 1px 1px #000;
     border-radius: 2px;
     background-color: rgb(231, 156, 69);
@@ -280,44 +211,24 @@ MAIN ART GRAF
                                       rgba(0, 0, 0, .2),
                                       rgba(0, 0, 0, .2) 30%,
                                       rgba(0, 0, 0, 0));
-    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+    box-shadow: inset 2px 2px 3px #faf9f999,
                 inset -2px -2px 3px rgba(0, 0, 0, .6);
-}
+} */
 
 
 /*************/
 /*ACOUNT
 /*************/
 .account{
-	background-image: linear-gradient(to top, rgb(243, 214, 159) 0%, rgb(39, 23, 58) 100%);
-	 /* background-repeat: no-repeat; */
-    /* display:flex; */
-    /* align-items:center;
-    justify-content: center;  */
-    /* border-top: 5px solid re; */
-    color: rgb(252, 253, 239);
+	background-image: linear-gradient(to top, #f3d69f 0%, #27173a 100%);
+    color: #fcfdef;
     	
 }
 .formulaire{
     padding: 20px;
     background-color:rgba(39, 23, 58, 0.582);
 }
-/* .box{
-	width: 60%;
-    height: 70%;
-	background-color:rgb(230, 70, 70;
-	
-	box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3;
-	padding: 5px;
-	top: 20px; 
-} */
 
-/*img {
-	width: 100px;
-	padding-top: 10px;
-	margin: auto;
-
-}*/
 
 .account h4 {
 	
@@ -337,12 +248,6 @@ MAIN ART GRAF
 
 }
 
-.checkbox {
-	position: relative;
-	
-
-	color: #337ab7;
-}
 
 a {
 	position: relative;
@@ -350,13 +255,6 @@ a {
 
 }
 
-.login-button {
-	width: 70%;
-    position: relative;
-	left: 30px;
-    background-color: #9bd0db;
-    padding: 1px 2px;
-}
 
 .error {
     font-size: 13px;
@@ -365,22 +263,9 @@ a {
     display: none;
 }
 
-.error-img {
-    width: 18px;
-    vertical-align: bottom;
-}
 
-.success {
-    font-size: 13px;
-    background-color: #FFC2BD;
-    padding: 5px;
-    display: none;
-}
 
-.success-img {
-    width: 18px;
-    vertical-align: bottom;
-}
+
 /*************
 PAGE CONTACT
 /************/
@@ -391,10 +276,4 @@ PAGE CONTACT
     border: 5px solid rgb(252, 253, 239);
 }
 
-/* #buttonSubmit{ */
-    /* background-color: rgb(209 153 97);
-    border : 1px solid rgb(209 153 97);
-    color: rgb(243, 239, 253);
-    font-size: 1.1rem; */
 
-/* } */

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Images{% endblock %}
+
+{% block body %}
+    <h2 class="my-4 text-center">Modifier Slide</h2>
+
+    <div class="container m-auto col-md-7 col-lg-6">
+
+    {{ include('graphist/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <div class="">
+        <a href="{{ path('mes_images') }}"><button class="firstitem fs-5">Retour</button></a></a>
+    </div> 
+    </div>
+{% endblock %}

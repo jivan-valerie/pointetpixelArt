@@ -1,22 +1,102 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfilController!{% endblock %}
+{% block title %}Commandes
+{% endblock %}
 
 {% block body %}
-{{ user.Commandes | length}}
 
-{% for row in user.Commandes %}
-    <p> voici mon premier tableau</p>
-    {{ row.id }}
-    {{ row.adresse }}
-    {{ row.date_commande }}
-    {{ row.user.auteur}}
-    {# {{ row.image}} #}
-    {# {{ row}} #}
-    {# {{row.user.adresse}} #}
-    {# {{ row}} #}
+	<h2 class="text-center my-5">
+		Mes achats/détails Commande(s)
+	</h2>
+	<div class="container">
+    	<a href="{{ path('vitrine')}}"><button class="secondbuttonitem ms-5">Acheter</button></a>
+	</div>
+
+	{% if user.Commandes %}
+		<h5 class="text-center">Nombre de Tableau(x) aquis :
+			{{ user.Commandes | length}}</h5>
+			<div class="container my-5 mx-auto d-none d-md-flex my-4">
+		<table class="table">
+
+			<thead>
+				<tr>
+					
+					<th>Date</th>
+					<th>Titre du tableau</th>
+					<th>Image</th>
+					<th>Auteur</th>
+					<th>prix</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				{% for row in user.Commandes %}
+					
+						
+					<td>{{ row.dateCommande|date("m/d/Y") }}</td>
+					
+					
+					<td>
+						{{ row.tableaux.titre }}
+					</td>
+					<td>
+						<img src ="{{asset('images/' ~ row.tableaux.image)}}" style ="width:70px" >
+					</td>
+					<td>
+					{{ row.tableaux.auteur}}
+					</td>
+					<td>
+					{{ row.tableaux.prix}} €
+				</td>
+		</tbody>
+
 {% endfor %}
+			
+			</table>
+	{% else %}
+		<p>
+			Vous n'avez aucun acquis
+		</p>
 
-    
+
+	{% endif %}
+	</div>
+</div>
+
+<div class="container mt-auto d-md-none ">
+    <table class="table">
+      {% for item in user.Commandes %}
+        <tbody>
+            
+            <tr>
+                <th>Date</th>
+                <td>{{ item.dateCommande|date("m/d/Y") }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ item.tableaux.titre}}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src ="{{ asset('images/' ~ item.tableaux.image) }}" style ="width:70px"></td>  
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ item.tableaux.auteur }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ item.tableaux.prix}} €</td>
+            </tr>
+            
+        
+        </tbody>
+        
+      {% endfor %}
+    </table>
+  </div>
+
 
 {% endblock %}
+
+

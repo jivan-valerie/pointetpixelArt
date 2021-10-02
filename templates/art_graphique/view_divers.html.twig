@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abract{% endblock %}
+
+{% block body %}
+
+
+	<main>
+		
+		<h2 class="h2 ms-3 mt-5">Art Abstrait</h2>
+		<div class="text-center">
+			<p class="m-3">Vous vous trouvez sur la page 'Art Abstrait', pour visitez notre galerie d'art figuratif, vous pouvez cliquez sur ce lien</p>
+			<a href="{{ path('vitrine') }}">
+				<button class="secondbuttonitem" type="button">Art figuratif</button>
+			</a>
+		</div>
+		
+			{% for id in liste_categorie %}
+
+				{# id doit porter même nom categorie pour ensuite les raccourcis de pages #}
+				{% if id.name == "Divers" or id.name == "Abstrait" %}
+					<h3 class="my-4 mx-4" id="{{id.name}}">{{id.name}}</h3>
+					<h5 class="my-4 mx-5">Orientation portrait</h5>
+					<div class="container mt-4 mt-lg-5 ">
+						<div class="row g-2 g-lg-3 justify-content-center">
+						{% for item in liste_tableaux %}
+							{% if id.name == item.category.name and item.longueur < item.largeur %}
+								<div class="col-11 col-sm-10 col-md-6 col-lg-4 col-xl-3 m-5">
+									<div class="card h-100">
+										<img src="{{asset('images/' ~ item.image)}}" class="card-img-top" alt="{{ item.titre }}">
+										<div class="card-body">
+											<h5 class="card-title">
+											<strong>{{ item.auteur }}</strong></h5>
+											<p class="titre">
+												{{ item.titre }}</p>
+											<p class="card-text">
+												Taille :
+												{{item.longueur}}
+												cm x
+												{{item.largeur}}
+												cm;
+											</p>
+											<div class="text-center mt-4">
+												<a href="{{ path('detail_tableau', {'id': item.id}) }}"><input type="button" class="secondbuttonitem" value="Acquérir"></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endif %}
+						{% endfor %}
+						</div>
+					</div>
+
+				<h5 class="my-4 mx-5">Orientation paysage</h5>
+				<div class="container mt-4 mt-lg-5 ">
+					<div class="row g-2 g-lg-3 justify-content-center">
+					{% for item in liste_tableaux %}
+						{% if id.name == item.category.name and item.longueur >= item.largeur %}
+							<div class="col-11 col-sm-10 col-md-6 col-lg-4 col-xl-3">
+								<div class="card h-100">
+									<img src="{{asset('images/' ~ item.image)}}" class="card-img-top" alt="Aperçu du tableau cheveaux sauvages">
+									<div class="card-body">
+										<h5 class="card-title">Titre:
+											<strong>{{ item.titre }}</strong></h5>
+										<p class="auteur">Auteur:
+											{{ item.auteur }}</p>
+										<p class="card-text">
+											Taille :
+											{{item.longueur}}
+											cm x
+											{{item.largeur}}
+											cm;
+										</p>
+										<div class="text-center mt-4">
+											<a href="{{ path('detail_tableau', {'id': item.id}) }}"><input type="button" class="secondbuttonitem" value="Acquérir"></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+					</div>
+				</div>
+			{% endif %}
+		{% endfor %}
+	</main
+>{% endblock %}

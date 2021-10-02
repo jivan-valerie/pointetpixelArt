@@ -19,22 +19,34 @@ class TableauxRepository extends ServiceEntityRepository
         parent::__construct($registry, Tableaux::class);
     }
 
-    // /**
-    //  * @return Tableaux[] Returns an array of Tableaux objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * @return Tableaux[] Returns an array of Tableaux objects
+      */
+    public function findArtist()
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('distinct t.auteur')
+            // ->groupBy('t.auteur')
+            // ->select('t.titre')
+
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    // public function findByCategory($criteria)
+    // {
+    //     return $this->createQueryBuilder('t')
+    //        ->leftJoin('t.categories', 'category') 
+    //         ->where()
+    //        ->andWhere('t. = :val')
+    //         ->setParameter('val', $value)
+    //         ->orderBy('t.id', 'ASC')
+    //         ->setMaxResults(10)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+    
 
     /*
     public function findOneBySomeField($value): ?Tableaux

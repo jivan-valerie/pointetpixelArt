@@ -30,10 +30,10 @@ class Commande
      */
     private $date_commande;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $adresse;
+    // /**
+    //  * @ORM\Column(type="string", length=255)
+    //  */
+    // private $adresse;
 
     /**
      * @ORM\Column(type="float")
@@ -41,19 +41,11 @@ class Commande
     private $total;
 
     /**
-     * @ORM\OneToMany(targetEntity=DetailCommande::class, mappedBy="commande", orphanRemoval=true)
+     * @ORM\ManyToOne(targetEntity=Tableaux::class, inversedBy="commandes")
      */
-    private $detailCommandes;
+    private $tableaux;
 
-    /**
-     * @ORM\Column(type="string", length=80)
-     */
-    private $email;
-
-    public function __construct()
-    {
-        $this->detailCommandes = new ArrayCollection();
-    }
+    
 
     public function getId(): ?int
     {
@@ -97,17 +89,17 @@ class Commande
         return $this;
     }
 
-    public function getAdresse(): ?string
-    {
-        return $this->adresse;
-    }
+    // public function getAdresse(): ?string
+    // {
+    //     return $this->adresse;
+    // }
 
-    public function setAdresse(string $adresse): self
-    {
-        $this->adresse = $adresse;
+    // public function setAdresse(string $adresse): self
+    // {
+    //     $this->adresse = $adresse;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getTotal(): ?float
     {
@@ -121,45 +113,49 @@ class Commande
         return $this;
     }
 
-    /**
-     * @return Collection|DetailCommande[]
-     */
-    public function getDetailCommandes(): Collection
+    // /**
+    //  * @return Collection|DetailCommande[]
+    //  */
+    // public function getDetailCommandes(): Collection
+    // {
+    //     return $this->detailCommandes;
+    // }
+
+    // public function addDetailCommande(DetailCommande $detailCommande): self
+    // {
+    //     if (!$this->detailCommandes->contains($detailCommande)) {
+    //         $this->detailCommandes[] = $detailCommande;
+    //         $detailCommande->setCommande($this);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeDetailCommande(DetailCommande $detailCommande): self
+    // {
+    //     if ($this->detailCommandes->removeElement($detailCommande)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($detailCommande->getCommande() === $this) {
+    //             $detailCommande->setCommande(null);
+    //         }
+    //     }
+
+    //     return $this;
+    // }
+
+    
+
+    public function getTableaux(): ?Tableaux
     {
-        return $this->detailCommandes;
+        return $this->tableaux;
     }
 
-    public function addDetailCommande(DetailCommande $detailCommande): self
+    public function setTableaux(?Tableaux $tableaux): self
     {
-        if (!$this->detailCommandes->contains($detailCommande)) {
-            $this->detailCommandes[] = $detailCommande;
-            $detailCommande->setCommande($this);
-        }
+        $this->tableaux = $tableaux;
 
         return $this;
     }
 
-    public function removeDetailCommande(DetailCommande $detailCommande): self
-    {
-        if ($this->detailCommandes->removeElement($detailCommande)) {
-            // set the owning side to null (unless already changed)
-            if ($detailCommande->getCommande() === $this) {
-                $detailCommande->setCommande(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
+   
 }

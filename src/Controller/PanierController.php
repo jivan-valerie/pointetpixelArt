@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Classes\Panier;
+use App\Repository\TechniqueRepository;
+use App\Repository\TvaRepository;
 
 class PanierController extends AbstractController
 {
@@ -19,12 +21,13 @@ class PanierController extends AbstractController
     /**
      * @Route("user/panier", name="panier")
      */
-    public function index(): Response
+    public function index( ): Response
     {
+
         return $this->render('panier/index.html.twig', [
             'panier'=>$this->panier->afficheDetailPanier(), 
             'total'=>$this->panier->CalculTotal(),
-            'quantitytotal'=>$this->panier->CalculQuantiteTotal()
+            'quantitytotal'=>$this->panier->CalculQuantiteTotal(),
         ]);
     }
     /**
@@ -45,7 +48,7 @@ class PanierController extends AbstractController
     public function deleteToutPanier(): Response
     {
         $this->panier->deletePanier();
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('panier');
     }
     /**
      * @Route("/supprime-oeuvre/{id}", name="delete_oeuvre_panier")

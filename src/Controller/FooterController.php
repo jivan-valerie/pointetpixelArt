@@ -9,12 +9,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class FooterController extends AbstractController
 {
     /**
-     * @Route("/footer", name="footer_cdv")
+     * @Route("/footer/cgv", name="footer_cgv")
      */
-    public function index(): Response
+    public function cgv(): Response
     {
-        return $this->render('footer/index.html.twig', [
-            'controller_name' => 'FooterController',
-        ]);
+        return $this->render('footer/cgv.html.twig');
     }
+
+    /**
+     * @Route("/footer/mentions", name="footer_mentions")
+     */
+    public function mentionsLegales(): Response
+    {
+        return $this->render('footer/mentions.html.twig');
+    }
+
+    /**
+     * @Route("/footer/confidentialite", name="cookies")
+     */
+    public function confidentialité(): Response
+    {
+        return $this->render('footer/cookies.html.twig');
+    }
+
+
 }

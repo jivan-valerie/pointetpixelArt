@@ -1,0 +1,194 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes_tableaux
+{% endblock %}
+
+{% block body %}
+	<h2 class="text-center mb-5 mt-3">Mes tableaux</h2>
+	<div class=" container">
+		<a href="{{ path('add_tableau')}}">
+			<button class="secondbuttonitem me-5">Ajouter</button>
+		</a>
+	</div>
+	{% if user.Tableauxuser %}
+		<h5 class="text-center">Nombre de Tableau(x) insérés : {{ user.Tableauxuser | length}}</h5>
+	<div
+		class="container col-10  mt-auto d-none d-md-flex">
+
+		{# Nombre de Tableau(x) inséré(s) : #}
+		
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Indice</th>
+						<th>Titre</th>
+						<th>Image</th>
+						<th>Auteur</th>
+						<th>prix</th>
+						<th>vendu</th>
+						<th>action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for row in user.Tableauxuser %}
+						<tr>
+							<td>{{ row.id }}</td>
+							<td>{{ row.titre }}</td>
+                			<td><img src ="{{ asset('images/' ~ row.image) }}" style ="width:70px" ></td>
+							<td>{{ row.auteur }}</td>
+							<td>{{ row.prix }}
+								€</td>
+
+							{% if row.vendu == true %}
+								<td>Vendu</td>
+							{% else %}
+								<td>En vente</td>
+							{% endif %}
+							<td>
+								{% if row.vendu == false %}
+									<a href="{{path('modifier_tableauxuser', {'id': row.id})}}">
+										<i class="fas fa-edit ms-2 me-2"></i>
+									</a>
+									<button class="btn alert alert-danger p-2" role="alert">
+										<i class="fas fa-trash ms-2 me-2" data-bs-toggle="modal" data-bs-target="#masecondefenetre"></i>
+									</button>
+								
+									<div class="modal fade" id="masecondefenetre" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="staticBackdropLabel">Point&Pixel</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+
+
+											<div class="modal-body">
+												Êtes-vous sûr de vouloir supprimer définitivement ce tableau ?
+												<br>
+												Il se peut que le tableau soit déjà reservé, contactez-nous.
+											</div>
+
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+													<a href="{{ path('contact') }}">
+												<button type="button" class="btn btn-primary">Oui</button>
+													<a>
+											</div>
+										</div>
+									
+								
+								{% else %}
+									Le tableau est déjà vendu, impossible d'effectuer des modifications
+								{% endif %}
+							</td>
+						</tr>
+
+					{% else %}
+						<tr>
+							<td colspan="7">
+								Vous n'avez aucun tableau inséré
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+		{% endif %}
+	</div>
+
+	<div
+		class="container col-10 g-4 mt-auto d-flex d-md-none">
+
+		{# <h5>Nombre de Tableau(x) inséré(s) : #}
+		<table class="table">
+			{% for row in user.Tableauxuser %}
+				<tbody>
+					<tr>
+						<th>Indice</th>
+						<td>{{ row.id }}</td>
+					</tr>
+					<tr>
+						<th>Titre</th>
+						<td>{{ row.titre }}</td>
+					</tr>
+					<tr>
+						<th>Image</th>
+                		<td><img src ="{{ asset('images/' ~ row.image) }}" style ="width:70px" ></td>
+					</tr>
+					<tr>
+						<th>Auteur</th>
+						<td>{{ row.auteur }}</td>
+					</tr>
+					<tr>
+						<th>prix</th>
+						<td>{{ row.prix }}
+							€</td>
+					</tr>
+					<tr>
+						<th>vendu</th>
+						<td>
+							{% if row.vendu == true %}
+								Vendu
+							{% else %}
+								En vente
+							{% endif %}
+						</td>
+					</tr>
+					<tr>
+						<th>action</th>
+						<td>
+							{% if row.vendu == false %}
+								<a href="{{path('modifier_tableauxuser', {'id': row.id})}}">
+									<i class="fas fa-edit ms-2 me-2"></i>
+								</a>
+
+								<button class="btn alert alert-danger p-2" role="alert">
+									<i class="fas fa-trash ms-2 me-2" data-bs-toggle="modal" data-bs-target="#mafenetre"></i>
+								</button>
+
+								<div class="modal fade" id="mafenetre" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="staticBackdropLabel">Point&Pixel</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+
+
+											<div class="modal-body">
+												Êtes-vous sûr de vouloir supprimer définitivement ce tableau ?
+												<br>
+												Il se peut que le tableau soit déjà reservé, contactez-nous.
+											</div>
+
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+													<a href="{{ path('contact') }}">
+												<button type="button" class="btn btn-primary">Oui</button>
+													<a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+									{% else %}
+										Le tableau est déjà vendu, impossible d'effectuer des modifications
+									{% endif %}
+								</td>
+							</tr>
+
+						{% else %}
+							<tr>
+								<td colspan="7">
+									Vous n'avez aucun tableau inséré
+								</td>
+							</tr>
+
+						{% endfor %}
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	{% endblock %}

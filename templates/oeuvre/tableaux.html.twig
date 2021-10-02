@@ -3,7 +3,7 @@
 {% block title %}Dashboard Tableaux{% endblock %}
 
 {% block body %}
-  <h4 class="text-center mb-5 mt-3">Liste de tous les tableaux</h4>
+  <h2 class="text-center mb-5 mt-3">Liste de tous les tableaux</h2>
   <div class="container mt-auto d-none d-md-flex">
     <table class="table">
       <thead>
@@ -93,20 +93,25 @@
                 <th>Prix</th>
                 <td>{{ item.prix }}</td>
             </tr>
-             <tr>
+            <tr>
                 <th>Statut</th>
-                <td>{% if item.vendu == true %}
-                    Vendu 
-                  {% else %}
-                    En vente 
-                {% endif %}</td>
-            </tr>
+                <td>
+                    {% if item.vendu == true %}
+                      Vendu 
+                    {% else %}
+                      En vente 
+                    {% endif %}
+                </td>
+              </tr>
             <tr>
                 <th>actions</th>
-                 <td>
-              <a href="{{path('oeuvre_show', {'id': item.id})}}"><i class="fas fa-eye ms-2 me-2"></i></a>
-              <i class="fas fa-trash ms-2 me-2" data-bs-toggle="modal" data-bs-target="#mafenetre"></i>
-            </td>
+                <td>
+                    <a href="{{path('oeuvre_show', {'id': item.id})}}">
+                      <i class="fas fa-eye ms-2 me-2"></i>
+                    </a>
+                    
+                      <i class="fas fa-trash ms-2 me-2" data-bs-toggle="modal" data-bs-target="#mafenetre"></i>
+                </td>
             </tr>
         </tbody>
         <div class="modal fade" id="mafenetre" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -122,7 +127,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
-                  <a href="{{ path('delete_tableau', {'id': item.id}) }}"><button type="button" class="btn btn-primary">Oui</button><a>
+                  <a href="{{ path('supprime_tableau', {'id': item.id}) }}"><button type="button" class="btn btn-primary">Oui</button><a>
                 </div>
               </div>
             </div>
@@ -130,7 +135,6 @@
       {% endfor %}
     </table>
   </div>
-
 {% endblock %}
 
 

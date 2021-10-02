@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Carousel index{% endblock %}
-{# liste des images du Carousel #}
+
 {% block body %}
 <h4 class="text-center mb-5 mt-3">Liste des images dans le diaporama</h4>
 <div class="container mt-auto d-none d-md-flex">
@@ -19,17 +19,19 @@
             </tr>
         </thead>
         <tbody>
-        {% for slide in carousels %}
+        {% for carousel in carousels %}
+        {# Pour include qui renvoie à _delete-form, le carousel dans la boucle est nécéssaire #}
             <tr= "row">
-                <td >{{ slide.indice }}</td>
-                <td><img src ="{{ asset('images/' ~ slide.image) }}" style ="width:70px" ></td>
-                <td>{{ slide.label }}</td>
-                <td>{{ slide.lien }}</td>
-                <td>{{ slide.titre }}</td>
-                <td>{{ slide.description }}</td>
+                <td >{{ carousel.indice }}</td>
+                <td><img src ="{{ asset('images/' ~ carousel.image) }}" style ="width:70px" ></td>
+                <td>{{ carousel.label }}</td>
+                <td>{{ carousel.lien }}</td>
+                <td>{{ carousel.titre }}</td>
+                <td>{{ carousel.description }}</td>
                 <td>
-                    <a href="{{ path('carousel_show', {'id': slide.id}) }}"><i class="far fa-eye me-1"></i></a>
-                    <a href="{{ path('carousel_delete', {'id': slide.id}) }}"><i class="fas fa-trash"></i></a>
+                    <a href="{{ path('carousel_show', {'id': carousel.id}) }}"><i class="far fa-eye me-1"></i></a>
+                            {{ include('carousel/_delete_form.html.twig') }}
+
                 </td>
             </tr>
         {% else %}
@@ -41,17 +43,14 @@
     </table>
 </div>
 <div class="text-center text-md-start">
-    <a href="{{ path('carousel_new') }}"><button class="secondbuttonitem ms-5" >Ajouter</button></a>
+    <a href="{{ path('carousel_new') }}"><button class="secondbuttonitem mb-5" >Ajouter</button></a>
 </div>
 
 <div class="container mt-auto d-md-none">
     <table class="table">
     {% for carousel in carousels %}
         <tbody>
-            {# <tr>
-                <th>Id</th>
-                <td>{{ carousel.id }}</td>
-            </tr> #}
+            
             <tr>
                 <th>Indice</th>
                 <td>{{ carousel.indice }}</td>
@@ -75,8 +74,9 @@
             </tr>
             <tr>
                 <th>actions</th>
-                <td><a href="{{ path('carousel_edit', {'id': carousel.id}) }}"><i class="fas fa-edit me-2"></i></a>
-                    <a href="{{ path('carousel_delete', {'id': carousel.id}) }}"><i class="fas fa-trash"></i></a>
+                <td>
+                    <a href="{{ path('carousel_edit', {'id': carousel.id}) }}"><i class="fas fa-edit me-2"></i></a>
+                    {{ include('carousel/_delete_form.html.twig') }}
                 </td>
             </tr>
         </tbody>

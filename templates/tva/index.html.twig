@@ -4,7 +4,11 @@
 
 {% block body %}
  <div class="container col-8 col-md-6 col-lg-4">
-    <h1>Tva index</h1>
+    <h1 class="text-center my-5">Tva index</h1>
+<div class="text-end me-5 mt-2">
+    <a href="{{ path('category_new') }}"><button class="secondbuttonitem" >Ajouter</button></a>
+</div>
+
 
     <table class="table">
         <thead>
@@ -20,8 +24,8 @@
                 <td>{{ tva.id }}</td>
                 <td>{{ tva.tva }}</td>
                 <td>
-                    <a href="{{ path('tva_edit', {'id': tva.id}) }}">modifier</a>
-                    <a href="{{ path('tva_delete', {'id': tva.id}) }}">supprimer</a>
+                    <a href="{{ path('tva_edit', {'id': tva.id}) }}"><i class="far fa-eye fs-5 me-2"></i></a>
+                    {{ include('tva/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
@@ -32,6 +36,5 @@
         </tbody>
     </table>
 
-    <button> <a href="{{ path('tva_new') }}">Ajouter</a></button>
 </div>
 {% endblock %}

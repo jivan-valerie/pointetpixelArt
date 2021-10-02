@@ -19,9 +19,10 @@ class ArtnumeriqueRepository extends ServiceEntityRepository
         parent::__construct($registry, Artnumerique::class);
     }
 
-    // /**
-    //  * @return Artnumerique[] Returns an array of Artnumerique objects
-    //  */
+     /**
+      * @return Artnumerique[] Returns an array of Artnumerique objects
+     */
+    
     /*
     public function findByExampleField($value)
     {
@@ -35,6 +36,14 @@ class ArtnumeriqueRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findAuteur()
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.auteur', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Artnumerique

@@ -8,36 +8,55 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Classes\Panier;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Entity\Tableaux;
+use App\Repository\TableauxRepository;
+use App\Repository\UserRepository;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
      */
-    public function index(Panier $panier, CategoryRepository $categoryRepository, CarouselRepository $carouselRepository): Response
+    public function index(Panier $panier, CategoryRepository $categoryRepository, CarouselRepository $carouselRepository, UserRepository $userRepository): Response
     {
 
-
+        // Je récupère l'user connecté
         $user=$this->getUser();
+        // si user existe et si il est banni alors redirection sur page connexion
         if ($user && $user->getBanni() == true) {
             return $this->redirectToRoute('app_logout');
             
         }
-        // $panier = $this->session->get('panier',[]);
-        $liste_category=$categoryRepository->findAll();
+//  sinon je récupère les catégories, les images carousel, les utilisateurs enregistrés et le panier (pour afficher quantité)
         return $this->render('home/index.html.twig', [
-            'liste_category'=>$liste_category,
+            'liste_category'=>$categoryRepository->findAll(),
             'carousel'=>$carouselRepository->findAll(),
-            // 'panier'=>$panier->CalculQuantiteTotal(),
-             'panier'=>$panier->afficheDetailPanier(), 
-
+            'panier'=>$panier->afficheDetailPanier(), 
+            'user'=>$userRepository->findAll()
         ]);
     }
+     /**
+     * @Route("/pointpixel", name="qui_sommes_nous")
+     */
+    public function identite(): Response
+    {
+        return $this->render('home/qui_sommes_nous.html.twig');
+    }
+
+
+    /**
+     * @Route("/guide", name="guide")
+     */
+    public function guide(): Response
+    {
+        return $this->render('home/guide.html.twig');
+    }
+
+
 }
 
-// $user=$this->getUser();
+
+
 
         
 

@@ -1,0 +1,6 @@
+<form method="post" action="{{ path('delete_tableau', {'id': tableau.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet item?');">
+    {# bouton delete inclus dans le show,cad détails tableaux-id sous forme de table impossible à modifier #}
+    {# et dans edit, cad détails tableau selon sous forme de formulaire selon _form.twig avec possibilité de le modifier #}
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tableau.id) }}">
+    <button class="btn alert alert-danger p-2" role="alert">Supprimer</button>
+</form>

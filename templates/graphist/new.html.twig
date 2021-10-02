@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Images{% endblock %}
+
+{% block body %}
+    <h2 class="text-center my-4">Ajouter une nouvelle Image</h2>
+<div class= "container mt-3 m-auto col-md-10 col-lg-6 mt-3 mb-5">
+
+    {{ include('graphist/_form.html.twig') }}
+
+    <a href="{{ path('mes_images') }}"><button class="firstitem fs-5">Retour</button></a>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}Edit_Tableaux{% endblock %}
+
+
+{% block body %}
+    <h2 class="text-center my-5">Modifier un tableau</h2>
+
+        <div class= "container mt-3 m-auto col-md-10 col-lg-6 mt-3 mb-5">
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+    
+    <p class="my-3"><a href="{{ path('footer_cgv') }}">Conditions de vente</a></p>
+    <div class="text-end mt-3">
+        <button class="secondbuttonitem">{{ button_label|default('Modifier') }}</button>
+    </div>
+    {{ form_end(form) }}
+
+    <a href="{{ path('mes_tableaux') }}">
+        <button class="firstitem fs-5">Retour</button>
+    </a>
+</div>
+        {% endblock %}

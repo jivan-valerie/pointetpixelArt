@@ -1,0 +1,57 @@
+{# {% extends 'base.html.twig' %} #}
+<!DOCTYPE html>
+<html>
+	{% include "home/header.html.twig" %}
+
+{% block body %}
+
+<div class="container col-10 col-lg-8 ">
+<div class ="text-center my-3" >
+<a href="{{ path('home')}}"><img src="{{asset('images/60e719a396c35.png') }}" alt="logo"  style ="width:10em"></a>
+
+<h1 class= "text-center my-3"> Politique de confidentialité</h1>
+</div>
+
+<h2 class= "title mt-5">I- Cookies strictement nécessaires</h1>
+
+<p> 
+
+Ces cookies sont nécessaires au fonctionnement du site et ne peuvent pas être désactivés.
+ Ils sont enregistrés suite à vos actions directes comme le choix de votre langue ou de votre devise préférée, 
+ ou quand vous vous connectez à votre compte client ou ajoutez des articles dans votre panier.
+ Vous pouvez toujours bloquer ces cookies via votre navigateur internet, mais dans ce cas le site ne pourra pas fonctionner correctement.</p>
+
+<h2 class= "title mt-5">II- Cookies de performances</h1>
+<p>
+
+Ces cookies nous permettent de compter le nombre de visites et les sources de traffic sur notre site, ainsi que de tester quelles fonctionnalités sont plus utiles que d'autres via des tests A/B. Ces mesures nous permettent de construire un site plus efficace, en nous aidant à savoir quelles pages sont les plus ou les moins populaires et comment les visiteurs intéragissent avec le site. Toutes les informations collectées par ces cookies sont aggrégées pour l'ensemble des visiteurs et donc anonymes. 
+Si vous n'autorisez pas ces cookies, nous ne saurons pas que vous avez visité le site.</p>
+
+<h2 class= "title mt-5">III- Cookies de ciblages ou publicitaires</h1>
+
+<p> Point&ampPixel n'utilisent pas ce genre de cookies qui sont utilisés pour construire un profil de vos interêts afin de vous afficher des publicités pertinentes sur d'autres sites. 
+Leur fonctionnment identifie de manière unique votre ordinateur et votre navigateur.</p>
+
+<p>Point&ampPixel utilise les services <a href="https://tarteaucitron.io/fr/ "> Tarteaucitron</a> pour gérer ces cookies</p>
+
+<h2 class= "title mt-5">IV Données personnelles collectées</h1>
+
+
+<p> Nous collectons des données personnelles que vous nous transmettez et des données que nous recueillons.
+
+Dans le cadre des traitements de données à caractère personnel, nous sommes amenés à collecter et à traiter les données suivantes : <br>
+
+vos noms et prénoms ;<br>
+vos coordonnées (adresse postale, adresse email) ;<br>
+Et dans le cadre d'une vente, à les communiquer au Vendeur.</p>
+
+<p> Nous collectons les informations que vous nous fournissez notamment quand : <br>
+
+
+vous créez, modifiez et accédez à votre compte personnel <br>
+vous remplissez un formulaire de contact <br>
+vous contactez notre Service Client</p>
+
+</div>
+{% endblock %}
+</html>

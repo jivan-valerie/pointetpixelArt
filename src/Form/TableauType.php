@@ -7,14 +7,11 @@ use App\Entity\Category;
 use App\Entity\Technique;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\ChoiceList\Factory\Cache\ChoiceLabel;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 
 class TableauType extends AbstractType
 {
@@ -60,11 +57,10 @@ class TableauType extends AbstractType
                     ]),
                 ],
             ])
-            // ->add('ajouter', SubmitType::class, [
-            //     'label' => 'Ajouter',
-            //     'attr'=>[ 'class'=>'favorite styled text-end'], 
-            //     // 'mapped'=>false,
-            // ])
+            //  ->add('ajouter', SubmitType::class, [
+            //    'label' => 'Ajouter',
+            //   'attr'=>[ 'class'=>'f text-end'], 
+            //  ])
         ;
     }
 

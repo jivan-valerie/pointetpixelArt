@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Guide pratique
+{% endblock %}
+
+{% block body %}
+
+<div class="container col-10 col-lg-8 ">
+    <div class="img-fluid text-center my-4 ">
+        <a href="{{ path('home')}}"><img src="{{asset('images/60e719a396c35.png') }}" alt="logo"  style ="width:10em"></a>
+    </div>
+    <h1 class= "text-center my-3">Guide pratique </h1>
+    <h3 class= "title mt-5 mb-3">I- Création d'un compte</h3>
+    <p> Pour insérer une oeuvre, qu'elle soit image, vidéo, tableau, il faut créer un compte artiste et cocher la case artiste au moment de l'inscription. 
+        Mais si vous êtes un simple acquéreur ou utilisateur, nous vous conseillons de ne pas cocher cette case.</p>
+
+    <p> Vous pouvez à tout moment changer de statut en modifiant votre profil. Pour la suppression de votre compte, contactez-nous. En cliquant sur "supprimer mon compte, vous serez redirigez sur notre page contact </p>
+
+
+    <h3 class= "title mt-4">II- Vente d'un tableau, gestion des oeuvres</h3>
+
+    <p>Seuls les tableaux sont mis en vente, mais si en tant qu'artiste désire seulement exposer son tableau, il peut l'enregistrer simplement comme image. 
+        <br> Pour les tableaux mise en vente, le prix est automatisé et calculé selon une grille de prix appliquée aux artistes émergents.
+        <br> Pour supprimer un tableau, étant donné qu'il engage un tiers en ce sens qu'il peut déjà être commandé, nous vous demandons de nous contacter.
+        <br> Vous pourrez par contre supprimer vos oeuvres et vidéos, comme vous le souhaitez. 
+        <br> L'administrateur, ne peut modifier vos oeuvres mais si en cas d'abus constaté, il pourrait supprimer une oeuvre ou bannir un utilisateur.</p>
+
+    <h3 class= "title mt-4">III- Insérer une vidéo</h3>
+
+    <p>Dans un premier temps Point&ampPixel n'accepte que les vidéos déjà hébergées chez You Tube. 
+        il vous sera demandé d'insérer le numéro ID de la vidéo de You Tube, présente soit dans URL, soit dans le 'partager' de You Tube.
+        <br> Il faut insérer seulement le numéro et non l'adresse entiére.</p>
+</div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Vidéos{% endblock %}
+
+{% block body %}
+<h2 class="text-center my-3">Mes Vidéos</h2>
+<h5 class="text-center mb-5">Nombre de Vidéos(s) insérée(s) : <strong>{{user.artnumeriques | length }}</strong></h5>
+<div class="container">
+    <a href="{{ path('add_video')}}"><button class="secondbuttonitem ms-5">Ajouter</button></a>
+</div>
+	<div class="container col-10 mt-auto d-none d-md-flex">
+
+		
+		{% if user.artnumeriques %}
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Auteur</th>
+						<th>Description</th>
+						<th>action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for row in user.artnumeriques %}
+						
+						<tr>
+							<td>{{ row.titre }}</td>
+							<td>{{ row.auteur }}</td>
+							<td>{{ row.description }}</td>
+							
+                            <td>
+								<a href="{{path('artnumerique_edit', {'id': row.id})}}">
+									<i class="fas fa-edit ms-2 me-2"></i>
+								</a>
+								<a href="{{ path('artnumerique_delete', {'id': row.id}) }}">
+									<i class="fas fa-trash ms-2 me-2"></i>
+								</a>							 
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="7">
+                                Aucune vidéo insérée
+                            </td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
+	</div>
+
+	<div class="container col-10 mt-auto d-flex d-md-none">
+
+		<table class="table">
+			{% for row in user.artnumeriques %}
+				<tbody>
+					
+					<tr>
+						<th>Titre</th>
+						<td>{{ row.titre }}</td>
+					</tr>
+					<tr>
+						<th>Auteur</th>
+						<td>{{ row.auteur }}</td>
+					</tr>
+					<tr>
+						<th>description</th>
+						<td>{{ row.description }}</td>
+					</tr>
+					
+					<tr>
+						<th>action</th>
+						<td>
+							
+								<a href="{{path('artnumerique_edit', {'id': row.id})}}">
+									<i class="fas fa-edit ms-2 me-2"></i>
+								</a>
+								<a href="{{ path('artnumerique_delete', {'id': row.id}) }}">
+									<i class="fas fa-trash ms-2 me-2"></i>
+								</a>
+							
+						</td>
+					</tr>
+
+					{% else %}
+					<tr>
+						<td colspan="7">
+							Aucune vidéo insérée
+						</td>
+					</tr>
+
+					{% endfor %}
+				</tbody>
+		</table>
+	</div>
+
+	
+
+	{% endblock %}

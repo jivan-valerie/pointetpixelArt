@@ -34,16 +34,27 @@ class Artnumerique
      */
     private $description;
 
+    // /**
+    //  * @ORM\Column(type="string", length=255)
+    //  */
+    // private $image;
+
+    // // /**
+    // //  * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="artnumeriques")
+    // //  * @ORM\JoinColumn(nullable=false)
+    // //  */
+    // private $category;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $image;
+    private $iframe;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="artnumeriques")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="artnumeriques")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $category;
+    private $User;
 
     public function getId(): ?int
     {
@@ -88,26 +99,39 @@ class Artnumerique
         return $this;
     }
 
-    public function getImage(): ?string
+
+    // public function getCategory(): ?Category
+    // {
+    //     return $this->category;
+    // }
+
+    // public function setCategory(?Category $category): self
+    // {
+    //     $this->category = $category;
+
+    //     return $this;
+    // }
+
+    public function getIframe(): ?string
     {
-        return $this->image;
+        return $this->iframe;
     }
 
-    public function setImage(string $image): self
+    public function setIframe(string $iframe): self
     {
-        $this->image = $image;
+        $this->iframe = $iframe;
 
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function getUser(): ?User
     {
-        return $this->category;
+        return $this->User;
     }
 
-    public function setCategory(?Category $category): self
+    public function setUser(?User $User): self
     {
-        $this->category = $category;
+        $this->User = $User;
 
         return $this;
     }

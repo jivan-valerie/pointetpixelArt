@@ -64,20 +64,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $prenom;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $complement_adresse;
+    // /**
+    //  * @ORM\Column(type="string", length=255, nullable=true)
+    //  */
+    // private $complement_adresse;
 
     /**
      * @ORM\Column(type="boolean")
      */
     private $banni=false;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Artnumerique::class, mappedBy="User", orphanRemoval=true)
+     */
+    private $artnumeriques;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $images;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $code_posta;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $ville;
+
     public function __construct()
     {
         $this->tableauxuser = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->artnumeriques = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -265,17 +287,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getComplementAdresse(): ?string
-    {
-        return $this->complement_adresse;
-    }
+    // public function getComplementAdresse(): ?string
+    // {
+    //     return $this->complement_adresse;
+    // }
 
-    public function setComplementAdresse(string $complement_adresse): self
-    {
-        $this->complement_adresse = $complement_adresse;
+    // public function setComplementAdresse(string $complement_adresse): self
+    // {
+    //     $this->complement_adresse = $complement_adresse;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getBanni(): ?bool
     {
@@ -285,6 +307,90 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBanni(bool $banni): self
     {
         $this->banni = $banni;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Artnumerique[]
+     */
+    public function getArtnumeriques(): Collection
+    {
+        return $this->artnumeriques;
+    }
+
+    public function addArtnumerique(Artnumerique $artnumerique): self
+    {
+        if (!$this->artnumeriques->contains($artnumerique)) {
+            $this->artnumeriques[] = $artnumerique;
+            $artnumerique->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArtnumerique(Artnumerique $artnumerique): self
+    {
+        if ($this->artnumeriques->removeElement($artnumerique)) {
+            // set the owning side to null (unless already changed)
+            if ($artnumerique->getUser() === $this) {
+                $artnumerique->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Images[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getUser() === $this) {
+                $image->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCodePosta(): ?int
+    {
+        return $this->code_posta;
+    }
+
+    public function setCodePosta(int $code_posta): self
+    {
+        $this->code_posta = $code_posta;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }
