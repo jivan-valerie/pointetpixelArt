@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes images{% endblock %}
+
+{% block body %}
+<h2 class="text-center my-3">Mes Images</h2>
+{# <h5 class="text-center mb-5">Nombre d'image(s) insérée(s) : <strong>{{user.images | length }}</strong></h5> #}
+<div class="container">
+    <a href="{{ path('images_new')}}"><button class="secondbuttonitem ms-5">Ajouter</button></a>
+</div>
+	<div class="container col-10 mt-auto d-none d-md-flex">
+
+		
+		{% if user.images %}
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Auteur</th>
+						<th>Description</th>
+						<th>Image</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for row in user.images %}
+						
+						<tr>
+							<td>{{ row.titre }}</td>
+							<td>{{ row.auteur }}</td>
+							<td>{{ row.description }}</td>
+                			<td><img src ="{{ asset('images/' ~ row.image) }}" style ="width:70px" ></td>
+
+                            <td>
+								<a href="{{path('modifier_image', {'id': row.id})}}">
+									<i class="fas fa-edit ms-2 me-2"></i>
+								</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="7">
+                                Aucune image insérée
+                            </td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
+	</div>
+
+	<div class="container col-10 mt-auto d-flex d-md-none">
+
+		<table class="table">
+			{% for image in user.images %}
+				<tbody>
+					
+					<tr>
+						<th>Titre</th>
+						<td>{{ image.titre }}</td>
+					</tr>
+					<tr>
+						<th>Auteur</th>
+						<td>{{ image.auteur }}</td>
+					</tr>
+					<tr>
+						<th>description</th>
+						<td>{{ image.description }}</td>
+					</tr>
+						<th>image</th>
+						<td><img src ="{{ asset('images/' ~ image.image) }}" style ="width:70px" ></td>
+
+					<tr>
+						<th>action</th>
+						<td>
+							
+								<a href="{{path('modifier_image', {'id': image.id})}}">
+									<i class="fas fa-edit ms-2 me-2"></i>
+								</a>
+						 {% include "graphist/_delete_form.html.twig" %}
+							
+						</td>
+					</tr>
+
+					{% else %}
+					<tr>
+						<td colspan="7">
+							Aucune vidéo insérée
+						</td>
+					</tr>
+
+					{% endfor %}
+				</tbody>
+		</table>
+	</div>
+
+	
+
+{% endblock %}

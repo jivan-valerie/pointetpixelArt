@@ -3,6 +3,7 @@
 
 
 {% block body %}
+    <h2>Détails tableaux</h2>
 
     <div class="container col-md-10 col-lg-6 my-3">
     
@@ -36,11 +37,11 @@
                 <th>Prix</th>
                 <td>{{ tableaux.prix }}</td>
             </tr>
-             <tr>
+            <tr>
                 <th>Statut</th>
                 <td>{% if tableaux.vendu == true %}
                     Vendu 
-                  {% else %}
+                {% else %}
                     En vente 
                 {% endif %}</td>
             </tr>
@@ -50,7 +51,6 @@
         
             <a href="{{ path('oeuvre') }}"><button class="firstitem fs-5">Retour</button></a>
 
-            {# <a href="{{ path('carousel_edit', {'id': carousel.id}) }}"><button class="secondbuttonitem fs-5">Modifier</button></a> #}
         </div>
     
     
